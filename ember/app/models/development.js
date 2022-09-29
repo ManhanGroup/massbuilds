@@ -14,7 +14,7 @@ export default class extends DS.Model {
   @attr('string') tagline;
   @attr('string') nhood;
   @attr('string') address;
-  @attr('string', { default: 'MA' }) state;
+  @attr('string', { default: 'CA' }) state;
   @attr('string') zipCode;
   @attr('string') parkType;
   @attr('string') parcelId;
@@ -88,6 +88,6 @@ export default class extends DS.Model {
     const address = props.address || 'Unknown Address';
     const municipal = props.municipal || 'Unknown City';
     const zipCode = props.zipCode || '';
-    return `${address}, ${municipal}, ${props.state || 'MA'} ${zipCode}`;
+    return `${address}, ${municipal}, ${props.state || 'CA'} ${zipCode}`;
   }
 }

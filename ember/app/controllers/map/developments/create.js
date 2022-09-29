@@ -59,7 +59,7 @@ export default class extends Controller {
 
     Object.keys(data).forEach(attr => model.set(camelize(attr), data[attr]));
 
-    model.set('state', 'MA');
+    model.set('state', 'CA');
     model.set('user', this.get('currentUser.user'));
 
     this.set('isCreating', true);
@@ -92,7 +92,7 @@ export default class extends Controller {
 
   @action
   createEdit(data) {
-    data['state'] = 'MA';
+    data['state'] = 'CA';
     const newEdit = this.get('store').createRecord('edit', {
       user: this.get('currentUser.user'),
       approved: false,
