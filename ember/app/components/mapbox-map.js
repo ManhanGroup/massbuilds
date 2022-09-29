@@ -2,15 +2,17 @@ import { htmlSafe } from '@ember/template';
 import $ from 'jquery';
 import Component from '@ember/component';
 import { service } from 'ember-decorators/service';
-import statusColors from 'massbuilds/utils/status-colors';
+import statusColors from 'calbuilds/utils/status-colors';
 import pointInPolygon from '@turf/boolean-point-in-polygon';
 import centerOfMass from '@turf/center-of-mass';
 import mapboxgl from 'mapbox-gl';
 
-import paintProperties from 'massbuilds/utils/paint-properties';
+import paintProperties from 'calbuilds/utils/paint-properties';
 
 mapboxgl.accessToken =
-  'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg';
+  'pk.eyJ1IjoieWFjd2FuZyIsImEiOiJjbDYxcDBsa2sxemx1M2ptbmd1ZW4ydnpvIn0.U2zECpVKNzxvJsHLLAuoYQ';
+//mapboxgl.accessToken =
+  //'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg';
 
 export default class extends Component {
   @service store;
@@ -42,22 +44,23 @@ export default class extends Component {
     const mapService = this.get('map');
     let mapStyle = 'mapbox://styles/mapbox/light-v9';
     if (mapService.get('baseMap') == 'satellite') {
-      mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
+      mapStyle = 'mapbox://styles/yacwang/cl6omcwuq006415pces0nbonk';
+      //mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
     }
     this.mapboxglMap = new mapboxgl.Map({
       container: this.get('element'),
       style: mapStyle,
-      center: [-71.061391, 42.355107],
+      center: [-121.4734, 36.648809],
       zoom: 10,
       maxBounds: [
-        [-100, 20],
+        [-130, 20],
         [-40, 60],
       ],
       dragRotate: false,
       pitchWithRotate: false,
       touchZoomRotate: false,
       doubleClickZoom: true,
-      minZoom: 6,
+      minZoom: 5,
     });
     this.mapboxglMap.on('load', () => {
       this.mapboxglMap.on('zoom', (e) => {
@@ -301,7 +304,8 @@ export default class extends Component {
       this.mapboxglMap.setStyle('mapbox://styles/mapbox/light-v9');
     } else if (newBaseMap == 'satellite') {
       this.mapboxglMap.setStyle(
-        'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90'
+        'mapbox://styles/yacwang/cl6omcwuq006415pces0nbonk'
+        //'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90'
       );
     }
   }
@@ -586,7 +590,7 @@ export default class extends Component {
         .map((w) => w.capitalize())
         .join(' ');
       const content = htmlSafe(`
-        <div class='massbuilds-tooltip'</div>
+        <div class='calbuilds-tooltip'</div>
           <h4>${properties.name}</h4>
           <h5 style="color: ${properties.color}">
             ${formattedStatus}

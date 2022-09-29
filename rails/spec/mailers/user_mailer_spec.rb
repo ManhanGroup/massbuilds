@@ -6,7 +6,7 @@ RSpec.describe "UserMailer", type: :mailer do
     let(:mail) { UserMailer.password_reset_email(user, user.password) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Your Massbuilds Password")
+      expect(mail.subject).to eq("Your calbuilds Password")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["admin@mailgun2.mapc.org"])
     end
@@ -21,13 +21,13 @@ RSpec.describe "UserMailer", type: :mailer do
     let(:mail) { UserMailer.new_user_email(user) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Welcome to MassBuilds")
+      expect(mail.subject).to eq("Welcome to calbuilds")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["admin@mailgun2.mapc.org"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to include('Thank you for signing up for MassBuilds!')
+      expect(mail.body.encoded).to include('Thank you for signing up for calbuilds!')
     end
   end
 
@@ -36,13 +36,13 @@ RSpec.describe "UserMailer", type: :mailer do
     let(:mail) { UserMailer.edit_approved_email(edit) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Your Edit in MassBuilds Was Approved")
+      expect(mail.subject).to eq("Your Edit in calbuilds Was Approved")
       expect(mail.to).to eq([edit.user.email])
       expect(mail.from).to eq(["admin@mailgun2.mapc.org"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to include('was approved by a MassBuilds moderator')
+      expect(mail.body.encoded).to include('was approved by a calbuilds moderator')
     end
   end
 end

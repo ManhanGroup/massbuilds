@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'massbuilds',
+    modulePrefix: 'calbuilds',
     environment,
     rootURL: '/',
     locationType: 'auto',
@@ -38,11 +38,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV['host'] = 'https://api.staging.massbuilds.com';
+    ENV['host'] = 'https://api.staging.calbuilds.com';
   }
 
   if (environment === 'production') {
-    ENV['host'] = 'https://api.massbuilds.com';
+    ENV['host'] = 'https://api.calbuilds.com';
   }
 
   if (environment === 'test') {

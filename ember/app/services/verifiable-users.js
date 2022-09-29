@@ -2,7 +2,7 @@ import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { computed } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
-import config from 'massbuilds/config/environment';
+import config from 'calbuilds/config/environment';
 
 
 export default class extends Service {

@@ -1,4 +1,4 @@
-import serializeKeys from 'massbuilds/utils/serialize-keys';
+import serializeKeys from 'calbuilds/utils/serialize-keys';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | serialize keys', function() {

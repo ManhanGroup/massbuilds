@@ -1,6 +1,6 @@
 import { later } from '@ember/runloop';
 import Component from '@ember/component';
-import filters from 'massbuilds/utils/filters';
+import filters from 'calbuilds/utils/filters';
 import { service } from 'ember-decorators/service';
 import { action, computed } from 'ember-decorators/object';
 

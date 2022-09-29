@@ -1,4 +1,4 @@
-# MassBuilds (backend)
+# calbuilds (backend)
 
 ## Setup Notes
 1. On initial setup, comment out line 12 (`# Rake::Task["db:add_foreign_data_wrapper_interface"].invoke`) from `rails/db/seed.rb`. The order in which the foreign data wrappers are invoked can sometimes cause setup issues.
@@ -11,7 +11,7 @@
 
 3. Run `bin/setup`
 
-4. To fill development database with an initial set of values, you can get a .dump file and load it in with `pg_restore`. First run `scp massbuilds@prep.mapc.org:/home/massbuilds/massbuilds.dump massbuilds.dump`, then run `pg_restore -a -d massbuilds_development -O -t users -t developments massbuilds.dump`. You may need to run the `pg_restore` command a few times.
+4. To fill development database with an initial set of values, you can get a .dump file and load it in with `pg_restore`. First run `scp calbuilds@prep.mapc.org:/home/calbuilds/calbuilds.dump calbuilds.dump`, then run `pg_restore -a -d calbuilds_development -O -t users -t developments calbuilds.dump`. You may need to run the `pg_restore` command a few times.
 
 5. Run the following:
 ```
@@ -33,7 +33,7 @@ rake db:add_tod_service_area_poly
 
 ### Postgres Security Challenges
 
-In order to implement foreign data wrappers your postgres user defined in `database.yml` needs to have super user privileges or it will fail. You can do this with: `ALTER ROLE massbuilds WITH SUPERUSER;`
+In order to implement foreign data wrappers your postgres user defined in `database.yml` needs to have super user privileges or it will fail. You can do this with: `ALTER ROLE calbuilds WITH SUPERUSER;`
 
 The foreign database also needs to allow connections via pg_hba.conf in the following manner:
 

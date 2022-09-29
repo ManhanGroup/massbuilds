@@ -1,4 +1,4 @@
-import discreteMap from 'massbuilds/utils/discrete-map';
+import discreteMap from 'calbuilds/utils/discrete-map';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | discrete map', function() {

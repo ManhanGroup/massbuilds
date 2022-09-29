@@ -1,4 +1,4 @@
-import filters from 'massbuilds/utils/filters';
+import filters from 'calbuilds/utils/filters';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | filters', function() {

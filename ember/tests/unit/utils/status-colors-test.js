@@ -1,4 +1,4 @@
-import statusColors from 'massbuilds/utils/status-colors';
+import statusColors from 'calbuilds/utils/status-colors';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | status colors', function() {

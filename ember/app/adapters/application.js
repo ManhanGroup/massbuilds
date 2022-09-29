@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import config from 'massbuilds/config/environment';
+import config from 'calbuilds/config/environment';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
 

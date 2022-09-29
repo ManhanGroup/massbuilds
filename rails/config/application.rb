@@ -16,7 +16,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Massbuilds
+module Calbuilds
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -27,11 +27,9 @@ module Massbuilds
 
     known_hosts = [
       'http://localhost:4200',
-      'https://staging.massbuilds.com',
-      'https://massbuilds.com',
-      'https://www.massbuilds.com',
-      'https://datacommon.mapc.org',
-      'https://staging.datacommon.mapc.org'
+      'https://staging.calbuilds.com',
+      'https://calbuilds.com',
+      'https://www.calbuilds.com'
     ]
 
     config.middleware.insert_before 0, Rack::Cors do

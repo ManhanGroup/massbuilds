@@ -54,7 +54,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "massbuilds_#{Rails.env}"
+  # config.active_job.queue_name_prefix = "calbuilds_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -80,7 +80,7 @@ Rails.application.configure do
     api_key: Rails.application.secrets.mailgun_api_key,
     domain: 'mailgun2.mapc.org'
   }
-  config.action_mailer.default_url_options = { host: 'www.massbuilds.com' }
+  config.action_mailer.default_url_options = { host: 'www.calbuilds.com' }
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

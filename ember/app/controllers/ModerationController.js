@@ -1,7 +1,7 @@
 import { camelize } from '@ember/string';
 import { copy } from '@ember/object/internals';
 import Controller from '@ember/controller';
-import { filters } from 'massbuilds/utils/filters';
+import { filters } from 'calbuilds/utils/filters';
 import { action, computed } from 'ember-decorators/object';
 
 

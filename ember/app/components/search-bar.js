@@ -3,7 +3,7 @@ import Component from '@ember/component';
 import { action, computed } from 'ember-decorators/object';
 import { reads } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
-import filters from 'massbuilds/utils/filters';
+import filters from 'calbuilds/utils/filters';
 import DS from 'ember-data';
 
 export default class extends Component {

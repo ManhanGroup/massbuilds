@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import statusColors from 'massbuilds/utils/status-colors';
+import statusColors from 'calbuilds/utils/status-colors';
 
 
 export default class extends Component {

@@ -1,4 +1,4 @@
-import developmentSerialHash from 'massbuilds/utils/development-serial-hash';
+import developmentSerialHash from 'calbuilds/utils/development-serial-hash';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | development serial hash', function() {

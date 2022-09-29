@@ -1,4 +1,4 @@
-import castToModel from 'massbuilds/utils/cast-to-model';
+import castToModel from 'calbuilds/utils/cast-to-model';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | cast to model', function() {

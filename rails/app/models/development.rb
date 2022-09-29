@@ -5,7 +5,7 @@ class Development < ApplicationRecord
   has_many :edits, dependent: :destroy
   has_many :flags, dependent: :destroy
   belongs_to :user
-  include PgSearch
+  include PgSearch::Model
   include ActiveModel::Dirty
   pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address], using: { tsearch: { any_word: true } }
   validates :name, :status, :latitude, :longitude, :year_compl, :hu,
@@ -48,6 +48,7 @@ class Development < ApplicationRecord
   after_save :update_n_transit
   after_save :update_neighborhood
   after_save :update_loc_id
+  after_save :update_taz
 
   @@excluded_attrs_from_export = [
     'other_rate',
@@ -83,7 +84,7 @@ class Development < ApplicationRecord
 
     database = Rails.configuration.database_configuration[Rails.env]
     hash = Digest::SHA1.hexdigest("#{Time.now.to_i}#{rand}")[0,6]
-    file_name = "massbuilds-shp-#{Time.now.strftime("%Y%m%d")}-#{hash}"
+    file_name = "calbuilds-shp-#{Time.now.strftime("%Y%m%d")}-#{hash}"
     arguments = []
     arguments << "-f #{Rails.root.join('public', file_name)}"
     arguments << "-h #{database['host']}" if database['host']
@@ -107,15 +108,26 @@ class Development < ApplicationRecord
 
   def geocode
     return if !saved_change_to_point?
-    result = Faraday.get "https://pelias.mapc.org/v1/reverse?point.lat=#{self.latitude}&point.lon=#{self.longitude}"
-    if result && JSON.parse(result.body)['features'].length > 0
-      properties = JSON.parse(result.body)['features'][0]['properties']
+    #result = Faraday.get "https://pelias.mapc.org/v1/reverse?point.lat=#{self.latitude}&point.lon=#{self.longitude}"
+    #if result && JSON.parse(result.body)['features'].length > 0
+      #properties = JSON.parse(result.body)['features'][0]['properties']
+      #config.logger.debug "entering geocoding"
+      addr_query = <<~SQL
+      SELECT site_addr,addr_zip
+      FROM parcels
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
+    SQL
+    sql_result = ActiveRecord::Base.connection.exec_query(addr_query).to_a[0]
+    return if sql_result.blank?
       self.update_columns(
-        municipal: (properties['locality'] || properties['localadmin'] || self.municipal),
-        address: (properties['street'] || self.address),
-        zip_code: (properties['postalcode'] || self.zip_code)
+        #municipal: (properties['locality'] || properties['localadmin'] || self.municipal),
+        #address: (properties['street'] || self.address),
+        #zip_code: (properties['postalcode'] || self.zip_code)
+        address: sql_result['site_addr'],
+        zip_code: sql_result['addr_zip']
       )
-    end
+    #end
+    
   end
 
   def self.zip(file_name)
@@ -142,9 +154,9 @@ class Development < ApplicationRecord
     rpa_query = <<~SQL
       SELECT rpa_name, shape
       FROM rpa_poly
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 26986), shape);
+      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
     SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(rpa_query).to_hash[0]
+    sql_result = ActiveRecord::Base.connection.exec_query(rpa_query).to_a[0]
     return if sql_result.blank?
     self.update_columns(rpa_name: sql_result['rpa_name'])
   end
@@ -154,9 +166,9 @@ class Development < ApplicationRecord
     counties_query = <<~SQL
       SELECT county, shape
       FROM counties_polym
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 26986), shape);
+      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
     SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(counties_query).to_hash[0]
+    sql_result = ActiveRecord::Base.connection.exec_query(counties_query).to_a[0]
     return if sql_result.blank?
     self.update_columns(county: sql_result['county'])
   end
@@ -164,23 +176,23 @@ class Development < ApplicationRecord
   def update_municipality
     return if !saved_change_to_point?
     municipalities_query = <<~SQL
-      SELECT municipal, shape
-      FROM ma_municipalities
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 26986), shape);
+      SELECT namelsad, geom
+      FROM ca_place
+      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), geom);
     SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(municipalities_query).to_hash[0]
+    sql_result = ActiveRecord::Base.connection.exec_query(municipalities_query).to_a[0]
     return if sql_result.blank?
-    self.update_columns(municipal: sql_result['municipal'])
+    self.update_columns(municipal: sql_result['namelsad'])
   end
 
   def update_n_transit
     return if !saved_change_to_point?
     n_transit_query = <<~SQL
-      SELECT srvc_name, shape
+      SELECT srvc_name, geom
       FROM tod_service_area_poly
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 26986), shape);
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(n_transit_query).to_hash
+    sql_result = ActiveRecord::Base.connection.exec_query(n_transit_query).to_a
     return if sql_result.blank?
     transit_stops = []
     sql_result.each do |result|
@@ -194,9 +206,9 @@ class Development < ApplicationRecord
     nhood_query = <<~SQL
       SELECT nhood_name, shape
       FROM neighborhoods_poly
-      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 26986), shape);
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), shape);
     SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(nhood_query).to_hash[0]
+    sql_result = ActiveRecord::Base.connection.exec_query(nhood_query).to_a[0]
     return if sql_result.blank?
     self.update_columns(nhood: sql_result['nhood_name'])
   end
@@ -204,13 +216,30 @@ class Development < ApplicationRecord
   def update_loc_id
     return if !saved_change_to_point?
     loc_id_query = <<~SQL
-      SELECT parloc_id, geom
+      SELECT parloc_id,apn, geom
       FROM parcels
       WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(loc_id_query).to_hash[0]
+    sql_result = ActiveRecord::Base.connection.exec_query(loc_id_query).to_a[0]
     return if sql_result.blank?
-    self.update_columns(loc_id: sql_result['parloc_id'])
+    self.update_columns(
+      loc_id: sql_result['parloc_id'],
+      apn: sql_result['apn']      
+    )
+    #self.update_columns(loc_id: sql_result['parloc_id'])
+    #self.update_columns(apn: sql_result['apn'])
+  end
+
+  def update_taz
+    return if !saved_change_to_point?
+    taz_query = <<~SQL
+      SELECT taz_number, geometry
+      FROM ambag_2015_taz
+      WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326),4269), geometry);
+    SQL
+    sql_result = ActiveRecord::Base.connection.exec_query(taz_query).to_a[0]
+    return if sql_result.blank?
+    self.update_columns(taz: sql_result['taz_number'])
   end
   
   def set_mepa_id_present

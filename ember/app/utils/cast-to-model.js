@@ -1,7 +1,7 @@
 import { get } from '@ember/object';
 import { camelize, underscore } from '@ember/string';
-import serializeKeys from 'massbuilds/utils/serialize-keys';
-import developmentSerialHash from 'massbuilds/utils/development-serial-hash';
+import serializeKeys from 'calbuilds/utils/serialize-keys';
+import developmentSerialHash from 'calbuilds/utils/development-serial-hash';
 
 
 export default function castToModel(model, data) {

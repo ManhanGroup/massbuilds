@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { service } from 'ember-decorators/service';
-import Development from 'massbuilds/models/development';
-import castToModel from 'massbuilds/utils/cast-to-model';
+import Development from 'calbuilds/models/development';
+import castToModel from 'calbuilds/utils/cast-to-model';
 import { action, computed } from 'ember-decorators/object';
 
 

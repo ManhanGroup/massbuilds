@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import config from 'massbuilds/config/environment';
+import config from 'calbuilds/config/environment';
 import { service } from 'ember-decorators/service';
 import { action, computed } from 'ember-decorators/object';
 

@@ -1,4 +1,4 @@
-import ModerationController from 'massbuilds/controllers/ModerationController';
+import ModerationController from 'calbuilds/controllers/ModerationController';
 import { service } from 'ember-decorators/service';
 import { action, computed } from 'ember-decorators/object';
 

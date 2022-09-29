@@ -2,7 +2,7 @@ require 'json-schema'
 class Edit < ApplicationRecord
   acts_as_paranoid
   belongs_to :user
-  belongs_to :development
+  belongs_to :development, optional:true
   before_save :update_development, if: :approved?
   validate :new_development, unless: :development_id?
   validate :existing_development, if: :development_id?

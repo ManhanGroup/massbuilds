@@ -1,7 +1,7 @@
 import { set } from '@ember/object';
 import Component from '@ember/component';
 import { computed, action } from 'ember-decorators/object';
-import filters, { metricGroups } from 'massbuilds/utils/filters';
+import filters, { metricGroups } from 'calbuilds/utils/filters';
 
 
 export default class extends Component {

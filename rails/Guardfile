@@ -15,7 +15,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-notification :terminal_notifier, app_name: "MassBuilds ::", activate: 'com.googlecode.iTerm2' if `uname` =~ /Darwin/
+notification :terminal_notifier, app_name: "calbuilds ::", activate: 'com.googlecode.iTerm2' if `uname` =~ /Darwin/
 
 guard 'livereload' do
   extensions = {

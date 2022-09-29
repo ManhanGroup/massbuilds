@@ -21,7 +21,7 @@ namespace :import do
 
   desc 'Updates the values of a column using the JFMD2018ZF.csv file'
   task :repopulate_column, [:col] => [:environment] do |t, args|
-    csv_text = File.read(Rails.root.join('lib', 'import', 'joined_final_massbuilds_data_2018_zip_fixed.csv'))
+    csv_text = File.read(Rails.root.join('lib', 'import', 'joined_final_calbuilds_data_2018_zip_fixed.csv'))
     csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
 
     id = 1
@@ -34,7 +34,7 @@ namespace :import do
 
   desc 'Import previous development data'
   task development_data: :environment do
-    csv_text = File.read(Rails.root.join('lib', 'import', 'joined_final_massbuilds_data_2018_zip_fixed.csv'))
+    csv_text = File.read(Rails.root.join('lib', 'import', 'joined_final_calbuilds_data_2018_zip_fixed.csv'))
     csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
 
     def to_bool(x)

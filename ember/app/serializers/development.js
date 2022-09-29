@@ -1,6 +1,6 @@
 import { underscore } from '@ember/string';
 import DS from 'ember-data';
-import developmentSerialHash from 'massbuilds/utils/development-serial-hash';
+import developmentSerialHash from 'calbuilds/utils/development-serial-hash';
 
 export default class extends DS.JSONAPISerializer {
 

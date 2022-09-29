@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { service } from 'ember-decorators/service';
-import { capitalize } from 'massbuilds/helpers/capitalize';
+import { capitalize } from 'calbuilds/helpers/capitalize';
 import { action, computed } from 'ember-decorators/object';
 
 export default class extends Controller {

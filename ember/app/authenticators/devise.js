@@ -1,5 +1,5 @@
 import url from 'url';
-import config from 'massbuilds/config/environment';
+import config from 'calbuilds/config/environment';
 import Devise from 'ember-simple-auth/authenticators/devise';
 
 export default Devise.extend({

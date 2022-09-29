@@ -14,14 +14,14 @@ module.exports = function(deployTarget) {
 
   if (deployTarget === 'staging') {
     ENV.rsync = {
-      dest: 'massbuilds@prep.mapc.org:/var/www/massbuilds/ember',
+      dest: 'calbuilds@prep.mapc.org:/var/www/calbuilds/ember',
       delete: false,
     };
   }
 
   if (deployTarget === 'production') {
     ENV.rsync = {
-      dest: 'massbuilds@live.mapc.org:/var/www/massbuilds/ember',
+      dest: 'calbuilds@live.mapc.org:/var/www/calbuilds/ember',
       delete: false,
     };
   }

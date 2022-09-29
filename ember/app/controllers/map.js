@@ -3,8 +3,8 @@ import { copy } from '@ember/object/internals';
 import Controller from '@ember/controller';
 import { action, computed } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
-import filters from 'massbuilds/utils/filters';
-import { capitalize } from 'massbuilds/helpers/capitalize';
+import filters from 'calbuilds/utils/filters';
+import { capitalize } from 'calbuilds/helpers/capitalize';
 import { alias } from 'ember-decorators/object/computed';
 
 export default class extends Controller {

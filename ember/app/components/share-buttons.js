@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { action } from 'ember-decorators/object';
-import config from 'massbuilds/config/environment';
+import config from 'calbuilds/config/environment';
 import url from 'url';
 
 export default class extends Component {
@@ -48,12 +48,12 @@ export default class extends Component {
 
   @action
   toShapefile() {
-    this.download('zip', 'massbuilds.shp.zip');
+    this.download('zip', 'calbuilds.shp.zip');
   }
 
   @action
   toCSV() {
-    this.download('csv', 'massbuilds.csv');
+    this.download('csv', 'calbuilds.csv');
   }
 
   download(ext, filename) {

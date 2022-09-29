@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'admin@mailgun2.mapc.org'
+  default from: 'mailgun@mg.ywconsultinggroup.com'
   layout 'mailer'
 end

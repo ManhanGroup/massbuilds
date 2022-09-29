@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { action, computed } from 'ember-decorators/object';
-import filters, { metricGroups } from 'massbuilds/utils/filters';
+import filters, { metricGroups } from 'calbuilds/utils/filters';
 
 
 export default class extends Component {
