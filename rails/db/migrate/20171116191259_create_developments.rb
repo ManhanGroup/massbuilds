@@ -15,7 +15,7 @@ class CreateDevelopments < ActiveRecord::Migration[5.1]
       t.text :mapc_notes
       t.string :tagline
       t.string :address
-      t.string :state, default: 'MA'
+      t.string :state, default: 'CA'
       t.string :zip_code
       t.integer :height
       t.integer :stories

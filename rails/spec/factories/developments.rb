@@ -12,8 +12,8 @@ FactoryBot.define do
     descr { 'A sample development' }
     prj_url { 'http://www.example.com/' }
     address { '123 Main Street' }
-    state { 'MA' }
-    zip_code { '02138' }
+    state { 'CA' }
+    zip_code { '95060' }
     height { 1 }
     stories { 1 }
     year_compl { 1 }
@@ -40,15 +40,15 @@ FactoryBot.define do
     affordable { 1.5 }
     parcel_id { 'MyString' }
     mixed_use { false }
-    point { 'POINT(-71.0589 42.3601)' }
-    latitude { 42.3601 }
-    longitude { -71.0589 }
+    point { 'POINT(-122.02236744119034 36.96349692940986)' }
+    latitude { 36.96349692940986 }
+    longitude { -122.02236744119034 } 
     programs { 'MyString' }
     forty_b { false }
     residential { false }
     commercial { false }
-    municipal { 'Boston' }
-    devlper { 'Gilbane' }
+    municipal { 'Santa Cruz' }
+    devlper { 'Workbench' }
     units_1bd { 1 }
     units_2bd { 1 }
     units_3bd { 1 }
@@ -62,6 +62,6 @@ FactoryBot.define do
     publicsqft { 1 }
     yrcomp_est { '2010' }
     mepa_id { 12345 }
-    traffic_count_data { 'https://mobility-massdot.hub.arcgis.com' }
+    traffic_count_data { 'https://pems.dot.ca.gov' }
   end
 end

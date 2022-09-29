@@ -1,7 +1,7 @@
 namespace :db do
   task add_foreign_data_wrapper_interface: :environment do
     ActiveRecord::Base.connection.execute "CREATE EXTENSION IF NOT EXISTS postgres_fdw;"
-    ActiveRecord::Base.connection.execute "CREATE SERVER IF NOT EXISTS pg FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'pg.mapc.org', port '5432', dbname 'postgis');"
+    ActiveRecord::Base.connection.execute "CREATE SERVER IF NOT EXISTS pg FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'localhost', port '5432', dbname 'calbuilds_planning');"
     ActiveRecord::Base.connection.execute "CREATE USER MAPPING IF NOT EXISTS FOR CURRENT_USER SERVER pg OPTIONS (user '#{Rails.application.secrets.foreign_database_username}', password '#{Rails.application.secrets.foreign_database_password}');"
   end
 
@@ -44,10 +44,18 @@ namespace :db do
   end
 
   task add_municipalities_fdw: :environment do
-    ActiveRecord::Base.connection.execute "IMPORT FOREIGN SCHEMA editor LIMIT TO (ma_municipalities) FROM SERVER pg INTO public;"
+    ActiveRecord::Base.connection.execute "IMPORT FOREIGN SCHEMA editor LIMIT TO (ca_place) FROM SERVER pg INTO public;"
   end
 
   task delete_municipalities_fdw: :environment do
-    ActiveRecord::Base.connection.execute "DROP FOREIGN TABLE IF EXISTS ma_municipalities"
+    ActiveRecord::Base.connection.execute "DROP FOREIGN TABLE IF EXISTS ca_place"
+  end
+
+  task add_taz_fdw: :environment do
+    ActiveRecord::Base.connection.execute "IMPORT FOREIGN SCHEMA editor LIMIT TO (ambag_2015_taz) FROM SERVER pg INTO public;"
+  end
+
+  task delete_taz_fdw: :environment do
+    ActiveRecord::Base.connection.execute "DROP FOREIGN TABLE IF EXISTS ambag_2015_taz"
   end
 end

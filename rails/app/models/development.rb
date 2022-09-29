@@ -113,7 +113,7 @@ class Development < ApplicationRecord
       #properties = JSON.parse(result.body)['features'][0]['properties']
       #config.logger.debug "entering geocoding"
       addr_query = <<~SQL
-      SELECT site_addr,addr_zip
+      SELECT site_addr,muni, addr_zip
       FROM parcels
       WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
@@ -123,6 +123,7 @@ class Development < ApplicationRecord
         #municipal: (properties['locality'] || properties['localadmin'] || self.municipal),
         #address: (properties['street'] || self.address),
         #zip_code: (properties['postalcode'] || self.zip_code)
+        municipal: sql_result['muni'],
         address: sql_result['site_addr'],
         zip_code: sql_result['addr_zip']
       )
@@ -132,7 +133,8 @@ class Development < ApplicationRecord
 
   def self.zip(file_name)
     Zip::File.open(Rails.root.join('public', "#{file_name}.zip").to_s, Zip::File::CREATE) do |zipfile|
-      zipfile.add("#{file_name}.prj", Rails.root.join('public', 'ma_municipalities_NAD83_MassStatePlane.prj'))
+      #zipfile.add("#{file_name}.prj", Rails.root.join('public', 'ma_municipalities_NAD83_MassStatePlane.prj')
+      zipfile.add("#{file_name}.prj", Rails.root.join('public', '4269.prj'))
       zipfile.add("#{file_name}.shp", Rails.root.join('public', "#{file_name}.shp"))
       zipfile.add("#{file_name}.shx", Rails.root.join('public', "#{file_name}.shx"))
       zipfile.add("#{file_name}.dbf", Rails.root.join('public', "#{file_name}.dbf"))
