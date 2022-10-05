@@ -1,3 +1,6 @@
+// commented as this is unused and not fully implemented
+
+/*
 import { helper } from '@ember/component/helper';
 
 export function formatDate(dateString, format) {
@@ -9,3 +12,4 @@ export function formatDate(dateString, format) {
 }
 
 export default helper(formatDate);
+*/

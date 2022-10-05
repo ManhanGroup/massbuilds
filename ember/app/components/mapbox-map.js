@@ -426,7 +426,8 @@ export default class extends Component {
             bounds.extend([datum.get('longitude'), datum.get('latitude')]),
           new mapboxgl.LngLatBounds()
         );
-        const leftPanel = $('.left-panel-layer');
+        // unused, probably in favor of the getLeftPanelWidth function
+        // const leftPanel = $('.left-panel-layer');
         this.set('focusTargetBounds', fitBounds);
         this.mapboxglMap.fitBounds(fitBounds, {
           padding: {
@@ -558,7 +559,7 @@ export default class extends Component {
       this.sendAction('viewDevelopment', e.features[0].properties.id);
     });
 
-    this.mapboxglMap.on('mouseenter', 'filtered', (e) => {
+    this.mapboxglMap.on('mouseenter', 'filtered', () => {
       // Change the cursor style as a UI indicator.
       this.mapboxglMap.getCanvas().style.cursor = 'pointer';
     });

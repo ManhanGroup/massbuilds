@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-export function numberFormat(numberString, format) {
+export function numberFormat(numberString) {
   return numberString;
 }
 
