@@ -100,8 +100,6 @@ export default class extends Component.extend({
   @computed('rect', 'orientation')
   get left() {
     const rect = this.get('rect');
-    // unused variable; commented to avoid compilation errors
-    // const orientation = this.get('orientation');
     if (!rect) { return '0'; }
     return `${rect.left + rect.width + 12}px`;
   }

@@ -7,8 +7,8 @@ const Router = EmberRouter.extend({
   didTransition: function() {
     this._super(...arguments);
 
-        // ga() undefined but should be from google analytics, should be able to add an import here
-    // commented out as it is likely not working. file an issue to fix
+    // ga() undefined but should be from google analytics, should be able to add an import here
+    // commented out as it is likely not working. see issue #2
     // there are ga(...) calls in ember/app/index.html
     // return ga('send', 'pageview', {
     //   'page': this.get('url'),

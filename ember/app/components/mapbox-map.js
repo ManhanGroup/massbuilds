@@ -426,8 +426,6 @@ export default class extends Component {
             bounds.extend([datum.get('longitude'), datum.get('latitude')]),
           new mapboxgl.LngLatBounds()
         );
-        // unused, probably in favor of the getLeftPanelWidth function
-        // const leftPanel = $('.left-panel-layer');
         this.set('focusTargetBounds', fitBounds);
         this.mapboxglMap.fitBounds(fitBounds, {
           padding: {
