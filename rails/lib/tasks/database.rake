@@ -51,8 +51,9 @@ namespace :database do
     SQL
     taz_query = <<~SQL
     SELECT taz_number, geometry
-    FROM ambag_2015_taz
-    WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326),4269), geometry);
+    FROM ambag_2015_taz as tz
+    JOIN developments as dev
+    ON ST_Intersects(ST_TRANSFORM(dev.point,4269), tz.geometry);
     SQL
 
     timer = Time.now
