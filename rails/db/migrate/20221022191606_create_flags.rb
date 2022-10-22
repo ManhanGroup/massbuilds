@@ -1,4 +1,4 @@
-class CreateFlags < ActiveRecord::Migration[5.1]
+class CreateFlags < ActiveRecord::Migration[7.0]
   def change
     create_table :flags do |t|
       t.string :reason
@@ -9,6 +9,7 @@ class CreateFlags < ActiveRecord::Migration[5.1]
       
       t.timestamps
     end
+	
     add_index :flags, :deleted_at
   end
 end

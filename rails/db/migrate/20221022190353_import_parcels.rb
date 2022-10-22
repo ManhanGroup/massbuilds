@@ -1,5 +1,5 @@
-class ImportParcels < ActiveRecord::Migration[5.1]
-  def up
+class ImportParcels < ActiveRecord::Migration[7.0]
+    def up
     create_table "parcels", primary_key: "gid", id: :serial, force: :cascade do |t|
       t.decimal "objectid", precision: 10
       t.decimal "mapc_id", precision: 10
@@ -54,6 +54,7 @@ class ImportParcels < ActiveRecord::Migration[5.1]
       t.decimal "shape_area"
       t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
       t.json "geojson"
+	  t.string "apn"
       t.index ["geom"], name: "parcels_geom_idx", using: :gist
     end
     config   = Rails.configuration.database_configuration
@@ -61,8 +62,8 @@ class ImportParcels < ActiveRecord::Migration[5.1]
     database = config[Rails.env]["database"] ? "-d #{config[Rails.env]["database"]}" : ""
     username = config[Rails.env]["username"] ? "-U #{config[Rails.env]["username"]}" : "-U #{ENV['USER']}"
     port     = config[Rails.env]["port"] ? "-p #{config[Rails.env]["port"]}" : ""
-    # pg_restore version must match the DB version
-    # system("pg_restore -Fc -a -v -j 8 -t parcels #{host} #{username} #{database} #{port} #{Rails.root}/lib/import/parcels.dump")
+    #pg_restore version must match the DB version
+    #system("pg_restore -Fc -a -v -j 8 -t parcels #{host} #{username} #{database} #{port} #{Rails.root}/lib/import/parcels.dump")
   end
   def down
     drop_table :parcels

@@ -2,30 +2,18 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210319190347) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_10_22_191715) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
-  enable_extension "postgres_fdw"
-
-  create_table "allpoints_final2", primary_key: "gid", id: :integer, default: nil, force: :cascade do |t|
-    t.decimal "id"
-    t.integer "muni_id"
-    t.string "muni", limit: 18
-    t.string "parloc_id", limit: 20
-    t.decimal "fy", precision: 10
-    t.geometry "geom", limit: {:srid=>26986, :type=>"st_point"}
-    t.index ["geom"], name: "allpoints_final2_geom_idx", using: :gist
-  end
 
   create_table "developments", force: :cascade do |t|
     t.integer "user_id"
@@ -40,7 +28,7 @@ ActiveRecord::Schema.define(version: 20210319190347) do
     t.text "descr"
     t.string "prj_url"
     t.string "address"
-    t.string "state", default: "MA"
+    t.string "state", default: "CA"
     t.string "zip_code"
     t.integer "height"
     t.integer "stories"
@@ -94,9 +82,8 @@ ActiveRecord::Schema.define(version: 20210319190347) do
     t.integer "unknownhu"
     t.integer "aff_unknown"
     t.integer "unk_sqft"
-    t.string "loc_id"
+    t.bigint "loc_id"
     t.integer "parcel_fy"
-    t.string "d_n_trnsit"
     t.string "rpa_name"
     t.string "county"
     t.string "nhood"
@@ -107,6 +94,9 @@ ActiveRecord::Schema.define(version: 20210319190347) do
     t.string "traffic_count_data"
     t.boolean "mepa_id_present"
     t.boolean "traffic_count_data_present"
+    t.integer "taz"
+    t.string "apn"
+    t.boolean "trunc"
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
 
@@ -190,6 +180,7 @@ ActiveRecord::Schema.define(version: 20210319190347) do
     t.decimal "shape_area"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.json "geojson"
+    t.string "apn"
     t.index ["geom"], name: "parcels_geom_idx", using: :gist
   end
 

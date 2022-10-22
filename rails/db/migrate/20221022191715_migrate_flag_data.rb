@@ -1,4 +1,4 @@
-class MigrateFlagData < ActiveRecord::Migration[5.1]
+class MigrateFlagData < ActiveRecord::Migration[7.0]
   def up
     Development.where(flag: true).each do |development|
       Flag.create(development: development, is_resolved: false)
