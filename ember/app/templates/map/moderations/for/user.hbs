@@ -36,7 +36,7 @@
               <div style="color: {{if moderation.approved '#51a681' '#eab941'}}">
                 {{if moderation.approved 'Approved' 'In Review'}}
               </div>
-              <div>{{format-date moderation.createdAt format="MMM Do YYYY"}}</div>
+              <div>{{moderation.createdAt}}</div>
               <div><button class="view-button" onclick={{action toggleViewModeration moderation.id}}>View Moderation</button></div> 
             </div>
             <div class='moderation-details'>

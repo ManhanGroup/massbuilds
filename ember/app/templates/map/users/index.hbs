@@ -60,7 +60,7 @@
               {{/if}}
             </td>
             <td>
-              {{format-date user.createdAt format='MM/DD/YY'}}
+              {{user.createdAt}}
             </td>
             <td>
               <select name="{{user.id}}-role" onchange={{action updateUser user}}>
