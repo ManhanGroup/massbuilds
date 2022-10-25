@@ -40,7 +40,7 @@
                   {{moderation.user.fullName}}
                   <small>&#60;{{moderation.user.email}}&#62;</small>
                 </div>
-                <div>{{format-date moderation.createdAt format="MMM Do YYYY"}}</div>
+                <div>{{moderation.createdAt}}</div>
                 <div><button class="view-button" onclick={{action toggleViewModeration moderation.id}}>View Moderation</button></div>
               </div>
               <div class='moderation-details'>

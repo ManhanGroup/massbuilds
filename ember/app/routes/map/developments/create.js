@@ -11,16 +11,16 @@ export default class extends Route {
   }
 
   @action
-  activate(transition) {
+  activate() {
     this.get('map').set('showingLeftPanel', true);
     this.get('map').set('markerVisible', true);
     this.get('map').set('followMode', true);
   }
 
   @action
-  deactivate(transition) {
+  deactivate() {
     this.get('map').set('followMode', false);
     this.get('map').set('markerVisible', false);
   }
 
-};
+}

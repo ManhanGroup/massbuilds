@@ -72,8 +72,7 @@ export default class extends ModerationController {
         const elem = document.querySelector(`li[data-flag-id="${id}"]`);
         elem.parentNode.removeChild(elem);
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
         flag.set('isResolved', false)
         this.get('notifications').error(
           'This development must pass validations before being unflagged.'
