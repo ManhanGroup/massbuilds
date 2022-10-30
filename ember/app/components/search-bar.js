@@ -94,18 +94,23 @@ export default class extends Component {
     return DS.PromiseArray.create({
       promise: this.get('ajax')
         .request(
-          `https://pelias.mapc.org/v1/search?text=${searchQuery}` +
-            `&boundary.country=USA&boundary.rect.min_lon=-73.5081481933594` +
-            `&boundary.rect.max_lon=-69.8615341186523` +
-            `&boundary.rect.min_lat=41.1863288879395` +
-            `&boundary.rect.max_lat=42.8867149353027`
+          `https://ambag-postrest.herokuapp.com/address?mylabel=like.${searchQuery}*`
+         // `https://pelias.mapc.org/v1/search?text=${searchQuery}` +
+         //   `&boundary.country=USA&boundary.rect.min_lon=-73.5081481933594` +
+         //   `&boundary.rect.max_lon=-69.8615341186523` +
+         //   `&boundary.rect.min_lat=41.1863288879395` +
+         //   `&boundary.rect.max_lat=42.8867149353027`
         )
         .then((resp) => {
-          const items = resp.features.slice(0, 5).map((feature) => {
+          //const items = resp.features.slice(0, 5).map((feature) => {
+          const items = resp.slice(0, 5).map((feature) => {
             return {
-              label: feature.properties.label,
-              type: feature.properties.layer.capitalize(),
-              geometry: feature.geometry,
+              //label: feature.properties.label,
+              //type: feature.properties.layer.capitalize(),
+              //geometry: feature.geometry,
+              label: feature.mylabel,
+              type: feature.mytype,
+              geometry: feature.geom,
             };
           });
           this.set('loading', false);
