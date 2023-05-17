@@ -99,17 +99,17 @@ class DevelopmentsController < ApplicationController
   end
 
   def filtered_params
-    params.permit(:user_id, :rdv, :asofright, :ovr55, :clusteros, :phased, :stalled, :name, :status,
-                  :descr, :prj_url, :address, :state, :zip_code, :height,
-                  :stories, :year_compl, :prjarea, :singfamhu, :smmultifam, :lgmultifam, :hu, :gqpop,
-                  :rptdemp, :commsf, :hotelrms, :onsitepark, :total_cost,
+    params.permit(:user_id, :rdv, :asofright, :ovr55, :clusteros, :phased, :stalled, :name, :status,:stat_comts,
+                  :descr,:notes, :prj_url, :address, :state, :zip_code, :percomp_24,:percomp_28,:percomp_35,
+                  :percomp_45, :year_compl, :prjarea, :gluc, :placetype, :singfamhu, :multifam,  :hu, :gqpop,
+                  :rptdemp, :commsf, :hotelrms, :total_cost,
                   :ret_sqft, :ofcmd_sqft, :indmf_sqft,
                   :whs_sqft, :rnd_sqft, :ei_sqft, :other_sqft, :hotel_sqft, :other_rate, :affordable,
-                  :latitude, :longitude, :parcel_id, :mixed_use, :point, :programs, :forty_b, :residential,
+                  :latitude, :longitude, :parcel_id,:apn, :mixed_use,:mix_descr, :point, :programs, :forty_b, :residential,
                   :commercial, :municipal, :devlper, :yrcomp_est, :units_1bd, :units_2bd, :units_3bd,
-                  :affrd_unit, :aff_u30, :aff_30_50, :aff_50_80, :aff_80p, :headqtrs, :park_type, :publicsqft,
-                  :unknownhu, :aff_unknown, :unk_sqft, :flag, :traffic_count_data_present, :mepa_id_present,
-                  :mepa_id, :traffic_count_data)
+                  :affrd_unit, :aff_u50, :aff_50_80, :aff_80_120, :aff_120p, :headqtrs, :park_type, :publicsqft,
+                  :unknownhu, :aff_unknown, :unk_sqft, :flag, :traffic_count_data_present, :proj_id,:proj_id_present,
+                  :traffic_count_data)
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -117,16 +117,16 @@ class DevelopmentsController < ApplicationController
     respond_to do |format|
       format.jsonapi do
         ActiveModelSerializers::Deserialization.jsonapi_parse(params,
-                                                              only: %i[user_id rdv asofright ovr55 clusteros phased stalled name status
-                                                                       descr prj_url address state zip_code height
-                                                                       stories year_compl prjarea singfamhu smmultifam lgmultifam hu gqpop
-                                                                       rptdemp commsf hotelrms onsitepark total_cost
+                                                              only: %i[user_id rdv asofright ovr55 clusteros phased stalled name status stat_comts
+                                                                       descr notes prj_url address state zip_code percomp_24 percomp_28 percomp_35
+                                                                       percomp_45 year_compl prjarea gluc placetype singfamhu multifam hu gqpop
+                                                                       rptdemp commsf hotelrms  total_cost
                                                                        ret_sqft ofcmd_sqft indmf_sqft
                                                                        whs_sqft rnd_sqft ei_sqft other_sqft hotel_sqft other_rate affordable
-                                                                       latitude longitude parcel_id mixed_use point programs forty_b residential
+                                                                       latitude longitude parcel_id apn mixed_use mix_descr point programs forty_b residential
                                                                        commercial municipal devlper yrcomp_est units_1bd units_2bd units_3bd
-                                                                       affrd_unit aff_u30 aff_30_50 aff_50_80 aff_80p headqtrs park_type publicsqft
-                                                                       unknownhu aff_unknown unk_sqft flag mepa_id traffic_count_data mepa_id_present traffic_count_data_present])
+                                                                       affrd_unit aff_u50 aff_50_80 aff_80_120 aff_120p headqtrs park_type publicsqft
+                                                                       unknownhu aff_unknown unk_sqft flag proj_id traffic_count_data proj_id_present traffic_count_data_present])
       end
     end
   end

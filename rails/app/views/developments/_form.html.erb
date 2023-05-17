@@ -57,6 +57,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :status_comments %>
+    <%= form.text_area :desc, id: :development_stat_comts %>
+  </div>
+
+  <div class="field">
     <%= form.label :desc %>
     <%= form.text_area :desc, id: :development_desc %>
   </div>
@@ -67,8 +72,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :mapc_notes %>
-    <%= form.text_area :mapc_notes, id: :development_mapc_notes %>
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :development_notes %>
   </div>
 
   <div class="field">
@@ -92,13 +97,23 @@
   </div>
 
   <div class="field">
-    <%= form.label :height %>
-    <%= form.number_field :height, id: :development_height %>
+    <%= form.label :percomp_24 %>
+    <%= form.number_field :percomp_24, id: :development_percomp_24 %>
   </div>
 
   <div class="field">
-    <%= form.label :stories %>
-    <%= form.number_field :stories, id: :development_stories %>
+    <%= form.label :percomp_28 %>
+    <%= form.number_field :percomp_28, id: :development_percomp_28 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percomp_35 %>
+    <%= form.number_field :percomp_35, id: :development_percomp_35 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percomp_45 %>
+    <%= form.number_field :percomp_45, id: :development_percomp_45 %>
   </div>
 
   <div class="field">
@@ -117,13 +132,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :twnhsmmult %>
-    <%= form.number_field :twnhsmmult, id: :development_twnhsmmult %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lgmultifam %>
-    <%= form.number_field :lgmultifam, id: :development_lgmultifam %>
+    <%= form.label :multifam %>
+    <%= form.number_field :multifam, id: :development_multifam %>
   </div>
 
   <div class="field">
@@ -154,11 +164,6 @@
   <div class="field">
     <%= form.label :hotelrms %>
     <%= form.number_field :hotelrms, id: :development_hotelrms %>
-  </div>
-
-  <div class="field">
-    <%= form.label :onsitepark %>
-    <%= form.number_field :onsitepark, id: :development_onsitepark %>
   </div>
 
   <div class="field">
@@ -249,6 +254,12 @@
   <div class="field">
     <%= form.label :mixed_use %>
     <%= form.check_box :mixed_use, id: :development_mixed_use %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :mixed_use_descr %>
+    <%= form.text_area :desc, id: :development_mix_descr %>
   </div>
 
   <div class="field">

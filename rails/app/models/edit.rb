@@ -10,13 +10,13 @@ class Edit < ApplicationRecord
   private
 
   def proposed_required_attributes
-    ["singfamhu", "smmultifam", "lgmultifam"]
+    ["singfamhu", "multifam"]
   end
 
   def groundbroken_required_attributes
-    ["singfamhu", "smmultifam", "lgmultifam",
-     "affrd_unit", "aff_u30", "aff_30_50", "aff_50_80",
-     "aff_80p", "gqpop", "ret_sqft", "ofcmd_sqft", "indmf_sqft", "whs_sqft",
+    ["singfamhu", "multifam", 
+     "affrd_unit", "aff_u50", "aff_50_80", "aff_80_120",
+     "aff_120p", "gqpop", "ret_sqft", "ofcmd_sqft", "indmf_sqft", "whs_sqft",
      "rnd_sqft", "ei_sqft", "other_sqft", "hotel_sqft", "hotelrms",
      "publicsqft"]
   end
@@ -30,6 +30,9 @@ class Edit < ApplicationRecord
         "name": {
           "type": "string"
         },
+        "notes": {
+          "type": "string"
+        },
         "year_compl": {
           "type": "number"
         },
@@ -37,6 +40,9 @@ class Edit < ApplicationRecord
           "type": "boolean"
         },
         "status": {
+          "type": "string"
+        },
+        "stat_comts": {
           "type": "string"
         },
         "address": {
@@ -70,9 +76,6 @@ class Edit < ApplicationRecord
         "stalled": {
           "type": "boolean"
         },
-        "mied_use": {
-          "type": "boolean"
-        },
         "headqtrs": {
           "type": "boolean"
         },
@@ -82,13 +85,25 @@ class Edit < ApplicationRecord
         "prj_url": {
           "type": "string"
         },
+        "gluc": {
+          "type": "string"
+        },
+        "placetype": {
+          "type": "string"
+        },
         "state": {
           "type": "string"
         },
-        "height": {
+        "percomp_24": {
           "type": "number"
         },
-        "stories": {
+        "percomp_28": {
+          "type": "number"
+        },
+        "percomp_35": {
+          "type": "number"
+        },
+        "percomp_45": {
           "type": "number"
         },
         "prjarea": {
@@ -97,10 +112,7 @@ class Edit < ApplicationRecord
         "singfamhu": {
           "type": "number"
         },
-        "smmultifam": {
-          "type": "number"
-        },
-        "lgmultifam": {
+        "multifam": {
           "type": "number"
         },
         "gqpop": {
@@ -110,9 +122,6 @@ class Edit < ApplicationRecord
           "type": "number"
         },
         "hotelrms": {
-          "type": "number"
-        },
-        "onsitepark": {
           "type": "number"
         },
         "total_cost": {
@@ -172,6 +181,9 @@ class Edit < ApplicationRecord
         "municipal": {
           "type": "string"
         },
+        "apn": {
+          "type": "string"
+        },
         "devlper": {
           "type": "string"
         },
@@ -187,16 +199,16 @@ class Edit < ApplicationRecord
         "affrd_unit": {
           "type": "number"
         },
-        "aff_u30": {
-          "type": "number"
-        },
-        "aff_30_50": {
+        "aff_u50": {
           "type": "number"
         },
         "aff_50_80": {
           "type": "number"
         },
-        "aff_80p": {
+        "aff_80_120": {
+          "type": "number"
+        },
+        "aff_120p": {
           "type": "number"
         },
         "park_type": {

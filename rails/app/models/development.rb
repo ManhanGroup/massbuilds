@@ -7,25 +7,23 @@ class Development < ApplicationRecord
   belongs_to :user
   include PgSearch::Model
   include ActiveModel::Dirty
-  pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address], using: { tsearch: { any_word: true } }
+  pg_search_scope :search_by_name_and_location, against: [:name, :municipal, :address, :apn], using: { tsearch: { any_word: true } }
   validates :name, :status, :latitude, :longitude, :year_compl, :hu,
             :commsf, :descr, presence: true
   validates_inclusion_of :rdv, :asofright, :clusteros, :phased, :stalled, :mixed_use,
                          :headqtrs, :ovr55, :yrcomp_est, in: [true, false, nil]
   with_options if: :proposed?, presence: true do |proposed|
     proposed.validates :singfamhu
-    proposed.validates :smmultifam
-    proposed.validates :lgmultifam
+    proposed.validates :multifam
   end
   with_options if: :groundbroken?, presence: :true do |groundbroken|
     groundbroken.validates :singfamhu
-    groundbroken.validates :smmultifam
-    groundbroken.validates :lgmultifam
+    groundbroken.validates :multifam
     groundbroken.validates :affrd_unit
-    groundbroken.validates :aff_u30
-    groundbroken.validates :aff_30_50
+    groundbroken.validates :aff_u50
     groundbroken.validates :aff_50_80
-    groundbroken.validates :aff_80p
+    groundbroken.validates :aff_80_120
+    groundbroken.validates :aff_120p
     groundbroken.validates :gqpop
     groundbroken.validates :ret_sqft
     groundbroken.validates :ofcmd_sqft
@@ -40,11 +38,12 @@ class Development < ApplicationRecord
 
   before_save :update_point
   before_save :set_traffic_count_data_present
-  before_save :set_mepa_id_present
+  before_save :set_proj_id_present
   after_save :geocode
   after_save :update_rpa
   after_save :update_county
   after_save :update_municipality
+  after_save :update_apn
   after_save :update_n_transit
   after_save :update_neighborhood
   after_save :update_loc_id
@@ -113,7 +112,7 @@ class Development < ApplicationRecord
       #properties = JSON.parse(result.body)['features'][0]['properties']
       #config.logger.debug "entering geocoding"
       addr_query = <<~SQL
-      SELECT site_addr,muni, addr_zip
+      SELECT site_addr,muni, apn, addr_zip
       FROM parcels
       WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
@@ -124,6 +123,7 @@ class Development < ApplicationRecord
         #address: (properties['street'] || self.address),
         #zip_code: (properties['postalcode'] || self.zip_code)
         municipal: sql_result['muni'],
+        apn: sql_result['apn'],
         address: sql_result['site_addr'],
         zip_code: sql_result['addr_zip']
       )
@@ -134,7 +134,7 @@ class Development < ApplicationRecord
   def self.zip(file_name)
     Zip::File.open(Rails.root.join('public', "#{file_name}.zip").to_s, Zip::File::CREATE) do |zipfile|
       #zipfile.add("#{file_name}.prj", Rails.root.join('public', 'ma_municipalities_NAD83_MassStatePlane.prj')
-      zipfile.add("#{file_name}.prj", Rails.root.join('public', '4269.prj'))
+      zipfile.add("#{file_name}.prj", Rails.root.join('public', '4326.prj'))
       zipfile.add("#{file_name}.shp", Rails.root.join('public', "#{file_name}.shp"))
       zipfile.add("#{file_name}.shx", Rails.root.join('public', "#{file_name}.shx"))
       zipfile.add("#{file_name}.dbf", Rails.root.join('public', "#{file_name}.dbf"))
@@ -187,6 +187,18 @@ class Development < ApplicationRecord
     self.update_columns(municipal: sql_result['namelsad'])
   end
 
+  def update_apn
+    return if !saved_change_to_point?
+    apn_query = <<~SQL
+      SELECT apn, geom
+      FROM parcels
+      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
+    SQL
+    sql_result = ActiveRecord::Base.connection.exec_query(apn_query).to_a[0]
+    return if sql_result.blank?
+    self.update_columns(apn: sql_result['apn'])
+  end
+
   def update_n_transit
     return if !saved_change_to_point?
     n_transit_query = <<~SQL
@@ -218,14 +230,14 @@ class Development < ApplicationRecord
   def update_loc_id
     return if !saved_change_to_point?
     loc_id_query = <<~SQL
-      SELECT parloc_id,apn, geom
+      SELECT gid,apn, geom
       FROM parcels
       WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(loc_id_query).to_a[0]
     return if sql_result.blank?
     self.update_columns(
-      loc_id: sql_result['parloc_id'],
+      loc_id: sql_result['gid'],
       apn: sql_result['apn']      
     )
     #self.update_columns(loc_id: sql_result['parloc_id'])
@@ -236,7 +248,7 @@ class Development < ApplicationRecord
     return if !saved_change_to_point?
     taz_query = <<~SQL
       SELECT taz_number, geometry
-      FROM ambag_2015_taz
+      FROM tazs
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326),4269), geometry);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(taz_query).to_a[0]
@@ -244,8 +256,8 @@ class Development < ApplicationRecord
     self.update_columns(taz: sql_result['taz_number'])
   end
   
-  def set_mepa_id_present
-    self.mepa_id_present = mepa_id.present?
+  def set_proj_id_present
+    self.proj_id_present = proj_id.present?
   end
   
   def set_traffic_count_data_present
