@@ -269,6 +269,9 @@ export default class extends Component {
                     muni: parcel.get('muni')
                       ? parcel.get('muni').toUpperCase()
                       : '',
+                      apn: parcel.get('apn')
+                      ? parcel.get('apn')
+                      : '',
                   },
                   geometry: center.geometry,
                 },
@@ -363,7 +366,7 @@ export default class extends Component {
           },
         },
         layout: {
-          'text-field': '{site_addr},\n{muni}',
+          'text-field': '{site_addr},\n{muni},\n{apn}',
           'text-size': 12,
           'text-justify': 'left',
           'text-max-width': 20,
@@ -394,6 +397,7 @@ export default class extends Component {
         color: statusColors[dev.get('status')] || '#888',
         name: dev.get('name'),
         status: dev.get('status'),
+        statComts: dev.get('statComts'),
         yrcompEst: dev.get('yrcompEst'),
         yearCompl: dev.get('yearCompl'),
       },

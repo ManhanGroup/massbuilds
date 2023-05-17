@@ -27,6 +27,10 @@ export default class extends Component {
     copier.innerHTML = window.location.href
       .split('&municipal[]=')
       .join(',')
+      .split('&placetype[]=')
+      .join(',')
+      .split('&apn[]=')
+      .join(',')
       .split('&devlper[]=')
       .join(',')
       .split('&nhood[]=')

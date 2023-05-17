@@ -34,7 +34,7 @@ const defaultDiscrete = {
 const filters = {
 
   // Discrete
-
+  'apn': { name: 'APN', ...defaultDiscrete },
   'devlper': { name: 'Developer', ...defaultDiscrete },
   'municipal':  { name: 'Town/City', ...defaultDiscrete },
   'nhood': { name: 'Neighborhood', ...defaultDiscrete },
@@ -42,26 +42,33 @@ const filters = {
   // Key Info
 
   'status': { name: 'Status', glossaryKey: 'STATUS', type: 'string', options: statusOptions, ...defaultMetric },
+  'statComts': { name: 'Status Comments', glossaryKey: 'STATUS_COMMENTS', type: 'string', ...defaultMetric },
   'totalCost': { name: 'Total cost', glossaryKey: 'COST_OF_CONSTRUCTION', type: 'number', ...defaultMetric },
+  'placetype': { name: 'Place_Type', glossaryKey: 'PLACE_TYPE', type: 'string', ...defaultMetric },
+  'gluc': { name: 'gluc', glossaryKey: 'GLUC', type: 'string', ...defaultMetric },
   'parkType': { name: 'Parking type', type: 'string', options: ['garage', 'underground', 'surface', 'other'], ...defaultMetric },
   'descr': { name: 'Description', glossaryKey: 'DESCRIPTION', type: 'string', ...defaultMetric },
-  'mepaId': { name: 'MEPA ID', glossaryKey: 'MEPAID', type: 'number', ...defaultMetric },
-  'mepaIdPresent': { name: 'MEPA ID Present', glossaryKey: 'MEPAID_PRESENT', type: 'boolean', ...defaultMetric },
+  'notes': { name: 'NOTES', glossaryKey: 'NOTES', type: 'string', ...defaultMetric },
+  'projId': { name: 'PROJ ID', glossaryKey: 'PROJID', type: 'number', ...defaultMetric },
+  'projIdPresent': { name: 'PROJECT ID Present', glossaryKey: 'PROJID_PRESENT', type: 'boolean', ...defaultMetric },
+ // 'apn': { name: 'Parcel APN', glossaryKey: 'APN', type: 'string', ...defaultMetric },
   'trafficCountData': { name: 'Traffic Count Data', glossaryKey: 'TRAFFIC_COUNT_DATA', type: 'string', ...defaultMetric },
   'trafficCountDataPresent': { name: 'Traffic Count Data Present', glossaryKey: 'TRAFFIC_COUNT_DATA_PRESENT', type: 'boolean', ...defaultMetric },
   'phased': { name: 'Phased', glossaryKey: 'PHASED', type: 'boolean', ...defaultMetric },
   'stalled': { name: 'Stalled', glossaryKey: 'STALLED', type: 'boolean', ...defaultMetric },
-  'stories': { name: 'Stories', glossaryKey: 'STORIES', type: 'number', ...defaultMetric },
+  'percomp_24': { name: 'Percent complete by year 2024', glossaryKey: 'PERCOMP24', type: 'number', ...defaultMetric },
+  'percomp_28': { name: 'Percent complete by year 2028', glossaryKey: 'PERCOMP28', type: 'number', ...defaultMetric },
+  'percomp_35': { name: 'Percent complete by year 2035', glossaryKey: 'PERCOMP35', type: 'number', ...defaultMetric },
+  'percomp_45': { name: 'Percent complete by year 2045', glossaryKey: 'PERCOMP45', type: 'number', ...defaultMetric },
   'mixedUse': { name: 'Mixed use', glossaryKey: 'MIXED_USE', type: 'boolean', ...defaultMetric },
+  'mixDescr': { name: 'Mixed use description', glossaryKey: 'MIXED_USE_DESCR', type: 'boolean', ...defaultMetric },
 
   'yearCompl': { name: 'Year complete', glossaryKey: 'YEAR_COMPLETE', type: 'number', ...defaultMetric },
   'yrcompEst': { name: 'Completion year is estimated',  type: 'boolean', ...defaultMetric },
   'prjarea': { name: 'Project area', glossaryKey: 'PROJECT_AREA', type: 'number', unit: 'sqft', ...defaultMetric },
   'publicsqft': { name: 'Public area', glossaryKey: 'PUBLIC_AREA', type: 'number', ...defaultMetric },
-  'onsitepark': { name: 'Parking spaces', glossaryKey: 'PARKING_SPACES', type: 'number', ...defaultMetric },
   'dNTrnsit': { name: 'Distance to transit', type: 'number', ...defaultMetric },
-  'height': { name: 'Height', glossaryKey: 'HEIGHT', type: 'number', unit: 'ft', ...defaultMetric },
-
+  
   'clusteros': { name: 'Cluster development.', type: 'boolean', ...defaultMetric },
   'floodzone': { name: 'In flood zone', type: 'boolean', ...defaultMetric },
   'rdv': { name: 'Redevelopment', glossaryKey: 'REDEVELOPMENT', type: 'boolean', ...defaultMetric },
@@ -70,16 +77,15 @@ const filters = {
 
   'hu': { name: 'Total housing units', glossaryKey: 'HOUSING_UNITS', type: 'number', ...defaultMetric },
   'singfamhu': { name: 'Single-family units', glossaryKey: 'SINGLE_FAMILY', type: 'number', ...defaultMetric },
-  'smmultifam': { name: 'Small multifamily units', glossaryKey: 'SMALL_MULTI_FAMILY', type: 'number', ...defaultMetric },
-  'lgmultifam': { name: 'Large multifamily units', glossaryKey: 'LARGE_MULTI_FAMILY', type: 'number', ...defaultMetric },
+  'multifam': { name: 'Multifamily units', glossaryKey: 'MULTI_FAMILY', type: 'number', ...defaultMetric },
   'units1bd': { name: 'Studio/1 bedroom units', type: 'number', ...defaultMetric },
   'units2bd': { name: '2 Bedroom units', type: 'number', ...defaultMetric },
   'units3bd': { name: '3 Bedroom units', type: 'number', ...defaultMetric },
   'affrdUnit': { name: 'Affordable units', glossaryKey: 'AFFORDABLE_UNITS', type: 'number', ...defaultMetric },
-  'affU30': { name: 'Units <30% AMI', type: 'number', ...defaultMetric },
-  'aff3050': { name: 'Units 30-50% AMI', type: 'number', ...defaultMetric },
-  'aff5080': { name: 'Units 50-80% AMI', type: 'number', ...defaultMetric },
-  'aff80p': { name: 'Units 80-100% AMI', type: 'number', ...defaultMetric },
+  'affU50': { name: 'Units <50% AMI', type: 'number', ...defaultMetric },
+  'aff_50_80': { name: 'Units 50-80% AMI', type: 'number', ...defaultMetric },
+  'aff_80_120': { name: 'Units 80-120% AMI', type: 'number', ...defaultMetric },
+  'aff_120p': { name: 'Above Units 120% AMI', type: 'number', ...defaultMetric },
   'gqpop': { name: 'Group quarters population', type: 'number', ...defaultMetric },
 
   'asofright': { name: 'As of Right', glossaryKey: 'AS_OF_RIGHT', type: 'boolean', ...defaultMetric },
@@ -116,18 +122,19 @@ const metricGroups = {
         'rdv',
         'phased',
         'stalled',
-        'mepaId',
-        'mepaIdPresent',
+        'projId',
+        'projIdPresent',
         'trafficCountData',
         'trafficCountDataPresent'
       ]
     },
-    {
-      title: 'Building',
+   {
+      title: 'Schedule',
       metrics: [
-        'height',
-        'stories',
-        'onsitepark',
+        'percomp_24',
+        'percomp_28',
+        'percomp_35',
+        'percomp_45',
       ]
     },
     {
@@ -145,8 +152,7 @@ const metricGroups = {
       metrics: [
         'hu',
         'singfamhu',
-        'smmultifam',
-        'lgmultifam',
+        'multifam',
         'units1bd',
         'units2bd',
         'units3bd',
@@ -156,10 +162,10 @@ const metricGroups = {
       title: 'Affordability',
       metrics: [
         'affrdUnit',
-        'affU30',
-        'aff3050',
-        'aff5080',
-        'aff80p',
+        'affU50',
+        'aff_50_80',
+        'aff_80_120',
+        'aff_120p',
       ]
     },
     {
@@ -203,11 +209,13 @@ const metricGroups = {
 
 
 const blacklist = [
-  'mapcNotes',
+  'notes',
   'tagline',
   'parcelId',
   'programs',
   'user',
+  'statComts',
+  'mixDescr'
 ];
 
 

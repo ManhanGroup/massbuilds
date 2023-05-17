@@ -22,10 +22,10 @@ export default class extends Component {
     this.selectedParkTypes = (this.editing.parkType || '').split(',').filter(x => x);
 
     this.knownAffordableFields = [
-      'affU30',
-      'aff3050',
+      'affU50',
       'aff5080',
-      'aff80p',
+      'aff80120',
+      'aff120p',
       'affUnknown'
     ];
 
@@ -36,8 +36,7 @@ export default class extends Component {
 
     this.knownHousingFields = [
       'singfamhu',
-      'smmultifam',
-      'lgmultifam',
+      'multifam',
     ];
 
     this.allHousingFields = [

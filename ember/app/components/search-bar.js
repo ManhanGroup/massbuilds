@@ -15,7 +15,7 @@ export default class extends Component {
     super();
 
     this.classNames = ['component', 'search-bar'];
-    this.sortOrder = ['municipal', 'nhood', 'devlper', 'name', 'address'];
+    this.sortOrder = ['municipal', 'nhood', 'apn','devlper', 'name', 'address'];
     this.appCtrl = getOwner(this).lookup('controller:application');
     this.loading = false;
   }
@@ -28,9 +28,15 @@ export default class extends Component {
   }
 
   @computed('developments.[]')
+  get apn() {
+    return this.uniqueValuesFor('apn');
+  }
+
+  @computed('developments.[]')
   get devlper() {
     return this.uniqueValuesFor('devlper');
   }
+
 
   @computed('developments.[]')
   get nhood() {
@@ -95,7 +101,7 @@ export default class extends Component {
       promise: this.get('ajax')
         .request(
           `https://ambag-postrest.herokuapp.com/address?mylabel=like.${searchQuery}*`
-         // `https://pelias.mapc.org/v1/search?text=${searchQuery}` +
+         // `https://pelias.ambag.org/v1/search?text=${searchQuery}` +
          //   `&boundary.country=USA&boundary.rect.min_lon=-73.5081481933594` +
          //   `&boundary.rect.max_lon=-69.8615341186523` +
          //   `&boundary.rect.min_lat=41.1863288879395` +

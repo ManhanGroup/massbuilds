@@ -28,7 +28,7 @@ export default class extends DS.Model {
   @computed('firstName', 'lastName', 'email')
   get displayName() {
     const { fullName, email } = this.getProperties('fullName', 'email');
-    return email.endsWith('mapc.org') ? 'MAPC Staff' : fullName;
+    return email.endsWith('ambag.org') ? 'AMBAG Staff' : fullName;
   }
 
 }

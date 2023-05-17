@@ -29,7 +29,7 @@ module.exports = function(environment) {
       authenticationRoute: 'map',
     },
     admin: {
-      email: 'sphilbrick@mapc.org',
+      email: 'ya@manhangroup.com',
     }
   };
 
@@ -38,7 +38,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV['host'] = 'https://api.staging.calbuilds.com';
+    //ENV.rootURL = '/calbuilds/'
+    ENV['host'] = 'https://calbuilds-api.herokuapp.com/';
   }
 
   if (environment === 'production') {

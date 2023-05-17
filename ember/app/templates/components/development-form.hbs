@@ -106,13 +106,24 @@
                   input=(action checkForUpdated 'descr')}}
               </p>
             </div>
+            <div class="field long-form">
+              <label>
+                {{defined-term key='NOTES'}}
+              </label>
+              <p>
+                {{textarea
+                  value=editing.notes
+                  placeholder="Enter Addtional Notes"
+                  input=(action checkForUpdated 'notes')}}
+              </p>
+            </div>
             <div class="field">
-              <label>{{defined-term key='MEPAID'}}</label>
+              <label>{{defined-term key='PROJID'}}</label>
               {{input
-                value=editing.mepaId
-                class=(if inValid.mepaId 'invalid')
-                placeholder="Enter MEPA ID"
-                input=(action checkForUpdated 'mepaId')}}
+                value=editing.projId
+                class=(if inValid.projId 'invalid')
+                placeholder="Enter Unique Project ID if there is one"
+                input=(action checkForUpdated 'projId')}}
             </div>
             <div class="field">
               <label>{{defined-term key='TRAFFIC_COUNT_DATA'}}</label>
@@ -130,7 +141,6 @@
     <div class="metric-groups">
       <article>
         <h4>Key Info</h4>
-
         <div class="row">
           <div class="column">
             <div class="field">
@@ -150,6 +160,24 @@
                 {{/each}}
               </select>
             </div>
+            <div class="field long-form">
+              <label>
+                {{defined-term key='STATUS_COMMENTS'}}
+              </label>
+              <p>
+                {{textarea
+                  value=editing.statComts
+                  placeholder="Enter Status Comments"
+                  input=(action checkForUpdated 'statComts')}}
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            
 
             <div class="field">
               <label for="yearCompl" class="required">
@@ -166,6 +194,88 @@
               <label for="yrcompEst">Complete Date Estimated?</label>
               {{input type="checkbox" checked=editing.yrcompEst click=(action checkForUpdated 'yrcompEst')}}
             </div>
+
+            {{#if (gt editing.yearCompl 2024) }}
+            <div class="field">
+              <label for="percomp24">
+                {{defined-term key='PERCOMP24'}}
+              </label>
+              {{input
+                class=(if inValid.percomp24 'invalid')
+                value=editing.percomp24
+                placeholder="Percent complete in 2024"
+                input=(action checkForUpdated 'percomp24')}}
+            </div>
+
+            <div class="field">
+              <label for="percomp28">
+                {{defined-term key='PERCOMP28'}}
+              </label>
+              {{input
+                class=(if inValid.percomp28 'invalid')
+                value=editing.percomp28
+                placeholder="Percent complete in 2028"
+                input=(action checkForUpdated 'percomp28')}}
+            </div>
+
+            <div class="field">
+              <label for="percomp35">
+                {{defined-term key='PERCOMP35'}}
+              </label>
+              {{input
+                class=(if inValid.percomp35 'invalid')
+                value=editing.percomp35
+                placeholder="Percent complete in 2035"
+                input=(action checkForUpdated 'percomp35')}}
+            </div>
+
+            <div class="field">
+              <label for="percomp45">
+                {{defined-term key='PERCOMP45'}}
+              </label>
+              {{input
+                class=(if inValid.percomp45 'invalid')
+                value=editing.percomp45
+                placeholder="Percent complete in 2045"
+                input=(action checkForUpdated 'percomp45')}}
+            </div>
+            {{/if}}
+            
+            <div class="field">
+              <label for="placetype">
+                {{defined-term key='PLACE_TYPE'}}
+              </label>
+              {{input
+                value=editing.placetype
+                class=(if inValid.placetype 'invalid')
+                placeholder="Enter Place Type"
+                input=(action checkForUpdated 'placetype')}}
+            </div>
+
+            <div class="field">
+              <label for="gluc">
+                {{defined-term key='GLUC'}}
+              </label>
+              {{input
+                value=editing.gluc
+                class=(if inValid.gluc 'invalid')
+                placeholder="Enter GLUC"
+                input=(action checkForUpdated 'gluc')}}
+            </div>
+            
+          </div>
+
+          <div class="column">
+            <!--div class="field">
+              <label for="onsitepark">
+                {{defined-term key='PARKING_SPACES'}}
+              </label>
+              {{input
+                class=(if inValid.onsitepark 'invalid')
+                value=editing.onsitepark
+                placeholder="Enter here"
+                input=(action checkForUpdated 'onsitepark')}}
+            </div-->
 
             <div class="field">
               <label for="totalCost">
@@ -186,41 +296,6 @@
                 class=(if inValid.prjarea 'invalid')
                 value=editing.prjarea placeholder="Enter here"
                 input=(action checkForUpdated 'prjarea')}}
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="field">
-              <label for="height">
-                {{defined-term key='HEIGHT'}}
-              </label>
-              {{input
-                class=(if inValid.height 'invalid')
-                value=editing.height
-                placeholder="Enter here"
-                input=(action checkForUpdated 'height')}}
-            </div>
-
-            <div class="field">
-              <label for="stories">
-                {{defined-term key='STORIES'}}
-              </label>
-              {{input
-                class=(if inValid.stories 'invalid')
-                value=editing.stories
-                placeholder="Enter here"
-                input=(action checkForUpdated 'stories')}}
-            </div>
-
-            <div class="field">
-              <label for="onsitepark">
-                {{defined-term key='PARKING_SPACES'}}
-              </label>
-              {{input
-                class=(if inValid.onsitepark 'invalid')
-                value=editing.onsitepark
-                placeholder="Enter here"
-                input=(action checkForUpdated 'onsitepark')}}
             </div>
 
             <div class="field">
@@ -275,7 +350,23 @@
             {{input type='checkbox' checked=editing.mixedUse click=(action checkForUpdated 'mixedUse')}}
           </span>
         </p>
+        {{#if editing.mixedUse}}
+         <div class="field long-form">
+              <label>
+                {{defined-term key='MIXED_USE_DESCR'}}
+              </label>
+              <p>
+                {{textarea
+                  value=editing.mixDescr
+                  placeholder="Enter Description for Mixed Use"
+                  input=(action checkForUpdated 'mixDescr')}}
+              </p>
+            </div>
+        {{/if}}
       </article>
+
+
+      
 
       {{#if developmentTypeEnabled}}
         <div class={{if developmentType 'decision-row' 'decision-row invalid'}}>
@@ -390,38 +481,18 @@
 
               <tr>
                 <td>
-                  <label for="smmultifam">{{defined-term key="SMALL_MULTI_FAMILY"}}</label>
+                  <label for="multifam">{{defined-term key="MULTI_FAMILY"}}</label>
                 </td>
                 <td>
                   {{input
-                    class=(if inValid.smmultifam 'invalid')
-                    value=editing.smmultifam
+                    class=(if inValid.multifam 'invalid')
+                    value=editing.multifam
                     placeholder='-'
-                    input=(action updateHu 'smmultifam')}}
+                    input=(action updateHu 'multifam')}}
                 </td>
                 <td>
                   {{#if (gt editing.hu 0)}}
-                    {{round (mult 100 (div editing.smmultifam editing.hu))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <label for="lgmultifam">{{defined-term key="LARGE_MULTI_FAMILY"}}</label>
-                </td>
-                <td>
-                  {{input
-                    class=(if inValid.lgmultifam 'invalid')
-                    value=editing.lgmultifam
-                    placeholder='-'
-                    input=(action updateHu 'lgmultifam')}}
-                </td>
-                <td>
-                  {{#if (gt editing.hu 0)}}
-                    {{round (mult 100 (div editing.lgmultifam editing.hu))}}%
+                    {{round (mult 100 (div editing.multifam editing.hu))}}%
                   {{else}}
                     0%
                   {{/if}}
@@ -536,35 +607,17 @@
               </tr>
 
               <tr>
-                <td><label for="affU30">Units &lt;30% AMI</label></td>
+                <td><label for="affU50">Units &lt;50% AMI</label></td>
                 <td>
                   {{input
-                    class=(if inValid.affU30 'invalid')
-                    value=editing.affU30
+                    class=(if inValid.affU50 'invalid')
+                    value=editing.affU50
                     placeholder='-'
-                    input=(action updateAffrdUnit 'affU30')}}
+                    input=(action updateAffrdUnit 'affU50')}}
                 </td>
                 <td>
                   {{#if (gt editing.affrdUnit 0)}}
-                    {{round (mult 100 (div editing.affU30 editing.affrdUnit))}}%
-                  {{else}}
-                    0%
-                  {{/if}}
-                </td>
-              </tr>
-
-              <tr>
-                <td><label for="aff3050">Units 30-50% AMI</label></td>
-                <td>
-                  {{input
-                    class=(if inValid.aff3050 'invalid')
-                    value=editing.aff3050
-                    placeholder='-'
-                    input=(action updateAffrdUnit 'aff3050')}}
-                </td>
-                <td>
-                  {{#if (gt editing.affrdUnit 0)}}
-                    {{round (mult 100 (div editing.aff3050 editing.affrdUnit))}}%
+                    {{round (mult 100 (div editing.affU50 editing.affrdUnit))}}%
                   {{else}}
                     0%
                   {{/if}}
@@ -590,17 +643,35 @@
               </tr>
 
               <tr>
-                <td><label for="aff80p">Units 80-100% AMI</label></td>
+                <td><label for="aff80120">Units 80-120% AMI</label></td>
                 <td>
                   {{input
-                    class=(if inValid.aff80p 'invalid')
-                    value=editing.aff80p
+                    class=(if inValid.aff80120 'invalid')
+                    value=editing.aff80120
                     placeholder='-'
-                    input=(action updateAffrdUnit 'aff80p')}}
+                    input=(action updateAffrdUnit 'aff80120')}}
                 </td>
                 <td>
                   {{#if (gt editing.affrdUnit 0)}}
-                    {{round (mult 100 (div editing.aff80p editing.affrdUnit))}}%
+                    {{round (mult 100 (div editing.aff80120 editing.affrdUnit))}}%
+                  {{else}}
+                    0%
+                  {{/if}}
+                </td>
+              </tr>
+
+              <tr>
+                <td><label for="aff120p">Above Units 120% AMI</label></td>
+                <td>
+                  {{input
+                    class=(if inValid.aff120p 'invalid')
+                    value=editing.aff120p
+                    placeholder='-'
+                    input=(action updateAffrdUnit 'aff120p')}}
+                </td>
+                <td>
+                  {{#if (gt editing.affrdUnit 0)}}
+                    {{round (mult 100 (div editing.aff120p editing.affrdUnit))}}%
                   {{else}}
                     0%
                   {{/if}}

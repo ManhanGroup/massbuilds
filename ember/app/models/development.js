@@ -9,8 +9,12 @@ export default class extends DS.Model {
 
   @attr('string') name;
   @attr('string') status;
+  @attr('string') statComts;
   @attr('string') descr;
+  @attr('string') notes;
   @attr('string') prjUrl;
+  @attr('string') gluc;
+  @attr('string') placetype;
   @attr('string') tagline;
   @attr('string') nhood;
   @attr('string') address;
@@ -19,23 +23,25 @@ export default class extends DS.Model {
   @attr('string') parkType;
   @attr('string') parcelId;
   @attr('string') municipal;
+  @attr('string') apn;
   @attr('string') devlper;
   @attr('string') trafficCountData;
+  @attr('string') mixDescr;
 
-  @attr('number') height;
-  @attr('number') stories;
+  @attr('number') percomp24;
+  @attr('number') percomp28;
+  @attr('number') percomp35;
+  @attr('number') percomp45;
   @attr('number') yearCompl;
   @attr('number') prjarea;
   @attr('number') singfamhu;
-  @attr('number') smmultifam;
-  @attr('number') lgmultifam;
+  @attr('number') multifam;
   @attr('number') unknownhu;
   @attr('number') hu;
   @attr('number') gqpop;
   @attr('number') rptdemp;
   @attr('number') commsf;
   @attr('number') hotelrms;
-  @attr('number') onsitepark;
   @attr('number') totalCost;
   @attr('number') retSqft;
   @attr('number') ofcmdSqft;
@@ -52,13 +58,13 @@ export default class extends DS.Model {
   @attr('number') units2bd;
   @attr('number') units3bd;
   @attr('number') affrdUnit;
-  @attr('number') affU30;
-  @attr('number') aff3050;
+  @attr('number') affU50;
   @attr('number') aff5080;
-  @attr('number') aff80p;
+  @attr('number') aff80120;
+  @attr('number') aff120p;
   @attr('number') affUnknown;
   @attr('number') publicsqft;
-  @attr('number') mepaId;
+  @attr('number') projId;
 
   @attr('boolean', { default: false }) rdv;
   @attr('boolean', { default: false }) asofright;

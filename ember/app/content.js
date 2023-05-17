@@ -1,5 +1,8 @@
 const content = {
   GLOSSARY: {
+    APN:{
+      label: 'Parcel APN',
+      definition: ['Parcel APN.']},
     STREET_ADDRESS: {
       label: 'Street Address',
       definition: ['Enter the street address of the project and Zip Code (required in order to submit the project). If exact address is unknown or covers a wide area, enter an address as close to the site as possible and note that address is not exact/site spans a wide area in the Description.'],
@@ -7,6 +10,10 @@ const content = {
     PROJECT_WEBSITE: {
       label: 'Project Website',
       definition: ['Enter the project website where updates can be found on the project.'],
+    },
+    PLACE_TYPE: {
+      label: 'Place Type',
+      definition: ['Place Type of the Project?'],
     },
     DEVELOPER: {
       label: 'Developer',
@@ -16,6 +23,14 @@ const content = {
       label: 'Description',
       definition: ['Note basic background, type of development, interesting facts, and other items not covered by the other fields.'],
     },
+    NOTES: {
+      label: 'Additional Notes',
+      definition: ['Additional Notes.'],
+    },
+    GLUC: {
+      label: 'GLUC',
+      definition: ['GLUC of the Project?'],
+    },
     STATUS: {
       label: 'Status',
       definition: [
@@ -24,6 +39,12 @@ const content = {
         'Select Planning if plans for a development have been submitted, and fill out the remaining fields based on the submitted plan. Projects are still Planning even when they are approved.',
         'Select In Construction once a project has officially breaks ground and begun construction work.',
         'Select Completed once a project has officially topped off and finished construction.',
+      ],
+    },
+    STATUS_COMMENTS: {
+      label: 'Comments on Status',
+      definition: [
+        'Additional comments on development status',
       ],
     },
     YEAR_COMPLETE: {
@@ -43,15 +64,21 @@ const content = {
       unitsLong: 'Square Feet',
       definition: ['Total area of development site only, not including areas on the site/parcel that are not developed.'],
     },
-    HEIGHT: {
-      label: 'Height',
-      unitsShort: 'ft',
-      unitsLong: 'Feet',
-      definition: ['Total height of development in feet.'],
+    PERCOMP24: {
+      label: 'Percent by 2024',
+      definition: ['Percent completed by year 2024.'],
     },
-    STORIES: {
-      label: 'Number of Stories',
-      definition: ['Total number of stories in the development.'],
+    PERCOMP28: {
+      label: 'Percent by 2028',
+      definition: ['Percent completed by year 2028.'],
+    },
+    PERCOMP35: {
+      label: 'Percent by 2035',
+      definition: ['Percent completed by year 2035.'],
+    },
+    PERCOMP45: {
+      label: 'Percent by 2045',
+      definition: ['Percent completed by year 2045.'],
     },
     PARKING_SPACES: {
       label: 'Number of Parking Spaces',
@@ -81,6 +108,11 @@ const content = {
       label: 'Mixed Use',
       definition: ['Check if this development is a mixed use development (both residential and commercial on same site).'],
     },
+    MIXED_USE_DESCR: {
+      label: 'Mixed Use Description',
+      definition: ['Detailed description on mixed use.'],
+    },
+
     GROUP_QUARTERS_POPULATION: {
       label: 'Group Quarters Population',
       definition: ['Input estimated new beds (the total new population) in group quarters (dorms, nursing homes, military barracks, etc).'],
@@ -92,7 +124,7 @@ const content = {
     HOUSING_UNITS: {
       label: 'Housing Units',
       definition: [
-        'Input the total # of units in each type of housing, ie. If the project includes 20 single family community with 6 townhouses (totaling 12 units) and a building with 10 units, input 20 into Single Family and 12 in Small Multi-family, and 10 into Large Multi-family.',
+        'Input the total # of units in each type of housing, ie. If the project includes 20 single family community with 6 townhouses (totaling 12 units) and a building with 10 units, input 20 into Single Family and 12 in Multi-family, and 10 into Large Multi-family.',
         'If known, input the number of units that are studio/1 Bedroom, 2 Bedroom and 3 Bedroom.',
       ],
     },
@@ -102,10 +134,10 @@ const content = {
         'A standalone house for one family.'
       ],
     },
-    SMALL_MULTI_FAMILY: {
-      label: 'Small Multi-family',
+    MULTI_FAMILY: {
+      label: 'Multi-family',
       definition: [
-        'Attached single family homes or townhouses and multifamily homes under 6 units.',
+        'Attached single family homes or townhouses and multifamily homes.',
       ],
     },
     LARGE_MULTI_FAMILY: {
@@ -117,8 +149,8 @@ const content = {
     AFFORDABLE_UNITS: {
       label: 'Affordable Units',
       definition: [
-        'If the affordability restrictions are known for the affordable units of a project, input into the field that has the range the restrictions fall under and input 0 into the other fields. Ie., If a project with 100 units has 30 designated affordable units where 15 are restricted for households earning up to 50% AMI and 15 for those earning up to 80% AMI, input 15 into Units 30-50% AMI and 15 into Units 50-80% AMI and 0 for the rest. If you know there are 30 units that are designated affordable but dont known the AMI restrictions, input 0 into all fields and 30 into Unknown.',
-        'If there are restrictions that dont fall neatly into the ranges, ie., if units are designated affordable between 30-60% AMI, input the units into the 30-50% AMI range and make sure to include the specific AMI in the Descriptions.',
+        'If the affordability restrictions are known for the affordable units of a project, input into the field that has the range the restrictions fall under and input 0 into the other fields. Ie., If a project with 100 units has 30 designated affordable units where 20 are restricted for households earning up to 50% AMI and 10 for those earning up to 80% AMI, input 20 into Units <50% AMI and 10 into Units 50-80% AMI and 0 for the rest. If you know there are 30 units that are designated affordable but dont known the AMI restrictions, input 0 into all fields and 30 into Unknown.',
+        'If there are restrictions that dont fall neatly into the ranges, ie., if units are designated affordable between 30-60% AMI, input the units into the <50% AMI range and make sure to include the specific AMI in the Descriptions.',
       ],
     },
     ESTIMATED_AND_REPORTED_EMPLOYMENT: {
@@ -161,10 +193,6 @@ const content = {
     PARCEL_FISCAL_YEAR: {
       label: 'Parcel Fiscal Year',
       definition: ['Fiscal Year of the assessor\'s data from which the parcel\'s information was extracted.'],
-    },
-    MEPAID: {
-      label: 'MEPA ID',
-      definition: ['Five-digit integer corresponding to the "EEA No." in the MEPA Project Database at http://eeaonline.eea.state.ma.us/eea/emepa/searcharchive.aspx']
     },
     TRAFFIC_COUNT_DATA: {
       label: 'Traffic Count URL',
