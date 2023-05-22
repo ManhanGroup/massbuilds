@@ -46,6 +46,7 @@ export default class extends Component {
     if (mapService.get('baseMap') == 'satellite') {
       mapStyle = 'mapbox://styles/yacwang/cl6omcwuq006415pces0nbonk';
       //mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
+      //mapStyle = 'mapbox://styles/mapbox/satellite-v9';
     }
     this.mapboxglMap = new mapboxgl.Map({
       container: this.get('element'),
@@ -70,6 +71,7 @@ export default class extends Component {
         }
       });
       mapService.addObserver('stored', this, 'draw');
+      mapService.addObserver('storedP', this, 'draw');
       mapService.addObserver('filteredData', this, 'draw');
       mapService.addObserver('viewing', this, 'draw');
       mapService.addObserver('filteredData', this, 'focus');
@@ -89,6 +91,10 @@ export default class extends Component {
       );
 
       if (mapService.get('stored').length) {
+        this.draw(mapService);
+        this.focus(mapService);
+      }
+      if (mapService.get('storedP').length) {
         this.draw(mapService);
         this.focus(mapService);
       }
@@ -113,6 +119,7 @@ export default class extends Component {
   willDestroyElement() {
     const mapService = this.get('map');
     mapService.removeObserver('stored', this, 'draw');
+    mapService.removeObserver('storedP', this, 'draw');
     mapService.removeObserver('filteredData', this, 'draw');
     mapService.removeObserver('viewing', this, 'draw');
     mapService.removeObserver('filteredData', this, 'focus');
@@ -400,11 +407,22 @@ export default class extends Component {
         statComts: dev.get('statComts'),
         yrcompEst: dev.get('yrcompEst'),
         yearCompl: dev.get('yearCompl'),
+        updatedAt: dev.get('updatedAt'),        
       },
       geometry: {
         type: 'Point',
         coordinates: [dev.get('longitude'), dev.get('latitude')],
       },
+    }));
+  }
+
+  generatePFeatures(parcels) {
+    return parcels.map((dev) => ({
+      type: 'Feature',
+      properties: {
+        id: dev.toJSON()['gid'],              
+      },
+      geometry: dev.toJSON()['geojson'],
     }));
   }
 
@@ -452,6 +470,12 @@ export default class extends Component {
         ? mapService.get('remainder')
         : mapService.get('stored')
     );
+
+    const allPFeatures = this.generatePFeatures(
+      mapService.get('storedP')
+    );
+
+    
     const satelliteMap = mapService.get('baseMap') != 'light';
     const isMuted = mapService.get('followMode');
 
@@ -469,6 +493,7 @@ export default class extends Component {
       ).forEach(([property, value]) => {
         this.mapboxglMap.setPaintProperty('all', property, value);
       });
+      
     } else {
       this.mapboxglMap.addLayer({
         id: 'all',
@@ -486,7 +511,32 @@ export default class extends Component {
           isMuted
         ),
       });
+      
     }
+    
+    if (this.mapboxglMap.getLayer('allparcel')) {
+      this.mapboxglMap.getSource('allparcel').setData({
+        type: 'FeatureCollection',
+        features: allPFeatures,
+      });           
+    } else {
+      this.mapboxglMap.addLayer({
+       id: 'allparcel',
+       type: 'line',
+       source: {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: allPFeatures,
+        },
+      },
+      paint: {
+        'line-color': satelliteMap ? '#fff' : '#7a7a7a',
+        'line-width': satelliteMap ? 2 : 1,
+        'line-dasharray': [4, 2],
+      },
+    });
+  }
 
     if (mapService.get('viewing')) {
       const dev = mapService.get('viewing');
@@ -603,6 +653,10 @@ export default class extends Component {
               properties.yrcompEst ? 'Estimated' : ''
             } Year of Completion: </span>
             ${properties.yearCompl}
+          </h5>
+          <h5>
+            <span>Last Updated at:</span>
+            ${properties.updatedAt}
           </h5>
         </div>
       `);

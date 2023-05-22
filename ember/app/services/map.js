@@ -23,6 +23,7 @@ export default class extends Service {
     this.baseMap = 'light';
 
     this.stored = [];
+    this.storedP=[];
     this.storedBounds = null;
 
     this.zoomCommand = null;
@@ -49,7 +50,15 @@ export default class extends Service {
           )
         );
       });
+
+    this.get('store')
+      .query('parcel', {})
+      .then((results) => {
+        this.set('storedP', results.toArray());
+      });
   }
+
+  
 
   setViewing(dev) {
     this.set('viewing', dev);
