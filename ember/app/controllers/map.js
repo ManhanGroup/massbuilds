@@ -41,7 +41,6 @@ export default class extends Controller {
     this.updateChildren = 0;
     this.panel = null;
     this.leftPanelWidth = 'filter-width';
-    this.agencys = Object.values(agency.AGENCY)
   }
 
   @computed('target.currentRouteName')
