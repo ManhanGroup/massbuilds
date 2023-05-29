@@ -81,7 +81,7 @@
     "node-fetch": "^3.2.10",
     "url": "^0.11.0",
     "utf-8-validate": "^5.0.2"
-  }   ,
+  },
   "resolutions": {
     "whatwg-fetch": "~3.3.1"
   }

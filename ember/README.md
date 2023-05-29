@@ -9,11 +9,13 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](https://ember-cli.com/)
 * [Google Chrome](https://google.com/chrome/)
 
+See [setup.sh](setup.sh) for versioning information, this can also be ran after cloning to setup your environment correctly before installing.
+
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd calbuilds`
-* `npm install`
+* `cd ember`
+* `yarn`
 
 ## Running / Development
 
