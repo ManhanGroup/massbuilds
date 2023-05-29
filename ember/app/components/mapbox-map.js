@@ -44,7 +44,7 @@ export default class extends Component {
     const mapService = this.get('map');
     let mapStyle = 'mapbox://styles/mapbox/light-v9';
     if (mapService.get('baseMap') == 'satellite') {
-      mapStyle = 'mapbox://styles/yacwang/cl6omcwuq006415pces0nbonk';
+      mapStyle = 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau';
       //mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
     }
     this.mapboxglMap = new mapboxgl.Map({
@@ -307,7 +307,7 @@ export default class extends Component {
       this.mapboxglMap.setStyle('mapbox://styles/mapbox/light-v9');
     } else if (newBaseMap == 'satellite') {
       this.mapboxglMap.setStyle(
-        'mapbox://styles/yacwang/cl6omcwuq006415pces0nbonk'
+        'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau'
         //'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90'
       );
     }

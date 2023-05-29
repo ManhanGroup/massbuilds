@@ -114,13 +114,43 @@
       }}
     {{/if}}
     <footer>
-      <img src="/assets/images/ambag.jpg">
-      <div class="ambag-details">
-        <span><b>Association of Monterey Bay Area Governments</b></span>
-        <span>24580 Silver Cloud Court, Monterey , CA 93940</span>
-        <a href="tel:8318833750">831-883-3750</a>
-        <a href="mailto:ambagbuilds@ambag.org">ambagbuilds@ambag.org</a>
+      <img class="agencylogo"  src="/assets/images/ambag.jpg" style="display:block;">
+      <div class="agency-details" style="display:block;">
+          <span><b>Association of Monterey Bay Area Governments</b></span>
+          <span>24580 Silver Cloud Court, Monterey , CA 93940</span>
+          <a href="tel:8318833750">831-883-3750</a>
+          <a href="mailto:ambagbuilds@ambag.org">caluilds@ambag.org</a> 
       </div>
+
+      <img class="agencylogo"  src="/assets/images/slocog.jpeg" style="display:none;">
+      <div class="agency-details" style="display:none;">
+          <span><b>San Luis Obispo Council of Governments</b></span>
+          <span>1114 Marsh St, San Luis Obispo, CA 93401</span>
+          <a href="tel:8057814219">805-781-4219</a>
+          <a href="mailto:calbuilds@ambag.org">calbuilds@slocog.org</a>  
+      </div>
+
+      <script type="text/javascript">
+        let agencylogos = document.querySelectorAll('.agencylogo')
+        let agency_divs = document.querySelectorAll('.agency-details')
+        function intervalFunc() {
+          agencylogos.forEach((d) => {
+            if (d.style.display == "none") {
+              d.style.display = "block";
+            } else {
+              d.style.display = "none";
+            }
+          });
+          agency_divs.forEach((d) => {
+            if (d.style.display == "none") {
+              d.style.display = "block";
+            } else {
+              d.style.display = "none";
+            }
+          });
+        }
+        setInterval(intervalFunc, 1500);
+      </script>
     </footer>
   </div>
 
