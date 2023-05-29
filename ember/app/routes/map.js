@@ -3,7 +3,6 @@ import { action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
 import { filters, fromQueryParams } from 'calbuilds/utils/filters';
 
-
 export default class extends Route {
 
   @service map

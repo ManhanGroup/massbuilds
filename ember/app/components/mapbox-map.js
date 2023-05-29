@@ -11,8 +11,9 @@ import paintProperties from 'calbuilds/utils/paint-properties';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoieWFjd2FuZyIsImEiOiJjbDYxcDBsa2sxemx1M2ptbmd1ZW4ydnpvIn0.U2zECpVKNzxvJsHLLAuoYQ';
+  
 //mapboxgl.accessToken =
-  //'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg';
+ // 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg';
 
 export default class extends Component {
   @service store;
@@ -43,10 +44,10 @@ export default class extends Component {
   didInsertElement() {
     const mapService = this.get('map');
     let mapStyle = 'mapbox://styles/mapbox/light-v9';
+    //let mapStyle = 'mapbox://styles/yacwang/cli9ey35o001501r98imc5rpd';
     if (mapService.get('baseMap') == 'satellite') {
-      mapStyle = 'mapbox://styles/yacwang/cl6omcwuq006415pces0nbonk';
-      //mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
-      //mapStyle = 'mapbox://styles/mapbox/satellite-v9';
+      // mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
+      mapStyle = 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau';      
     }
     this.mapboxglMap = new mapboxgl.Map({
       container: this.get('element'),
@@ -312,9 +313,10 @@ export default class extends Component {
     this.mapboxglMap.on('styledata', redrawOnStyleReload);
     if (newBaseMap == 'light') {
       this.mapboxglMap.setStyle('mapbox://styles/mapbox/light-v9');
+      //this.mapboxglMap.setStyle('mapbox://styles/yacwang/cli9ey35o001501r98imc5rpd');
     } else if (newBaseMap == 'satellite') {
       this.mapboxglMap.setStyle(
-        'mapbox://styles/yacwang/cl6omcwuq006415pces0nbonk'
+        'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau'
         //'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90'
       );
     }
