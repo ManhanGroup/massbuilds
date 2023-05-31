@@ -42,9 +42,11 @@ export default class extends Component {
 
   didInsertElement() {
     const mapService = this.get('map');
-    let mapStyle = 'mapbox://styles/mapbox/light-v9';
+    //let mapStyle = 'mapbox://styles/mapbox/light-v9';
+    let mapStyle = 'mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li';
     if (mapService.get('baseMap') == 'satellite') {
-      mapStyle = 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau';
+      //mapStyle = 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau';
+      mapStyle = 'mapbox://styles/yacwang/cl6olfiai000014jqi8s3q5f9';
       //mapStyle = 'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90';
     }
     this.mapboxglMap = new mapboxgl.Map({
@@ -304,10 +306,12 @@ export default class extends Component {
     };
     this.mapboxglMap.on('styledata', redrawOnStyleReload);
     if (newBaseMap == 'light') {
-      this.mapboxglMap.setStyle('mapbox://styles/mapbox/light-v9');
+      //this.mapboxglMap.setStyle('mapbox://styles/mapbox/light-v9');
+      this.mapboxglMap.setStyle('mapbox://styles/yacwang/clhxyovj800to01rh2gaeb2li');
     } else if (newBaseMap == 'satellite') {
       this.mapboxglMap.setStyle(
-        'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau'
+       // 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau'
+        'mapbox://styles/yacwang/cl6olfiai000014jqi8s3q5f9'
         //'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90'
       );
     }

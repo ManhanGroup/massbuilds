@@ -19,9 +19,9 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@ember-decorators/babel-transforms": "^3.1.5",
     "@types/ember": "^4.0.1",
-    "@types/ember__test-helpers": "^2.8.1",
     "@types/ember-data": "^4.4.4",
     "@types/ember-qunit": "^5.0.2",
+    "@types/ember__test-helpers": "^2.8.1",
     "@types/qunit": "^2.19.3",
     "@types/rsvp": "^4.0.4",
     "babel-eslint": "^8.0.2",
@@ -77,10 +77,26 @@
     "babel-polyfill": "^6.26.0",
     "bufferutil": "^4.0.1",
     "ember-radio-button": "^1.2.4",
-    "mapbox-gl": "^0.46.0",
+    "mapbox-gl": "^1.13.0",
     "node-fetch": "^3.2.10",
     "url": "^0.11.0",
     "utf-8-validate": "^5.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not safari < 10",
+      "not chrome < 51",
+      "not android < 5",
+      "not ie < 12"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "resolutions": {
     "whatwg-fetch": "~3.3.1"
