@@ -3,8 +3,8 @@ import mapboxgl from 'mapbox-gl';
 import { computed } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
 
-export const massLng = -71.525258;
-export const massLat = 42.177117;
+export const massLng = -121.846450;
+export const massLat = 36.58017;
 
 export default class extends Service {
   @service store;
@@ -13,8 +13,8 @@ export default class extends Service {
   constructor() {
     super();
 
-    this.lower = { lat: 41.258856, lng: -72.7496044 };
-    this.upper = { lat: 42.869699, lng: -70.0528674 };
+    this.lower = { lat: 35.173731, lng: -121.604751 };
+    this.upper = { lat: 37.470423, lng: -121.275161 };
     this.pad = 0;
 
     this.instance = null;

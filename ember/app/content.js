@@ -196,7 +196,7 @@ const content = {
     },
     TRAFFIC_COUNT_DATA: {
       label: 'Traffic Count URL',
-      definition: ['A URL linking to the MassDOT Transportation Impact Assessment Monitoring Report database or another source of data about traffic monitoring/traffic counts.']
+      definition: ['A URL linking to the Caltrans DOT Transportation Impact Assessment Monitoring Report database or another source of data about traffic monitoring/traffic counts.']
     },
   }, // End of Glossary
 
