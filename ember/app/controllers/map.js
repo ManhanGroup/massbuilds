@@ -47,6 +47,7 @@ export default class extends Controller {
   get showingGoto() {
     return [
       'map.developments.create',
+      'map.developments.uploads',
       'map.developments.development.edit',
     ].indexOf(this.get('target.currentRouteName')) !== -1;
   }
@@ -75,6 +76,7 @@ export default class extends Controller {
       'map.developments.development.index',
       'map.developments.development.edit',
       'map.developments.create',
+      'map.developments.uploads',
       'map.developments.for.user',
     ].indexOf(this.get('target.currentRouteName')) !== -1;
   }
