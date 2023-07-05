@@ -24,8 +24,8 @@ export default class extends Controller {
   }
 
   @action
-  updateEditing(partial) {
-    this.set('_editing', Object.assign({}, this.get('editing'), partial));
+  uploadFile(file) {
+    console.log(file);
   }
 
   @action

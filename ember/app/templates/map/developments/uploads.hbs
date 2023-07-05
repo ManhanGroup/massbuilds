@@ -1,15 +1,11 @@
 <section class="route map-developments-uploads map-developments-development">
-  {{development-form
-    updateModel=(if hasPublishPermissions (action createDevelopment) (action createEdit))
-    isLoading=isCreating
-    loadingSpinnerText=loadingSpinnerText
-    submitText=submitText
-    model=model
-    editing=editing
-    updateEditing=(action updateEditing)
-    developmentTypeEnabled=true
-    developmentType=developmentType
-    updateDevelopmentType=(action updateDevelopmentType)
-    mode='create'
-  }}
+<h1>Upload Development Files</h1>
+
+{{#file-upload name="developments" accept="text/csv" onfileadd=(action 'uploadFile')}}
+        <div class="icon-wrapper">
+    <img src="/assets/images/plus.svg">
+    </div>
+
+    File upload
+{{/file-upload}}
 </section>
