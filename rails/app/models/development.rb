@@ -77,6 +77,99 @@ class Development < ApplicationRecord
     end
   end
 
+  def self.import file
+    # csv import copied from rails/lib/tasks/import.rake
+    # csv_text = File.read(Rails.root.join('lib', 'import', 'joined_final_calbuilds_data_2018_zip_fixed.csv'))
+    # csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
+
+    # def to_bool(x)
+    #   return x.to_s.downcase == "true"
+    # end
+
+    
+    # csv.each do |row|
+    #   development = Development.new(
+    #     #id: row['project_id'], # in export make sure we use project_id for this
+    #     user_id: row["creator_id"],
+    #     rdv: to_bool(row["rdv"]),
+    #     asofright: to_bool(row["asofright"]),
+    #     ovr55: to_bool(row["ovr55"]),
+    #     clusteros: to_bool(row["clusteros"]),
+    #     phased: to_bool(row["phased"]),
+    #     stalled: to_bool(row["stalled"]),
+    #     name: row["name"],
+    #     status: row["status"],
+    #     descr: row["descr"],
+    #     prj_url: row["prj_url"],
+    #     address: row["address"],
+    #     state: row["state"],
+    #     zip_code: row["zip_code"],
+    #     height: row["height"],
+    #     stories: row["stories"],
+    #     year_compl: row["year_compl"],
+    #     prjarea: row["prjarea"],
+    #     singfamhu: row["singfamhu"],
+    #     smmultifam: row["smmultifam"],
+    #     lgmultifam: row["lgmultifam"],
+    #     hu: row["hu"],
+    #     yrcomp_est: to_bool(row["yrcomp_est"]),
+    #     gqpop: row["gqpop"],
+    #     rptdemp: row["rptdemp"],
+    #     commsf: row["commsf"],
+    #     hotelrms: row["hotelrms"],
+    #     onsitepark: row["onsitepark"],
+    #     total_cost: row["total_cost"],
+    #     ret_sqft: row["ret_sqft"],
+    #     ofcmd_sqft: row["ofcmd_sqft"],
+    #     indmf_sqft: row["indmf_sqft"],
+    #     whs_sqft: row["whs_sqft"],
+    #     rnd_sqft: row["rnd_sqft"],
+    #     ei_sqft: row["ei_sqft"],
+    #     other_sqft: row["other_sqft"],
+    #     hotel_sqft: row["hotel_sqft"],
+    #     other_rate: row["other_rate"],
+    #     affordable: row["affordable"],
+    #     latitude: row["latitude"],
+    #     longitude: row["longitude"],
+    #     parcel_id: row["parcel_id"],
+    #     mixed_use: to_bool(row["mixed_use"]),
+    #     programs: row["programs"],
+    #     forty_b: row["forty_b"],
+    #     residential: row["residential"],
+    #     commercial: row["commercial"],
+    #     created_at: row["created_at"],
+    #     municipal: row["municipal"],
+    #     units_1bd: row["units_1bd"],
+    #     units_2bd: row["units_2bd"],
+    #     units_3bd: row["units_3bd"],
+    #     affrd_unit: row["affrd_unit"],
+    #     aff_u30: row["aff_u30"],
+    #     aff_30_50: row["aff_30_50"],
+    #     aff_50_80: row["aff_50_80"],
+    #     aff_80p: row["aff_80p"],
+    #     headqtrs: to_bool(row["headqtrs"]),
+    #     park_type: row["park_type"],
+    #     publicsqft: row["publicsqft"],
+    #     devlper: row["devlper"],
+    #     loc_id: row["loc_id"],
+    #     parcel_fy: row["parcel_fy"],
+    #     # n_transit: [row.try(:[], 'n_transit')],
+    #     d_n_trnsit: row["d_n_trnsit"],
+    #     updated_at: row["updated_at"],
+    #     point: convert_srid(row["geom"])
+    #   )
+    #   development.save(validate: false)
+    # end
+    File.foreach(file.path).with_index do |line, index|
+      p "#{line}"
+      # todo: 
+      # check headers on first pass
+
+      # add a new development with each line
+
+    end
+  end
+
   def self.to_shp
     attributes = self.column_names.select { |attr| !(@@excluded_attrs_from_export.include? attr) }
     sql = all.select(attributes.join(", ") + ", ST_Transform(point, 26986) as point").to_sql

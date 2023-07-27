@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'sessions', passwords: 'passwords' }, path_prefix: 'my'
   resources :users
   resources :developments, except: [:new, :edit]
+  resources :developments do 
+    collection do
+      # FIXME: remove if not important
+      # get 'import/new', to: :new_import
+      post :import
+    end
+  end
   resources :password_resets, only: [:create]
   resources :parcels, only: [:index]
   resources :flags, except: [:delete, :new, :edit]

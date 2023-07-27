@@ -1,6 +1,6 @@
 class DevelopmentsController < ApplicationController
   before_action :set_development, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show import]
 
   # GET /developments
   def index
@@ -61,6 +61,22 @@ class DevelopmentsController < ApplicationController
     end
   end
 
+  # POST /developments/import
+  def import
+    Development.import( params[:file] )
+      # flash[:success] = "<strong>Developments Imported!</strong>"
+      # redirect_to developments_path
+    p "upload might have worked..."
+    respond_to do |format|
+      # FIXME: redirect to the map view of the first(?) development
+      format.jsonapi { render json: " { 'status': 1 } " }
+    # FIXME: add exception handling
+    # rescue => exception
+    #   flash[:error] = "There was a problem importing that development file.<br><strong>#{exception_message}</strong><br>"
+    #   redirect_to import_developments_path
+    end
+  end
+  
   # PATCH/PUT /developments/1
   def update
     development_params.count === 1 && development_params[:flag] ? authorize(@development, :flag?) : authorize(@development)
