@@ -42,7 +42,6 @@ Router.map(function() {
   });
   this.route('glossary');
   this.route('about');
-  this.route('file-uploads');
 });
 
 export default Router;
