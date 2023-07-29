@@ -65,14 +65,8 @@ class DevelopmentsController < ApplicationController
   def import
     # TODO: ensure that the user id of the uploader is reflected in each development
     Development.import( params[:file] )
-    respond_to do |format|
-      # FIXME: redirect to the map view of the first(?) development
-      format.jsonapi { render json: FullDevelopmentSerializer.new(@development).serialized_json }
-    # FIXME: add exception handling
-    # rescue => exception
-    #   flash[:error] = "There was a problem importing that development file.<br><strong>#{exception_message}</strong><br>"
-    #   redirect_to import_developments_path
-    end
+    # TODO: possibly redirect to uploaded developments here
+    # TODO: add exception handling
   end
   
   # PATCH/PUT /developments/1
