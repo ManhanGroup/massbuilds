@@ -23,11 +23,11 @@ default: &default
 
 development: &development
   <<: *default
-  username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
   host: <%= ENV.fetch('POSTGRES_DEV_HOST') { nil } %>
   username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
   database: calbuilds_development
+  #url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

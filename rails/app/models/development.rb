@@ -93,7 +93,7 @@ class Development < ApplicationRecord
     arguments << database['database']
     arguments << %("#{sql}") # %Q["SELECT * FROM developments;"]
 
-    `pgsql2shp #{arguments.join(" ")}`
+    `PGOPTIONS="-c search_path=#{database['schema_search_path']}" pgsql2shp #{arguments.join(" ")}`
 
     zip(file_name)
   end
