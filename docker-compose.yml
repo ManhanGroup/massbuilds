@@ -1,20 +1,19 @@
-# services:
-  # ember:
-  #   volumes:
-  #     - .:/myapp
-  #     - .bash_history:/root/.bash_history
-  #     - node_modules:/myapp/node_modules
-  #   tmpfs:
-  #     - /myapp/tmp
-  #   ports:
-  #     - "4200:4200"
-  #     - "7020:7020"
-  #     - "7357:7357"
-
-# volumes:
-#   node_modules:
 version: "2.4"
 services:
+  ember:
+    build:
+      context: ember
+    volumes:
+      - .:/ember
+      - .bash_history:/root/.bash_history
+      - node_modules:/ember/node_modules
+    tmpfs:
+      - /ember/tmp
+    ports:
+      - "4200:4200"
+      - "7020:7020"
+      - "7357:7357"
+
   db:
     image: postgres
     volumes:
@@ -36,3 +35,6 @@ services:
     depends_on:
       - db
     # platform: linux/arm64/v8  
+
+volumes:
+  node_modules:

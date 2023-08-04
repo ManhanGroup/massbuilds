@@ -13,12 +13,6 @@ CMD ["ember", "server"]
 RUN \
 	npm install -g bower@1.8.8
 
-# set container bash prompt color to blue in order to 
-# differentiate container terminal sessions from host 
-# terminal sessions
-RUN \
-	echo 'PS1="\[\\e[0;94m\]${debian_chroot:+($debian_chroot)}\\u@\\h:\\w\\\\$\[\\e[m\] "' >> ~/.bashrc
-
 # install ember-cli
 RUN \
 	npm install -g ember-cli@4.12.1
