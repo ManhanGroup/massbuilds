@@ -17,15 +17,18 @@
 default: &default
   adapter: postgis
   encoding: unicode
+  host: db
+  username: postgres
+  password: password
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development: &development
   <<: *default
-  host: <%= ENV.fetch('POSTGRES_DEV_HOST') { nil } %>
-  username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
-  password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
+  # host: <%= ENV.fetch('POSTGRES_DEV_HOST') { nil } %>
+  # username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
+  # password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
   database: calbuilds_development
   #url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
 
