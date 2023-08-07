@@ -5,8 +5,8 @@ import { attr } from 'ember-decorators/data';
 export default class extends DS.Model {
 
   @attr('number') gid
-  @attr('string') city
-  @attr('string') zoning
+  @attr('string') muni
+  @attr('string') apn
   @attr('string') site_addr
   @attr('json') geojson
 
