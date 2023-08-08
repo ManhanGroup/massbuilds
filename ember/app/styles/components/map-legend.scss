@@ -27,7 +27,7 @@
 
           width: $size;
           height: $size;
-          margin-right: $size / 2;
+          margin-right: calc($size / 2);
 
           border-radius: 50%;
         }
