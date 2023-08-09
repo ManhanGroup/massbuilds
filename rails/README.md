@@ -23,12 +23,7 @@ rake database:refresh_calculated_fields
 rake database:fix_seq_id
 rake database:populate_long_lat
 
-rake db:add_foreign_data_wrapper_interface
-rake db:add_rpa_fdw
-rake db:add_counties_fdw
-rake db:add_municipalities_fdw
-rake db:add_neighborhoods_poly
-rake db:add_tod_service_area_poly
+
 ```
 
 ### Postgres Security Challenges

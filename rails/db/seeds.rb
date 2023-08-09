@@ -7,11 +7,38 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 # scp calbuilds@prep.mapc.org:/home/calbuilds/calbuilds.dump tmp/calbuilds.dump
-# pg_restore -a -d calbuilds_development -O -t users -t developments -t parcels -t edits tmp/calbuilds.dump
+ #pg_restore -a -d calbuilds_development -vxOW -t users  lib/import/calbuilds_dev.dump
+ 
+ #pg_restore -a -d calbuilds_development -vxOW -t developments -t edits -t flags lib/import/calbuilds_dev.dump
+ 
+ #pg_restore -a -d calbuilds_development -vxOW -j 8 -t parcels lib/import/parcels.dump
+ 
+ #pg_restore -a -d calbuilds_development -vxOW -j 8 -t tazs  lib/import/tazs.dump
+  
+ #pg_restore -a -d calbuilds_development -vxOW -j 8 -t tod_service_area_poly lib/import/tod_service_area_poly.dump
+   
+ #pg_restore -a -d calbuilds_development -vxOW -j 8 -t rpa_poly  lib/import/rpa_poly.dump
+    
+ #pg_restore -a -d calbuilds_development -vxOW -j 8 -t neighborhoods_poly  lib/import/neighborhoods_poly.dump
+     
+ #pg_restore -a -d calbuilds_development -vxOW -j 8 -t counties_polym lib/import/counties_polym.dump
+ 
+ #pg_restore -a -d calbuilds_development -vxOW -j 8 -t ca_place lib/import/ca_place.dump
 
-Rake::Task["db:add_foreign_data_wrapper_interface"].invoke
-Rake::Task["db:add_rpa_fdw"].invoke
-Rake::Task["db:add_counties_fdw"].invoke
-Rake::Task["db:add_municipalities_fdw"].invoke
-Rake::Task["db:add_tod_service_area_poly"].invoke
-Rake::Task["db:add_neighborhoods_poly"].invoke
+puts 'import:user_data'
+Rake::Task["import:user_data"].invoke
+
+puts 'import:development_data'
+Rake::Task["import:development_data"].invoke
+
+puts 'restore planning tables' 
+Rake::Task["db:restore_planning"].invoke
+
+
+
+
+    
+
+ 
+
+

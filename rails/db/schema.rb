@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_191715) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_060742) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "ca_place", primary_key: "gid", id: :serial, force: :cascade do |t|
+    t.string "geoid"
+    t.string "placens"
+    t.string "namelsad"
+    t.geometry "geom", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.index ["geom"], name: "ca_place_geom_idx", using: :gist
+  end
+
+  create_table "counties_polym", primary_key: "geoid", id: :string, force: :cascade do |t|
+    t.string "countyns"
+    t.string "county"
+    t.string "namelsad"
+    t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.index ["shape"], name: "counties_polym_shape_idx", using: :gist
+  end
 
   create_table "developments", force: :cascade do |t|
     t.integer "user_id"
@@ -30,19 +46,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_191715) do
     t.string "address"
     t.string "state", default: "CA"
     t.string "zip_code"
-    t.integer "height"
-    t.integer "stories"
     t.integer "year_compl"
     t.integer "prjarea"
     t.integer "singfamhu"
-    t.integer "smmultifam"
-    t.integer "lgmultifam"
+    t.integer "multifam"
     t.integer "hu"
     t.integer "gqpop"
     t.integer "rptdemp"
     t.integer "commsf"
     t.integer "hotelrms"
-    t.integer "onsitepark"
     t.bigint "total_cost"
     t.float "ret_sqft"
     t.float "ofcmd_sqft"
@@ -63,24 +75,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_191715) do
     t.boolean "forty_b"
     t.boolean "residential"
     t.boolean "commercial"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "municipal"
     t.string "devlper"
     t.boolean "yrcomp_est"
+    t.integer "percomp_24"
+    t.integer "percomp_28"
+    t.integer "percomp_35"
+    t.integer "percomp_45"
     t.integer "units_1bd"
     t.integer "units_2bd"
     t.integer "units_3bd"
+    t.integer "unknownhu"
     t.integer "affrd_unit"
-    t.integer "aff_u30"
-    t.integer "aff_30_50"
+    t.integer "aff_u50"
     t.integer "aff_50_80"
-    t.integer "aff_80p"
+    t.integer "aff_80_120"
+    t.integer "aff_120p"
+    t.integer "aff_unknown"
     t.boolean "headqtrs"
     t.string "park_type"
     t.integer "publicsqft"
-    t.integer "unknownhu"
-    t.integer "aff_unknown"
     t.integer "unk_sqft"
     t.bigint "loc_id"
     t.integer "parcel_fy"
@@ -90,13 +104,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_191715) do
     t.text "n_transit", default: [], array: true
     t.boolean "flag", default: false, null: false
     t.datetime "deleted_at"
-    t.integer "mepa_id"
     t.string "traffic_count_data"
-    t.boolean "mepa_id_present"
+    t.boolean "proj_id_present"
     t.boolean "traffic_count_data_present"
     t.integer "taz"
     t.string "apn"
-    t.boolean "trunc"
+    t.boolean "trunc", default: false
+    t.string "gluc"
+    t.string "placetype"
+    t.integer "proj_id"
+    t.string "stat_comts"
+    t.string "mix_descr"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "mixeduse_desc"
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
 
@@ -126,62 +148,43 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_191715) do
     t.index ["user_id"], name: "index_flags_on_user_id"
   end
 
+  create_table "neighborhoods_poly", primary_key: "gid", id: :serial, force: :cascade do |t|
+    t.string "nhood_name"
+    t.geometry "shape", limit: {:srid=>4326, :type=>"multi_polygon"}
+    t.index ["shape"], name: "neighborhoods_poly_shape_idx", using: :gist
+  end
+
   create_table "parcels", primary_key: "gid", id: :serial, force: :cascade do |t|
     t.decimal "objectid", precision: 10
-    t.decimal "mapc_id", precision: 10
-    t.integer "muni_id"
-    t.string "muni", limit: 18
-    t.string "parloc_id", limit: 20
+    t.string "muni"
     t.string "poly_typ", limit: 18
-    t.string "map_num", limit: 18
-    t.string "mappar_id", limit: 50
-    t.decimal "loc_id_cnt", precision: 10
-    t.decimal "land_value"
-    t.decimal "bldg_value"
-    t.decimal "othr_value"
-    t.decimal "total_valu"
-    t.decimal "ls_price"
-    t.string "ls_date", limit: 10
-    t.decimal "bldg_area"
-    t.decimal "res_area"
-    t.string "luc_1", limit: 5
-    t.string "luc_2", limit: 5
-    t.string "luc_adj_1", limit: 5
-    t.string "luc_adj_2", limit: 5
-    t.decimal "num_units"
-    t.decimal "units_est"
-    t.string "units_src", limit: 8
-    t.decimal "num_rooms"
-    t.decimal "yr_built", precision: 10
     t.string "site_addr", limit: 80
-    t.string "addr_str", limit: 60
-    t.string "addr_num", limit: 12
     t.string "addr_zip", limit: 12
-    t.string "owner_name", limit: 80
-    t.string "owner_addr", limit: 80
-    t.string "owner_city", limit: 25
-    t.string "owner_stat", limit: 4
-    t.string "owner_zip", limit: 10
-    t.decimal "fy", precision: 10
-    t.decimal "lot_areaft"
-    t.decimal "far"
-    t.decimal "pct_imperv"
-    t.decimal "pct_bldg"
-    t.decimal "pct_pave"
-    t.decimal "landv_pac"
-    t.decimal "bldgv_psf"
-    t.decimal "totv_pac"
-    t.decimal "bldlnd_rat"
-    t.decimal "sqm_imperv"
-    t.decimal "sqm_bldg"
-    t.decimal "sqm_pave"
-    t.string "realesttyp", limit: 5
-    t.decimal "shape_leng"
-    t.decimal "shape_area"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.json "geojson"
     t.string "apn"
+    t.string "agency"
     t.index ["geom"], name: "parcels_geom_idx", using: :gist
+  end
+
+  create_table "rpa_poly", primary_key: "rpa_id", id: :serial, force: :cascade do |t|
+    t.string "rpa_name"
+    t.string "acronym"
+    t.string "website"
+    t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.index ["shape"], name: "rpa_poly_shape_idx", using: :gist
+  end
+
+  create_table "tazs", id: :serial, force: :cascade do |t|
+    t.integer "taz_number"
+    t.geometry "geometry", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.index ["geometry"], name: "tazs_geom_idx", using: :gist
+  end
+
+  create_table "tod_service_area_poly", primary_key: "gid", id: :serial, force: :cascade do |t|
+    t.string "srvc_name"
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
+    t.index ["geom"], name: "tod_service_area_poly_geom_idx", using: :gist
   end
 
   create_table "users", force: :cascade do |t|
