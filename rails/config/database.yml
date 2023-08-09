@@ -26,9 +26,9 @@ default: &default
 
 development: &development
   <<: *default
-  # host: <%= ENV.fetch('POSTGRES_DEV_HOST') { nil } %>
-  # username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
-  # password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
+  host: <%= ENV.fetch('POSTGRES_DEV_HOST') { nil } %>
+  username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
   database: calbuilds_development
   #url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
 

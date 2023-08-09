@@ -21,7 +21,7 @@ namespace :import do
 
   desc 'Updates the values of a column using the JFMD2018ZF.csv file'
   task :repopulate_column, [:col] => [:environment] do |t, args|
-    csv_text = File.read(Rails.root.join('lib', 'import', 'joined_final_calbuilds_data_2018_zip_fixed.csv'))
+    csv_text = File.read(Rails.root.join('lib', 'import', 'developments_backup20280823.csv'))
     csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
 
     id = 1
@@ -34,7 +34,7 @@ namespace :import do
 
   desc 'Import previous development data'
   task development_data: :environment do
-    csv_text = File.read(Rails.root.join('lib', 'import', 'joined_final_calbuilds_data_2018_zip_fixed.csv'))
+    csv_text = File.read(Rails.root.join('lib', 'import', 'developments_backup20280823.csv'))
     csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
 
     def to_bool(x)
@@ -44,7 +44,7 @@ namespace :import do
     csv.each do |row|
       development = Development.new(
         #id: row['project_id'], # in export make sure we use project_id for this
-        user_id: row["creator_id"],
+        user_id: row["user_id"],
         rdv: to_bool(row["rdv"]),
         asofright: to_bool(row["asofright"]),
         ovr55: to_bool(row["ovr55"]),
@@ -58,20 +58,15 @@ namespace :import do
         address: row["address"],
         state: row["state"],
         zip_code: row["zip_code"],
-        height: row["height"],
-        stories: row["stories"],
         year_compl: row["year_compl"],
         prjarea: row["prjarea"],
         singfamhu: row["singfamhu"],
-        smmultifam: row["smmultifam"],
-        lgmultifam: row["lgmultifam"],
+        multifam: row["multifam"],
         hu: row["hu"],
-        yrcomp_est: to_bool(row["yrcomp_est"]),
         gqpop: row["gqpop"],
         rptdemp: row["rptdemp"],
         commsf: row["commsf"],
         hotelrms: row["hotelrms"],
-        onsitepark: row["onsitepark"],
         total_cost: row["total_cost"],
         ret_sqft: row["ret_sqft"],
         ofcmd_sqft: row["ofcmd_sqft"],
@@ -87,30 +82,56 @@ namespace :import do
         longitude: row["longitude"],
         parcel_id: row["parcel_id"],
         mixed_use: to_bool(row["mixed_use"]),
+        point: row["point"],
         programs: row["programs"],
         forty_b: row["forty_b"],
         residential: row["residential"],
         commercial: row["commercial"],
-        created_at: row["created_at"],
         municipal: row["municipal"],
+        devlper: row["devlper"],
+        yrcomp_est: to_bool(row["yrcomp_est"]),
+        percomp_24: row['percomp_24'],
+        percomp_28: row['percomp_28'],
+        percomp_35: row['percomp_35'],
+        percomp_45: row['percomp_45'],
         units_1bd: row["units_1bd"],
         units_2bd: row["units_2bd"],
         units_3bd: row["units_3bd"],
+        unknownhu: row['unknownhu'],
         affrd_unit: row["affrd_unit"],
-        aff_u30: row["aff_u30"],
-        aff_30_50: row["aff_30_50"],
+        aff_u50: row["aff_u50"],        
         aff_50_80: row["aff_50_80"],
-        aff_80p: row["aff_80p"],
+        aff_80_120: row["aff_80_120"],
+        aff_120p: row["aff_120p"],
+        aff_unknown: row["aff_unknown"],
         headqtrs: to_bool(row["headqtrs"]),
         park_type: row["park_type"],
         publicsqft: row["publicsqft"],
-        devlper: row["devlper"],
+        unk_sqft: row["unk_sqft"],
         loc_id: row["loc_id"],
         parcel_fy: row["parcel_fy"],
-        # n_transit: [row.try(:[], 'n_transit')],
-        d_n_trnsit: row["d_n_trnsit"],
+        rpa_name: row["rpa_name"],
+        county: row["county"],
+        nhood: row["nhood"],
+        n_transit: row["n_transit"],
+        flag: row["flag"],
+        deleted_at: row["deleted_at"],
+        traffic_count_data: row["traffic_count_data"],
+        proj_id_present: to_bool(row["proj_id_present"]),
+        traffic_count_data_present: to_bool(row["traffic_count_data_present"]),
+        taz: row["taz"],
+        apn: row["apn"],
+        trunc: row["trunc"],
+        gluc: row["gluc"],
+        placetype: row["placetype"],
+        proj_id: row["proj_id"],
+        stat_comts: row["stat_comts"],
+        mix_descr: row["mix_descr"],
+        notes: row["notes"],
+        created_at: row["created_at"],
         updated_at: row["updated_at"],
-        point: convert_srid(row["geom"])
+        mixeduse_desc: row["mixeduse_desc"]      
+        
       )
       development.save(validate: false)
     end
