@@ -2,6 +2,7 @@ import { copy } from '@ember/object/internals';
 import { get } from '@ember/object';
 import { decamelize } from '@ember/string';
 import { statusOptions } from 'calbuilds/utils/status-colors';
+import { glucOptions } from 'calbuilds/utils/gluc-dicts';
 import { capitalize } from 'calbuilds/helpers/capitalize';
 import Development from 'calbuilds/models/development';
 
@@ -45,8 +46,10 @@ const filters = {
   'statComts': { name: 'Status Comments', glossaryKey: 'STATUS_COMMENTS', type: 'string', ...defaultMetric },
   'totalCost': { name: 'Total cost', glossaryKey: 'COST_OF_CONSTRUCTION', type: 'number', ...defaultMetric },
   'placetype': { name: 'Place_Type', glossaryKey: 'PLACE_TYPE', type: 'string', ...defaultMetric },
-  'gluc': { name: 'gluc', glossaryKey: 'GLUC', type: 'string', ...defaultMetric },
+  //'gluc': { name: 'gluc', glossaryKey: 'GLUC', type: 'string', ...defaultMetric },
+  'gluc': { name: 'Gluc', glossaryKey: 'GLUC', type: 'string', options: glucOptions, ...defaultMetric }, 
   'parkType': { name: 'Parking type', type: 'string', options: ['garage', 'underground', 'surface', 'other'], ...defaultMetric },
+  'sbType': { name: 'SB type', type: 'string', options: ['SB6', 'SB8', 'Other'], ...defaultMetric },
   'descr': { name: 'Description', glossaryKey: 'DESCRIPTION', type: 'string', ...defaultMetric },
   'notes': { name: 'NOTES', glossaryKey: 'NOTES', type: 'string', ...defaultMetric },
   'projId': { name: 'PROJ ID', glossaryKey: 'PROJID', type: 'number', ...defaultMetric },
@@ -67,7 +70,7 @@ const filters = {
   'yrcompEst': { name: 'Completion year is estimated',  type: 'boolean', ...defaultMetric },
   'prjarea': { name: 'Project area', glossaryKey: 'PROJECT_AREA', type: 'number', unit: 'sqft', ...defaultMetric },
   'publicsqft': { name: 'Public area', glossaryKey: 'PUBLIC_AREA', type: 'number', ...defaultMetric },
-  'dNTrnsit': { name: 'Distance to transit', type: 'number', ...defaultMetric },
+  'nTransit': { name: 'Distance to transit', type: 'number', ...defaultMetric },
   
   'clusteros': { name: 'Cluster development.', type: 'boolean', ...defaultMetric },
   'floodzone': { name: 'In flood zone', type: 'boolean', ...defaultMetric },
@@ -122,6 +125,7 @@ const metricGroups = {
         'rdv',
         'phased',
         'stalled',
+        'parkType',
         'projId',
         'projIdPresent',
         'trafficCountData',
@@ -143,6 +147,8 @@ const metricGroups = {
         'prjarea',
         'asofright',
         'mixedUse',
+        'gluc',
+        'sbType'
       ]
     },
   ],

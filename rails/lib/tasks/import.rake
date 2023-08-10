@@ -106,6 +106,7 @@ namespace :import do
         aff_unknown: row["aff_unknown"],
         headqtrs: to_bool(row["headqtrs"]),
         park_type: row["park_type"],
+        sb_type: row["sb_type"],
         publicsqft: row["publicsqft"],
         unk_sqft: row["unk_sqft"],
         loc_id: row["loc_id"],
@@ -129,9 +130,7 @@ namespace :import do
         mix_descr: row["mix_descr"],
         notes: row["notes"],
         created_at: row["created_at"],
-        updated_at: row["updated_at"],
-        mixeduse_desc: row["mixeduse_desc"]      
-        
+        updated_at: row["updated_at"] 
       )
       development.save(validate: false)
     end
@@ -183,7 +182,7 @@ namespace :import do
     municipality_query = <<~SQL
       SELECT municipal
       FROM
-        (SELECT municipal, ST_TRANSFORM(ma_municipalities.geom, 4326) as geom FROM ma_municipalities) municipality,
+        (SELECT namelsad as municipal, ST_TRANSFORM(m.geom, 4326) as geom FROM ca_place) municipality,
         (SELECT id, name, point FROM developments) development
         WHERE ST_Intersects(development.point, municipality.geom)
         AND id = #{development.id};

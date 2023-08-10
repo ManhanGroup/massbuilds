@@ -20,6 +20,7 @@ export default class extends Component {
     this.fulfilled = false;
 
     this.selectedParkTypes = (this.editing.parkType || '').split(',').filter(x => x);
+    this.selectedSbTypes = (this.editing.sbType || '').split(',').filter(x => x);
 
     this.knownAffordableFields = [
       'affU50',
@@ -170,6 +171,12 @@ export default class extends Component {
   }
 
   @action
+  updateGluc() {
+    this.handleUpdate('gluc');
+    this.updateFieldRequirements();
+  }
+
+  @action
   handleDevTypeChange() {
     const devType = this.get('developmentType');
     this.sendAction('updateDevelopmentType', devType);
@@ -272,7 +279,7 @@ export default class extends Component {
         : calculatedValue;
 
     // Adjust values if nonstandard
-    if (fieldName === 'status') {
+    if (fieldName === 'status'|| fieldName === 'gluc') {
       edited = document.querySelector(`select[name="${fieldName}"]`).value;
     }
     else if (fieldName === 'parkType') {
@@ -280,6 +287,12 @@ export default class extends Component {
                     .filter(x => x.checked)
                     .map(x => x.name);
       this.set('selectedParkTypes', edited);
+    }
+    else if (fieldName === 'sbType') {
+      edited = Array.from(document.querySelectorAll(`input.field-${fieldName}`))
+                    .filter(x => x.checked)
+                    .map(x => x.name);
+      this.set('selectedSbTypes', edited);
     }
     if (typeof edited === 'boolean') {
       edited = !edited;

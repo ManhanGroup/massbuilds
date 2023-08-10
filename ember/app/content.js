@@ -29,7 +29,9 @@ const content = {
     },
     GLUC: {
       label: 'GLUC',
-      definition: ['GLUC of the Project?'],
+      definition: ['GLUC of the Project?',
+      'Select from the drop-down what the current project GLUC type is.'      
+      ],
     },
     STATUS: {
       label: 'Status',
@@ -99,6 +101,10 @@ const content = {
     STALLED: {
       label: 'Stalled',
       definition: ['Check if this development is stalled and not actively moving forward.'],
+    },
+    SBTYPE: {
+      label: 'SB Type',
+      definition: ['Check if this development is SB6 or SB8.'],
     },
     AS_OF_RIGHT: {
       label: 'As of Right',

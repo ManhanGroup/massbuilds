@@ -34,6 +34,14 @@ export default class extends Controller {
       .join(', ');
   }
 
+  @computed('model.sbType')
+  get sbTypes() {
+    return (this.get('model.sbType') || '')
+      .split(',')
+      .map(capitalize)
+      .join(', ');
+  }
+
   @computed('model.ovr55', 'model.private')
   get residentialAttributes() {
     return this.attributesFor({

@@ -253,14 +253,21 @@
             </div>
 
             <div class="field">
-              <label for="gluc">
+              <label for="gluc" class="required">
                 {{defined-term key='GLUC'}}
               </label>
-              {{input
-                value=editing.gluc
-                class=(if inValid.gluc 'invalid')
-                placeholder="Enter GLUC"
-                input=(action checkForUpdated 'gluc')}}
+              <select
+                class={{if inValid.gluc 'invalid'}}
+                name="gluc"
+                onchange={{action updateGluc}}
+              >
+                {{#unless editing.gluc}}
+                  <option disabled selected>Select Gluc</option>
+                {{/unless}}
+                {{#each filters.gluc.options as |option|}}
+                  <option value={{option}} selected={{if (eq option editing.gluc) 'selected'}}>{{capitalize option}}</option>
+                {{/each}}
+              </select>
             </div>
             
           </div>
@@ -304,6 +311,17 @@
                 {{#each filters.parkType.options as |option|}}
                   <li>
                     {{input type="checkbox" class="field-parkType" name=option checked=(contains option selectedParkTypes) click=(action checkForUpdated 'parkType')}}
+                    {{capitalize option}}
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+            <div class="field">
+              <label for="sbType">{{defined-term key="SBTYPE"}}</label>
+              <ul class="multi-check-options">
+                {{#each filters.sbType.options as |option|}}
+                  <li>
+                    {{input type="checkbox" class="field-sbType" name=option checked=(contains option selectedSbTypes) click=(action checkForUpdated 'sbType')}}
                     {{capitalize option}}
                   </li>
                 {{/each}}
