@@ -214,6 +214,9 @@ class Edit < ApplicationRecord
         "park_type": {
           "type": "string"
         },
+        "sb_type": {
+          "type": "string"
+        },
         "publicsqft": {
           "type": "number"
         },

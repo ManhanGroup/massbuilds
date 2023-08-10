@@ -1,3 +1,18 @@
+import glucDicts from 'calbuilds/utils/gluc-dicts';
+let glucDefinition=['GLUC of the Project?',
+      'Select from the drop-down what the current project GLUC type is.' ,
+      'Refer to the density information below for each GLUC type.',
+      'GLUC:\tDensity Range'
+      ];
+      
+
+for (let key in glucDicts ) {
+  let value = glucDicts[key];
+  glucDefinition.push(key.toString()+":\t"+value.toString());
+  // Use `key` and `value`
+}
+
+
 const content = {
   GLOSSARY: {
     APN:{
@@ -29,7 +44,7 @@ const content = {
     },
     GLUC: {
       label: 'GLUC',
-      definition: ['GLUC of the Project?'],
+      definition: glucDefinition,
     },
     STATUS: {
       label: 'Status',
@@ -99,6 +114,10 @@ const content = {
     STALLED: {
       label: 'Stalled',
       definition: ['Check if this development is stalled and not actively moving forward.'],
+    },
+    SBTYPE: {
+      label: 'SB Type',
+      definition: ['Check if this development is SB6 or SB8.'],
     },
     AS_OF_RIGHT: {
       label: 'As of Right',
