@@ -282,18 +282,13 @@ export default class extends Component {
     if (fieldName === 'status'|| fieldName === 'gluc') {
       edited = document.querySelector(`select[name="${fieldName}"]`).value;
     }
-    else if (fieldName === 'parkType') {
+    else if (fieldName === 'parkType' || fieldName === 'sbType') {
       edited = Array.from(document.querySelectorAll(`input.field-${fieldName}`))
                     .filter(x => x.checked)
                     .map(x => x.name);
       this.set('selectedParkTypes', edited);
     }
-    else if (fieldName === 'sbType') {
-      edited = Array.from(document.querySelectorAll(`input.field-${fieldName}`))
-                    .filter(x => x.checked)
-                    .map(x => x.name);
-      this.set('selectedSbTypes', edited);
-    }
+    
     if (typeof edited === 'boolean') {
       edited = !edited;
     }

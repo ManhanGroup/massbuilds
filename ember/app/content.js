@@ -1,3 +1,18 @@
+import glucDicts from 'calbuilds/utils/gluc-dicts';
+let glucDefinition=['GLUC of the Project?',
+      'Select from the drop-down what the current project GLUC type is.' ,
+      'Refer to the density information below for each GLUC type.',
+      'GLUC:\tDensity Range'
+      ];
+      
+
+for (let key in glucDicts ) {
+  let value = glucDicts[key];
+  glucDefinition.push(key.toString()+":\t"+value.toString());
+  // Use `key` and `value`
+}
+
+
 const content = {
   GLOSSARY: {
     APN:{
@@ -29,9 +44,7 @@ const content = {
     },
     GLUC: {
       label: 'GLUC',
-      definition: ['GLUC of the Project?',
-      'Select from the drop-down what the current project GLUC type is.'      
-      ],
+      definition: glucDefinition,
     },
     STATUS: {
       label: 'Status',
