@@ -3,7 +3,7 @@
 
   position: fixed;
   bottom: 0px;
-  right: $width / 2;
+  right: calc($width / 2);
   z-index: 999;
 
   .notification {
