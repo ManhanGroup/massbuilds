@@ -8,6 +8,7 @@ import { action, computed } from 'ember-decorators/object';
 export default class extends Component {
 
   @service map
+  @service currentUser;
 
   constructor() {
     super();
@@ -361,6 +362,12 @@ export default class extends Component {
       }
     });
     return validations;
+  }
+
+  @computed('currentUser.user.userAgency')
+  get userAgency() {
+    const agency = this.get('currentUser.user.userAgency');
+    return agency;
   }
 
 

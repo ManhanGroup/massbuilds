@@ -1,6 +1,6 @@
-id,email,encrypted_password,sign_in_count,created_at,first_name,last_name
-5,blasagna@bcag.org,$2a$11$47ECRMl6N0S1YXfKfVmA7.pw15GUVJeNmfZLKJC893gwUVAGxxnce,4,2023-04-13 17:50:02.775746,Brian,Lasagna
-2,ya@manhangroup.com,$2a$11$C9tIJSaki2Fp3FXdxBpJVuKxiaUUD8oWv00/iZ5n3HxEpJaaRtFwe,1338,2022-09-06 06:00:33.610934,admin,wang
-6,kweber142@gmail.com,$2a$11$p4cWUzRdpWoHOd/9W9K35ulr7LJpzGoSqiyvA27WXe22WCqdMJfkC,28,2023-08-01 22:17:02.351573,Kaden,Weber
-1,ya.c.wang@gmail.com,$2a$11$BfjVUWTG2u4D6JFVf2zi.eGL6qzg2Ai9tt3SNfq55pPngBYmXZca.,912,2022-09-06 05:59:52.264578,ya,wang
-4,colby@manhangroup.com,$2a$11$HC9o/fEUYSwKd/FqCGE4xeL5Oxy3tuIDxN1hC1G0nsfiXuaZIqjLO,49,2022-10-24 05:13:59.084286,Colby,Brown
+id,email,encrypted_password,reset_password_token,reset_password_sent_at,remember_created_at,sign_in_count,current_sign_in_at,last_sign_in_at,current_sign_in_ip,last_sign_in_ip,created_at,updated_at,role,authentication_token,first_name,last_name,municipality,request_verified_status,agency
+5,blasagna@bcag.org,$2a$11$47ECRMl6N0S1YXfKfVmA7.pw15GUVJeNmfZLKJC893gwUVAGxxnce,,,,4,,,,,2023-04-13 17:50:02.775746,2023-08-13 22:09:50.47907,3,X-UAxPWfsjFs1zSGfidS,Brian,Lasagna,,f,
+6,kweber142@gmail.com,$2a$11$p4cWUzRdpWoHOd/9W9K35ulr7LJpzGoSqiyvA27WXe22WCqdMJfkC,,,,28,,,,,2023-08-01 22:17:02.351573,2023-08-13 22:09:50.589786,3,8tKTqUsah5WhSB2BVj-2,Kaden,Weber,,f,
+4,colby@manhangroup.com,$2a$11$HC9o/fEUYSwKd/FqCGE4xeL5Oxy3tuIDxN1hC1G0nsfiXuaZIqjLO,,,,49,,,,,2022-10-24 05:13:59.084286,2023-08-13 22:09:50.700806,3,Ln_bDmW8s-ncuUQnrq92,Colby,Brown,,f,
+2,ya@manhangroup.com,$2a$11$C9tIJSaki2Fp3FXdxBpJVuKxiaUUD8oWv00/iZ5n3HxEpJaaRtFwe,,,,1338,,,,,2022-09-06 06:00:33.610934,2023-08-13 22:09:50.921621,3,psyZf5sWm9_qMs1uNrgV,admin,wang,,f,AMBAG
+1,ya.c.wang@gmail.com,$2a$11$Oc29cWz9GhuxxJp0r0lV7uiKNfRoJmbA/iUQgDQcp8JSHvVUnrlyq,,,,912,,,,,2022-09-06 05:59:52.264578,2023-08-13 22:12:17.665469,3,idDyE3fxMncqjxTpsU_R,ya,wang,,f,SLOCOG

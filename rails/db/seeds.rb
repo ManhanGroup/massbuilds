@@ -25,14 +25,18 @@
  
  #pg_restore -a -d calbuilds_development -vxOW -j 8 -t ca_place lib/import/ca_place.dump
 
-puts 'import:user_data'
-Rake::Task["import:user_data"].invoke
-
-puts 'import:development_data'
-Rake::Task["import:development_data"].invoke
+ #pg_restore -c -h 'localhost' -U 'ya' -d 'calbuilds_development' -vxOW -j 8 -t ca_place -t counties_polym -t neighborhoods_poly -t rpa_poly -t tazs -t  tod_service_area_poly ./lib/import/calbuilds_dev.dump
 
 puts 'restore planning tables' 
 Rake::Task["db:restore_planning"].invoke
+
+#puts 'import:user_data'
+#Rake::Task["import:user_data"].invoke
+
+#puts 'import:development_data'
+#Rake::Task["import:development_data"].invoke
+
+
 
 
 

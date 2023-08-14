@@ -240,18 +240,8 @@
                 input=(action checkForUpdated 'percomp45')}}
             </div>
             {{/if}}
-            
-            <div class="field">
-              <label for="placetype">
-                {{defined-term key='PLACE_TYPE'}}
-              </label>
-              {{input
-                value=editing.placetype
-                class=(if inValid.placetype 'invalid')
-                placeholder="Enter Place Type"
-                input=(action checkForUpdated 'placetype')}}
-            </div>
 
+            {{#if (eq userAgency 'SLOCOG')}}            
             <div class="field">
               <label for="gluc" class="required">
                 {{defined-term key='GLUC'}}
@@ -269,6 +259,18 @@
                 {{/each}}
               </select>
             </div>
+            {{else}}
+            <div class="field">
+              <label for="placetype">
+                {{defined-term key='PLACE_TYPE'}}
+              </label>
+              {{input
+                value=editing.placetype
+                class=(if inValid.placetype 'invalid')
+                placeholder="Enter Place Type"
+                input=(action checkForUpdated 'placetype')}}
+            </div>
+            {{/if}}
             
           </div>
 

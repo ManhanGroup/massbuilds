@@ -157,7 +157,8 @@ namespace :import do
         sign_in_count: row['sign_in_count'],
         created_at: row['created_at'],
         first_name: row['first_name'],
-        last_name: row['last_name']
+        last_name: row['last_name'],
+        agency: row['agency']
         )
       user.update_attribute(:encrypted_password, row['encrypted_password'])
     end
