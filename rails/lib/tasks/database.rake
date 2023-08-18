@@ -44,14 +44,14 @@ namespace :database do
       ON ST_Intersects(dev.point, nhd.shape);
     SQL
     loc_id_query = <<~SQL
-      SELECT pcl.parloc_id, dev.id
+      SELECT pcl.gid as parloc_id, pcl.apn, dev.id
       FROM parcels AS pcl
       JOIN developments AS dev
       ON ST_Intersects(dev.point, pcl.geom);
     SQL
     taz_query = <<~SQL
     SELECT taz_number, geometry
-    FROM ambag_2015_taz as tz
+    FROM tazs as tz
     JOIN developments as dev
     ON ST_Intersects(ST_TRANSFORM(dev.point,4269), tz.geometry);
     SQL
@@ -109,6 +109,9 @@ namespace :database do
     loc_id_result = ActiveRecord::Base.connection.exec_query(loc_id_query).to_a
     loc_id_mapping = Hash.new
     loc_id_result.each { |record| loc_id_mapping[record['id']] = record['parloc_id'] }
+    loc_apn_mapping = Hash.new
+    loc_id_result.each { |record| loc_apn_mapping[record['id']] = record['apn'] }
+    
     puts "Fetched parcel mapping in #{Time.now - timer} seconds"
 
     Parallel.each(Development.all, in_threads: 3) do |development|
@@ -120,7 +123,8 @@ namespace :database do
           n_transit: n_transit_mapping[development.id],
           nhood: nhood_mapping[development.id],
           taz:taz_mapping[development.id],
-          loc_id: loc_id_mapping[development.id]         
+          loc_id: loc_id_mapping[development.id],  
+          apn: loc_apn_mapping[development.id]         
         )
         print '.'
       end

@@ -11,6 +11,7 @@ export default class extends DS.Model {
   @attr('string') lastName
   @attr('string') municipality
   @attr('string') role
+  @attr('string') agency
 
   @attr('boolean') requestVerifiedStatus
 
@@ -29,6 +30,12 @@ export default class extends DS.Model {
   get displayName() {
     const { fullName, email } = this.getProperties('fullName', 'email');
     return email.endsWith('ambag.org') ? 'AMBAG Staff' : fullName;
+  }
+
+  @computed('agency', 'email')
+  get userAgency() {
+    const {agency, email } = this.getProperties('agency', 'email');
+    return email.endsWith('ambag.org') || agency==='AMBAG'? 'AMBAG' : 'SLOCOG';
   }
 
 }

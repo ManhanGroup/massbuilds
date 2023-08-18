@@ -8,9 +8,9 @@
   border-radius: 50%;
 
   img  {
-    top: -($size / 2);
+    top: - calc($size / 2);
 
-    width: $size / 2;
+    width: calc($size / 2);
 
     cursor: help;
   }

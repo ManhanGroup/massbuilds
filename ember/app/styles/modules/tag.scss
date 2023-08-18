@@ -25,7 +25,7 @@
       
       cursor: pointer;
 
-      &:hover { color: darken($color_state-negative--dark, 10); }
+      &:hover { color: darken($color_state-negative--dark, 10%); }
     }
   }
 }
