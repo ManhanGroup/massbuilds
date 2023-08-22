@@ -11,24 +11,18 @@
 
 3. Run `bin/setup`
 
-4. To fill development database with an initial set of values, you can get a .dump file and load it in with `pg_restore`. First run `scp calbuilds@prep.mapc.org:/home/calbuilds/calbuilds.dump calbuilds.dump`, then run `pg_restore -a -d calbuilds_development -O -t users -t developments calbuilds.dump`. You may need to run the `pg_restore` command a few times.
+4. Parcels dump are not restored in the db seeding tasks. Restore it using pg_restore command pg_restore -a -h 'localhost' -U 'ya' -d 'calbuilds_development' -vxOW -j 8 -t parcels ./lib/import/parcels.dump; if postgis was installed in heroku_ext folder, run the following instead: PGOPTIONS="-c search_path=public,heroku_ext" pg_restore command pg_restore -a -h 'localhost' -U 'ya' -d 'calbuilds_development' -vxOW -j 8 -t parcels ./lib/import/parcels.dump
 
 5. Run the following:
 ```
-rake db:migrate
-
-rake db:seed
+rake import:user_data
+rake import:development_data
 
 rake database:refresh_calculated_fields
 rake database:fix_seq_id
 rake database:populate_long_lat
 
-rake db:add_foreign_data_wrapper_interface
-rake db:add_rpa_fdw
-rake db:add_counties_fdw
-rake db:add_municipalities_fdw
-rake db:add_neighborhoods_poly
-rake db:add_tod_service_area_poly
+
 ```
 
 ### Postgres Security Challenges

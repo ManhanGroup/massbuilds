@@ -21,6 +21,7 @@ export default class extends DS.Model {
   @attr('string', { default: 'CA' }) state;
   @attr('string') zipCode;
   @attr('string') parkType;
+  @attr('string') sbType;
   @attr('string') parcelId;
   @attr('string') municipal;
   @attr('string') apn;

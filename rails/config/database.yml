@@ -17,6 +17,9 @@
 default: &default
   adapter: postgis
   encoding: unicode
+  host: db
+  username: postgres
+  password: password
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -27,6 +30,7 @@ development: &development
   username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
   database: calbuilds_development
+  schema_search_path: public,heroku_ext
   #url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
 
   # The specified database role being used to connect to postgres.

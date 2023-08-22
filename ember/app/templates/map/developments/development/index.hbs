@@ -226,6 +226,15 @@
                   {{/if}}
                 </div>
 
+                <div class="field">
+                  <label for="sbType">{{defined-term key="SBTYPE"}}</label>
+                  {{#if sbTypes}}
+                    {{sbTypes}}
+                  {{else}}
+                    <span class="unknown">Unknown</span>
+                  {{/if}}
+                </div>
+
                 {{#if model.apn}}
                   <div class="field">
                   <label for="apn">{{defined-term key="APN"}}</label>

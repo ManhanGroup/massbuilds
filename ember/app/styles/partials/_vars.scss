@@ -1,17 +1,17 @@
 $color_mod: aqua;
 
-$color_brand-primary: mix(#3c5875, #208095, 50);
-$color_brand-primary--active: mix($color_mod, $color_brand-primary, 40);
+$color_brand-primary: mix(#3c5875, #208095, 50%);
+$color_brand-primary--active: mix($color_mod, $color_brand-primary, 40%);
 $color_brand-secondary: #3B8267;
 
 $color_bg-light: #FFFFFF;
 $color_bg-medium: #CCCCCC;
 $color_bg-dark: #091F2F;
 $color_bg-dark--transparent: rgba(9, 31, 47, 0.2);
-$color_bg-brand: mix($color_brand-primary, $color_bg-light, 10);
+$color_bg-brand: mix($color_brand-primary, $color_bg-light, 10%);
 $color_bg-dark--disabled: #cecece;
 
-$color_bg-light--active: mix(black, $color_bg-light, 5);
+$color_bg-light--active: mix(black, $color_bg-light, 5%);
 $color_bg-light--accent: $color_bg-light--active;
 
 $color_font-light: #FFFFFF;
@@ -19,7 +19,7 @@ $color_font-medium: #777;
 $color_font-dark: #091F2F;
 
 $color_state-negative: #db1e1e;
-$color_state-negative--dark: darken($color_state-negative, 15);
+$color_state-negative--dark: darken($color_state-negative, 15%);
 
 $color_button-disabled: #b3b3b3;
 
