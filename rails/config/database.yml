@@ -65,10 +65,13 @@ development: &development
 test:
   <<: *development
   database: calbuilds_test
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
+
 
 staging:
   <<: *default
   database: calbuilds_staging
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
