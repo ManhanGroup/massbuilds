@@ -71,6 +71,11 @@ test:
 staging:
   <<: *default
   database: calbuilds_staging
+  host: <%= ENV.fetch('POSTGRES_DEV_HOST') { nil } %>
+  username: <%= ENV.fetch('POSTGRES_USER') { nil } %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
+  # database: calbuilds_development
+  schema_search_path: public,heroku_ext
   url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
