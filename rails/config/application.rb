@@ -29,7 +29,8 @@ module Calbuilds
       'http://localhost:4200',
       'https://staging.calbuilds.com',
       'https://calbuilds.com',
-      'https://www.calbuilds.com'
+      'https://www.calbuilds.com',
+      ENV['LOCAL_DEV_IP']
     ]
 
     config.middleware.insert_before 0, Rack::Cors do
