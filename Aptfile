@@ -1,0 +1,2 @@
+# additional installation of postgis needed as the included one doesn't have pgsql2shp files included
+postgis
