@@ -31,7 +31,7 @@ module Calbuilds
       'https://calbuilds.com',
       'https://www.calbuilds.com',
       ENV['LOCAL_DEV_IP']
-    ]
+    ].compact
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
