@@ -27,6 +27,8 @@ export default class extends Service {
 
     this.zoomCommand = null;
     this.markerVisible = false;
+    this.parcelTileVisible = true;
+    this.currentZoom=10;
     this.followMode = false;
     this.selectedCoordinates = [0, 0];
     this.jumpToSelectedCoordinates = false;

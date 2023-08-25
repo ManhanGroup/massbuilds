@@ -72,6 +72,7 @@ export default class extends Component {
     const municipality = requesting == 'municipal'
         ? this.get('municipality')
         : (requesting == 'state' ? 'STATE' : null);
+    const agency = email.endsWith('ambag.org')? 'AMBAG' : 'SLOCOG';
     const requestVerifiedStatus = !!requesting;
 
 
@@ -115,7 +116,7 @@ export default class extends Component {
      */
 
     if (noErrors) {
-      const userSchema = { firstName, lastName, email, password, municipality, requestVerifiedStatus };
+      const userSchema = { firstName, lastName, email, password, municipality,agency, requestVerifiedStatus };
 
       this.set('loadingText', 'Signing Up');
       this.set('isCreating', true);

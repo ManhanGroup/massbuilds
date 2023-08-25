@@ -271,6 +271,18 @@
                 input=(action checkForUpdated 'placetype')}}
             </div>
             {{/if}}
+
+            <div class="field">
+              <label for="sbType">{{defined-term key="SBTYPE"}}</label>
+              <ul class="multi-check-options">
+                {{#each filters.sbType.options as |option|}}
+                  <li>
+                    {{input type="checkbox" class="field-sbType" name=option checked=(contains option selectedSbTypes) click=(action checkForUpdated 'sbType')}}
+                    {{capitalize option}}
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
             
           </div>
 
@@ -318,17 +330,7 @@
                 {{/each}}
               </ul>
             </div>
-            <div class="field">
-              <label for="sbType">{{defined-term key="SBTYPE"}}</label>
-              <ul class="multi-check-options">
-                {{#each filters.sbType.options as |option|}}
-                  <li>
-                    {{input type="checkbox" class="field-sbType" name=option checked=(contains option selectedSbTypes) click=(action checkForUpdated 'sbType')}}
-                    {{capitalize option}}
-                  </li>
-                {{/each}}
-              </ul>
-            </div>
+            
           </div>
         </div>
 
