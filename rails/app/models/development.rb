@@ -93,9 +93,8 @@ class Development < ApplicationRecord
     arguments << database['database']
     arguments << %("#{sql}") # %Q["SELECT * FROM developments;"]
 
-    puts "calling "
-    commandlineInput = "pgsql2shp "
-    `pgsql2shp #{arguments.join(" ")}`
+    puts "calling pgsql2shp with arguments #{arguments.join(" ")}:"
+    puts `pgsql2shp #{arguments.join(" ")}`
 
     zip(file_name)
   end
