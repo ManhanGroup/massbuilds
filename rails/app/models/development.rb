@@ -90,18 +90,20 @@ class Development < ApplicationRecord
     host = database['host']
     port = database['port']
 
-    username = dbUrl.user if username.blank?
-    password = dbUrl.password if password.blank?
-    databaseName = dbUrl.path.split('/').last if databaseName.blank?
-    host = dbUrl.host if host.blank?
-    port = dbUrl.port if port.blank?
+    if dbUrl
+      username = dbUrl.user if username.blank?
+      password = dbUrl.password if password.blank?
+      databaseName = dbUrl.path.split('/').last if databaseName.blank?
+      host = dbUrl.host if host.blank?
+      port = dbUrl.port if port.blank?
+    end
 
     hash = Digest::SHA1.hexdigest("#{Time.now.to_i}#{rand}")[0,6]
     file_name = "calbuilds-shp-#{Time.now.strftime("%Y%m%d")}-#{hash}"
     arguments = []
     arguments << "-f #{Rails.root.join('public', file_name)}"
-    arguments << "-h #{host}"
-    arguments << "-p #{port}"
+    arguments << "-h #{host}" if host
+    arguments << "-p #{port}" if port
     arguments << "-u #{username}"
     arguments << "-P #{password}"
     arguments << databaseName
