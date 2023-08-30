@@ -151,7 +151,7 @@ class Development < ApplicationRecord
   def self.zip(file_name)
     Zip::File.open(Rails.root.join('public', "#{file_name}.zip").to_s, Zip::File::CREATE) do |zipfile|
       #zipfile.add("#{file_name}.prj", Rails.root.join('public', 'ma_municipalities_NAD83_MassStatePlane.prj')
-      zipfile.add("#{file_name}.prj", Rails.root.join('public', '4269.prj'))
+      zipfile.add("#{file_name}.prj", Rails.root.join('public', '4326.prj'))
       zipfile.add("#{file_name}.shp", Rails.root.join('public', "#{file_name}.shp"))
       zipfile.add("#{file_name}.shx", Rails.root.join('public', "#{file_name}.shx"))
       zipfile.add("#{file_name}.dbf", Rails.root.join('public', "#{file_name}.dbf"))
