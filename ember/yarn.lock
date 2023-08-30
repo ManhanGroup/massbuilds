@@ -4769,11 +4769,6 @@ core-js@^2.4.0, core-js@^2.5.0, core-js@^2.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
-core-object@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/core-object/-/core-object-1.1.0.tgz#86d63918733cf9da1a5aae729e62c0a88e66ad0a"
-  integrity sha512-x4fYjEDgP3zRik7qPS4szkA6QETF4VPHaz91sU4Rd27mZ7MxU1opwD6plDu1waUq7TalmXIlwCweIWKT+qL88g==
-
 core-object@2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/core-object/-/core-object-2.0.6.tgz#60134b9c40ff69b27bc15e82db945e4df782961b"
@@ -5208,7 +5203,7 @@ ember-cli-deploy-build@^1.1.1:
     glob "^7.1.1"
     rsvp "^3.5.0"
 
-ember-cli-deploy-plugin@^0.2.0, ember-cli-deploy-plugin@^0.2.1, ember-cli-deploy-plugin@^0.2.6:
+ember-cli-deploy-plugin@^0.2.1, ember-cli-deploy-plugin@^0.2.6:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/ember-cli-deploy-plugin/-/ember-cli-deploy-plugin-0.2.9.tgz#a3d395b8adad7ef68d8bacdd0b0f4a61bcf9e651"
   integrity sha512-6Cq3XbjZLi4vFYcyF0xfVr5tJdcnNY8kXZFY76qeN3VoKpwTfwiYMc45I8N9DsH8zog8xzHO8YL5RU58qKiqUQ==
@@ -5234,17 +5229,6 @@ ember-cli-deploy-revision-data@^1.0.0:
     minimatch "^3.0.3"
     rsvp "^3.5.0"
     simple-git "^1.57.0"
-
-ember-cli-deploy-rsync@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ember-cli-deploy-rsync/-/ember-cli-deploy-rsync-0.0.5.tgz#5199acaa0cd61efe9617adcdefd75b78f728ab2f"
-  integrity sha512-p/WqA8O+gcmq7ZOOhOggBaiG4MGTtmXCa5wc7EhzCkWmyRXgCpmLRWVwQwJC1KKPYMXKLBuoxeo/nMFnSKjqWQ==
-  dependencies:
-    core-object "1.1.0"
-    ember-cli-deploy-plugin "^0.2.0"
-    rsvp "^3.5.0"
-    rsyncwrapper "0.4.2"
-    silent-error "^1.0.0"
 
 ember-cli-deploy@^1.0.2:
   version "1.0.2"
@@ -8523,11 +8507,6 @@ lodash@^4.0.0, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.2
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-lodash@~2.4.1:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
-  integrity sha512-Kak1hi6/hYHGVPmdyiZijoQyz5x2iGVzs6w9GYB/HiXEtylY7tIoYEROMjvM1d9nXJqPOrG2MNPMn01bJ+S0Rw==
-
 log-symbols@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -10151,13 +10130,6 @@ rsvp@~3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-3.2.1.tgz#07cb4a5df25add9e826ebc67dcc9fd89db27d84a"
   integrity sha512-Rf4YVNYpKjZ6ASAmibcwTNciQ5Co5Ztq6iZPEykHpkoflnD/K5ryE/rHehFsTm4NJj8nKDhbi3eKBWGogmNnkg==
-
-rsyncwrapper@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/rsyncwrapper/-/rsyncwrapper-0.4.2.tgz#1d8e7706b545a94126686fdd61c41f5c2156205f"
-  integrity sha512-2AIQBXTcrLyF+7aeGWcQufSC+dlVOwSLGAji/omROel6TKjLMyoMKA9r7miQRc4S/i+Z0TRrFwoyuulDSNq60g==
-  dependencies:
-    lodash "~2.4.1"
 
 run-async@^2.2.0, run-async@^2.4.0:
   version "2.4.1"
