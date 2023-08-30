@@ -15,6 +15,9 @@
       },
       {
         "url": "heroku/ruby"
-      }     
+      },
+      {
+        "url": "heroku-community/apt"
+      }
     ]
 }
