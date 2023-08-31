@@ -30,6 +30,7 @@ module Calbuilds
       'https://staging.calbuilds.com',
       'https://calbuilds.com',
       'https://www.calbuilds.com',
+      'https://calbuilds.manhan.co',
       ENV['LOCAL_DEV_IP']
     ].compact
 
