@@ -12,11 +12,20 @@
 
     <ul class="terms-list">
       {{#each glossaryTerms as |term|}}
-        {{glossary-list-item
-          label=term.label
-          definition=term.definition
-          unitsLong=term.unitsLong
-        }}
+        {{#if term.table }}
+          {{glossary-list-table-item
+            label=term.label
+            definition=term.definition
+            unitsLong=term.unitsLong
+            table=term.table
+          }}
+        {{else}}
+          {{glossary-list-item
+            label=term.label
+            definition=term.definition
+            unitsLong=term.unitsLong
+          }}
+        {{/if}}
       {{/each}}
     </ul>
   </main>

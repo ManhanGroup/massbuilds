@@ -53,7 +53,7 @@ export default class extends Component {
       container: this.get('element'),
       style: mapStyle,
       center: [-121.4734, 36.648809],
-      zoom: 10,
+      zoom: mapService.get('currentZoom'),
       maxBounds: [
         [-130, 20],
         [-40, 60],
@@ -71,11 +71,15 @@ export default class extends Component {
           this.mapboxglMap.stop();
         }
       });
+      this.mapboxglMap.on('zoomend',()=>{
+        mapService.set('currentZoom', this.mapboxglMap.getZoom());
+      })
       mapService.addObserver('stored', this, 'draw');
       mapService.addObserver('filteredData', this, 'draw');
       mapService.addObserver('viewing', this, 'draw');
       mapService.addObserver('filteredData', this, 'focus');
       mapService.addObserver('baseMap', this, 'setStyle');
+      mapService.addObserver('parcelTileVisible',this, 'pTVisibleChangeHandler');
       mapService.addObserver('zoomCommand', this, 'actOnZoomCommand');
       mapService.addObserver('viewing', this, 'jumpTo');
       mapService.addObserver(
@@ -119,6 +123,7 @@ export default class extends Component {
     mapService.removeObserver('viewing', this, 'draw');
     mapService.removeObserver('filteredData', this, 'focus');
     mapService.removeObserver('baseMap', this, 'setStyle');
+    mapService.removeObserver('parcelTileVisible',this,'pTVisibleChangeHandler');
     mapService.removeObserver('zoomCommand', this, 'actOnZoomCommand');
     mapService.removeObserver('viewing', this, 'jumpTo');
     mapService.removeObserver(
@@ -138,6 +143,11 @@ export default class extends Component {
   markerVisibleChangeHandler(mapService) {
     this.draw(mapService);
     this.drawSelector(mapService);
+  }
+
+  pTVisibleChangeHandler(mapService) {
+    this.draw(mapService);
+    this.toggleParcelTile(mapService);
   }
 
   followModeChangeHandler(mapService) {
@@ -301,6 +311,7 @@ export default class extends Component {
     const newBaseMap = mapService.get('baseMap');
     const redrawOnStyleReload = () => {
       this.markerVisibleChangeHandler(mapService);
+      this.pTVisibleChangeHandler(mapService);      
       this.followModeChangeHandler(mapService);
       this.mapboxglMap.off('styledata', redrawOnStyleReload);
     };
@@ -311,10 +322,24 @@ export default class extends Component {
     } else if (newBaseMap == 'satellite') {
       this.mapboxglMap.setStyle(
        // 'mapbox://styles/yacwang/cli9ej8sh00zd01r8hy2q8nau'
-        'mapbox://styles/yacwang/cl6olfiai000014jqi8s3q5f9'
+       // 'mapbox://styles/yacwang/cl6olfiai000014jqi8s3q5f9'
+        'mapbox://styles/yacwang/clllz6b6r00mh01poeo0v26m1'
         //'mapbox://styles/ihill/cjin8f3kc0ytj2sr0rxw11a90'
       );
     }
+  }
+
+  toggleParcelTile(mapService){
+    //const visibility=this.mapboxglMap.getLayoutProperty("parcelsambag", 'visibility');
+    const visibility=mapService.get('parcelTileVisible');
+    if (visibility){
+      this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'visible'); 
+      this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'visible');
+    }else{
+      this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'none'); 
+      this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'none');
+    }
+   
   }
 
   actOnZoomCommand(mapService) {
@@ -324,7 +349,8 @@ export default class extends Component {
     } else if (zoomCommand == 'OUT') {
       this.mapboxglMap.zoomOut();
     }
-    mapService.set('zoomCommand', null);
+    mapService.set('zoomCommand', null);    
+
   }
 
   drawSelector(mapService) {

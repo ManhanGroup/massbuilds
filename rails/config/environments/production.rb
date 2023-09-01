@@ -19,7 +19,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -78,9 +78,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: Rails.application.secrets.mailgun_api_key,
-    domain: 'mailgun2.mapc.org'
+    domain: 'mg.ywconsultinggroup.com'
   }
-  config.action_mailer.default_url_options = { host: 'www.calbuilds.com' }
+  config.action_mailer.default_url_options = { host: 'https://calbuilds-api.herokuapp.com/' }
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

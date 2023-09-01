@@ -171,6 +171,13 @@ export default class extends Controller {
   }
 
   @action
+  toggleParcelTile() { 
+    const visible=this.get('map').get('parcelTileVisible')
+    this.get('map').set('parcelTileVisible',!visible);
+    
+  }
+
+  @action
   toggleMenu() {
     this.toggleProperty('showingMenu');
   }

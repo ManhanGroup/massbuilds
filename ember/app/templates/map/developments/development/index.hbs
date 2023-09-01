@@ -166,7 +166,7 @@
                 </div>
                 {{/if}}
 
-                 {{#if model.placetype}}
+                {{#if model.placetype}}
                   <div class="field">
                   <label for="placetype">{{defined-term key="PLACE_TYPE"}}</label>
                   <span>{{model.placetype}}</span>
@@ -177,6 +177,22 @@
                   <div class="field">
                   <label for="gluc">{{defined-term key="GLUC"}}</label>
                   <span>{{model.gluc}}</span>
+                  </div>
+                {{/if}}
+
+                <div class="field">
+                  <label for="sbType">{{defined-term key="SBTYPE"}}</label>
+                  {{#if sbTypes}}
+                    {{sbTypes}}
+                  {{else}}
+                    <span class="unknown">Unknown</span>
+                  {{/if}}
+                </div>
+
+                {{#if model.apn}}
+                  <div class="field">
+                  <label for="apn">{{defined-term key="APN"}}</label>
+                  <span>{{model.apn}}</span>
                   </div>
                 {{/if}}
 
@@ -226,21 +242,7 @@
                   {{/if}}
                 </div>
 
-                <div class="field">
-                  <label for="sbType">{{defined-term key="SBTYPE"}}</label>
-                  {{#if sbTypes}}
-                    {{sbTypes}}
-                  {{else}}
-                    <span class="unknown">Unknown</span>
-                  {{/if}}
-                </div>
-
-                {{#if model.apn}}
-                  <div class="field">
-                  <label for="apn">{{defined-term key="APN"}}</label>
-                  <span>{{model.apn}}</span>
-                  </div>
-                {{/if}}
+                
               </div>
             </div>
 

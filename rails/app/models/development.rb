@@ -166,18 +166,35 @@ class Development < ApplicationRecord
     sql = all.select(attributes.join(", ") + ", ST_Transform(point, 26986) as point").to_sql
 
     database = Rails.configuration.database_configuration[Rails.env]
+    # user name, password and database name must be filled
+    dbUrl = URI.parse(ENV['DATABASE_URL']) if ENV['DATABASE_URL']
+    username = database['username']
+    password = database['password']
+    databaseName = database['database']
+    host = database['host']
+    port = database['port']
+
+    if dbUrl
+      username = dbUrl.user if username.blank?
+      password = dbUrl.password if password.blank?
+      databaseName = dbUrl.path.split('/').last if databaseName.blank?
+      host = dbUrl.host if host.blank?
+      port = dbUrl.port if port.blank?
+    end
+
     hash = Digest::SHA1.hexdigest("#{Time.now.to_i}#{rand}")[0,6]
     file_name = "calbuilds-shp-#{Time.now.strftime("%Y%m%d")}-#{hash}"
     arguments = []
     arguments << "-f #{Rails.root.join('public', file_name)}"
-    arguments << "-h #{database['host']}" if database['host']
-    arguments << "-p #{database['port']}" if database['port']
-    arguments << "-u #{database['username']}" if database['username']
-    arguments << "-P #{database['password']}" if database['password']
-    arguments << database['database']
+    arguments << "-h #{host}" if host
+    arguments << "-p #{port}" if port
+    arguments << "-u #{username}"
+    arguments << "-P #{password}"
+    arguments << databaseName
     arguments << %("#{sql}") # %Q["SELECT * FROM developments;"]
 
-    `PGOPTIONS="-c search_path=#{database['schema_search_path']}" pgsql2shp #{arguments.join(" ")}`
+    puts "calling pgsql2shp with arguments #{arguments.join(" ")}:"
+    puts `pgsql2shp #{arguments.join(" ")}`
 
     zip(file_name)
   end

@@ -1,0 +1,23 @@
+{
+    "env": {
+      "APP_BASE": {
+          "required": true
+      }
+    },       
+    "addons": [     
+      {
+        "plan": "heroku-postgresql"        
+      }
+    ],
+    "buildpacks": [
+      {
+        "url": "https://github.com/lstoll/heroku-buildpack-monorepo"
+      },
+      {
+        "url": "heroku/ruby"
+      },
+      {
+        "url": "heroku-community/apt"
+      }
+    ]
+}

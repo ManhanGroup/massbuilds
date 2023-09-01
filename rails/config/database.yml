@@ -17,9 +17,6 @@
 default: &default
   adapter: postgis
   encoding: unicode
-  host: db
-  username: postgres
-  password: password
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -31,7 +28,6 @@ development: &development
   password: <%= ENV.fetch('POSTGRES_PASSWORD') { nil } %>
   database: calbuilds_development
   schema_search_path: public,heroku_ext
-  #url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -69,7 +65,8 @@ test:
 
 staging:
   <<: *default
-  database: calbuilds_staging
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
+  schema_search_path: public,heroku_ext
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -89,7 +86,7 @@ staging:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
+
 production:
   <<: *default
   url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>

@@ -31,4 +31,10 @@ chdir APP_ROOT do
 
   puts "\n== Restarting application server =="
   system! 'bin/rails restart'
+  
+  puts '== Installing postgis separately on system for pgsql2shp functionality =='
+  system! 'sudo apt-get install postgis'
+  system! 'pgsql2shp'
+  puts '== ^ the above output should end with the pgsql2shp usage guide =='
+  
 end
