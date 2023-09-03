@@ -8,7 +8,6 @@ export default class extends Component {
 
   @service session
   @service store
-  @service ajax
 
 
   constructor() {
