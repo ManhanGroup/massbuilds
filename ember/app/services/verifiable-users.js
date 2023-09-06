@@ -6,7 +6,6 @@ import { service } from 'ember-decorators/service';
 
 export default class extends Service {
 
-  @service ajax
   @service currentUser
   @service store
 
