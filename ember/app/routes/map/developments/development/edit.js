@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 

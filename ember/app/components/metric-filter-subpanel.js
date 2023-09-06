@@ -1,6 +1,6 @@
 import { set } from '@ember/object';
 import Component from '@ember/component';
-import { computed, action } from 'ember-decorators/object';
+import { computed, action } from '@ember-decorators/object';
 import filters, { metricGroups } from 'calbuilds/utils/filters';
 
 

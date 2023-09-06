@@ -1,8 +1,8 @@
 import { camelize } from '@ember/string';
 import Controller from '@ember/controller';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 import { filters } from 'calbuilds/utils/filters';
-import { action, computed } from 'ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 import Development from 'calbuilds/models/development';
 import castToModel from 'calbuilds/utils/cast-to-model';
 

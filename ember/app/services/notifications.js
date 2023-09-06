@@ -1,6 +1,6 @@
 import { cancel, later } from '@ember/runloop';
 import Service from '@ember/service';
-import { action } from 'ember-decorators/object';
+import { action } from '@ember-decorators/object';
 
 
 export default class extends Service {

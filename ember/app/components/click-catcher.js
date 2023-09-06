@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import Component from '@ember/component';
-import { action, computed } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
-import { alias } from 'ember-decorators/object/computed';
+import { action, computed } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { alias } from '@ember-decorators/object/computed';
 import content from 'calbuilds/content';
 
 export default class extends Component.extend({

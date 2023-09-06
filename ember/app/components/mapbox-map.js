@@ -1,7 +1,7 @@
 import { htmlSafe } from '@ember/template';
 import $ from 'jquery';
 import Component from '@ember/component';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 import statusColors from 'calbuilds/utils/status-colors';
 import pointInPolygon from '@turf/boolean-point-in-polygon';
 import centerOfMass from '@turf/center-of-mass';
