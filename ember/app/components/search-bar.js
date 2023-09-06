@@ -5,10 +5,12 @@ import { reads } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 import filters from 'calbuilds/utils/filters';
 import DS from 'ember-data';
+import Ember from 'ember';
+import fetch from 'fetch';
 
 export default class extends Component {
   @service currentUser;
-  @service ajax;
+  //@service ajax;
   @service map;
 
   constructor() {
@@ -97,36 +99,52 @@ export default class extends Component {
     }
 
     this.set('loading', true);
-    return DS.PromiseArray.create({
-      promise: this.get('ajax')
-        .request(
-          `https://ambag-postrest.herokuapp.com/address?mylabel=like.${searchQuery}*`
-         // `https://pelias.ambag.org/v1/search?text=${searchQuery}` +
-         //   `&boundary.country=USA&boundary.rect.min_lon=-73.5081481933594` +
-         //   `&boundary.rect.max_lon=-69.8615341186523` +
-         //   `&boundary.rect.min_lat=41.1863288879395` +
-         //   `&boundary.rect.max_lat=42.8867149353027`
-        )
-        .then((resp) => {
-          //const items = resp.features.slice(0, 5).map((feature) => {
-          const items = resp.slice(0, 5).map((feature) => {
-            return {
-              //label: feature.properties.label,
-              //type: feature.properties.layer.capitalize(),
-              //geometry: feature.geometry,
-              label: feature.mylabel,
-              type: feature.mytype,
-              geometry: feature.geom,
-            };
+
+   
+    const p1=fetch(
+      `https://ambag-postrest.herokuapp.com/address?mylabel=like.${searchQuery}*`
+    );     
+
+    const p2=fetch(
+      `https://nominatim.openstreetmap.org/search?q=${searchQuery}*&format=geojson`
+    );
+
+
+    const p=Ember.RSVP.hash([p1,p2]).then((results) =>{
+      const items=[];
+      if (results[0].length>0){
+        results[0].slice(0, 5).map((feature) => {
+          items.push({
+            label: feature.mylabel,
+            type: feature.mytype,
+            geometry: {"type": feature.geom.type,"coordinates": feature.geom.coordinates},
           });
-          this.set('loading', false);
-          return items;
-        })
-        .catch(() => {
-          this.set('loading', false);
-          return [];
-        }),
+        });
+      }
+      
+     if(results[1].features.length>0){
+        results[1].features.slice(0, 5).map((feature) => {
+          items.push({
+            label: feature.properties.display_name,
+            type: feature.properties.type,
+            geometry: feature.geometry,
+          });
+        });
+      }
+
+      this.set('loading', false);
+      return items;
+      
+    })
+    .catch(() => {
+      this.set('loading', false);
+      return [];
     });
+    
+   return DS.PromiseArray.create({
+      promise: p 
+   }); 
+
   }
 
   @computed('searchList')

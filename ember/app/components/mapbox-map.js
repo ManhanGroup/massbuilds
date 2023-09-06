@@ -277,7 +277,8 @@ export default class extends Component {
                   properties: {
                     site_addr: parcel.get('site_addr')
                       ? parcel.get('site_addr')
-                      : '[ADDRESS UNKNOWN]',
+                      : revGeocode(coordinates[1],coordinates[0]),
+                      //: '[ADDRESS UNKNOWN]',
                     muni: parcel.get('muni')
                       ? parcel.get('muni').toUpperCase()
                       : '',
