@@ -9,10 +9,6 @@ WORKDIR /ember
 # run ember server on container start
 CMD ["ember", "server"]
 
-# install bower
-RUN \
-	npm install -g bower@1.8.8
-
 # install ember-cli
 RUN \
 	npm install -g ember-cli@4.12.1
