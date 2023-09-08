@@ -10,7 +10,6 @@ import fetch from 'fetch';
 
 export default class extends Component {
   @service currentUser;
-  //@service ajax;
   @service map;
 
   constructor() {
@@ -103,47 +102,49 @@ export default class extends Component {
    
     const p1=fetch(
       `https://ambag-postrest.herokuapp.com/address?mylabel=like.${searchQuery}*`
-    );     
-
-    const p2=fetch(
-      `https://nominatim.openstreetmap.org/search?q=${searchQuery}*&format=geojson`
-    );
-
-
-    const p=Ember.RSVP.hash([p1,p2]).then((results) =>{
-      const items=[];
-      if (results[0].length>0){
-        results[0].slice(0, 5).map((feature) => {
-          items.push({
+    ).then((response) => response.json()).then((data) => {
+      if (data.length>0){
+        return data.slice(0, 5).map((feature) => {
+          return {
             label: feature.mylabel,
             type: feature.mytype,
             geometry: {"type": feature.geom.type,"coordinates": feature.geom.coordinates},
-          });
+          };
         });
+      } else {
+        return []
       }
-      
-     if(results[1].features.length>0){
-        results[1].features.slice(0, 5).map((feature) => {
-          items.push({
+    })
+
+    const p2=fetch(
+      `https://nominatim.openstreetmap.org/search?q=${searchQuery}*&format=geojson`
+    ).then((response) => response.json()).then((data) => {
+      if (data.features.length>0){
+        return data.features.slice(0, 5).map((feature) => {
+          return {
             label: feature.properties.display_name,
             type: feature.properties.type,
             geometry: feature.geometry,
-          });
+          };
         });
+      } else {
+        return []
       }
+    })
 
+    const p=Ember.RSVP.hash([p1,p2]).then((results) =>{
+      const items = results[0].concat(results[1])
       this.set('loading', false);
       return items;
-      
     })
     .catch(() => {
       this.set('loading', false);
       return [];
     });
-    
-   return DS.PromiseArray.create({
+
+    return DS.PromiseArray.create({
       promise: p 
-   }); 
+    }); 
 
   }
 
