@@ -1,0 +1,12 @@
+<footer>
+    <div class="agencyInfo">
+        <img class="agencylogo"  src="/assets/images/{{details.logo}}" style="display:block;">
+        <div class="agency-details" style="display:block;">
+            <span><b>{{details.name}}</b></span>
+            <span>{{details.address}}, {{details.city}} {{details.postalCode}}</span>
+            <a href="tel:{{details.phone}}">{{details.phoneFormatted}}</a>
+            <a href="mailto:{{details.email}}">{{details.email}}</a> 
+        </div>
+        <button onclick={{action "updateAgency"}}>update</button>
+    </div>
+</footer>
