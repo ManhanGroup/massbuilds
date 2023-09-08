@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { action } from 'ember-decorators/object';
+import { later, next } from '@ember/runloop';
 import agencies from '../agencies';
 
 export default class extends Component {
@@ -8,28 +8,27 @@ export default class extends Component {
         super();
 
         this.agencies = agencies
-        this.currentAgency = agencies.AMBAG
+        this.currentAgency = agencies.AMBAG.properties
     
-        setInterval(this.updateAgency, 1500)
-        this.details = this.currentAgency.properties
+        next(this, function() {
+          this.runner = this.updateAgency();
+        })
     }
 
-    @action
     updateAgency() {
-      switch(this.currentAgency) {
-        case agencies.AMBAG:
-          this.set("currentAgency", agencies.SLOCOG)
-          this.set("details", agencies.SLOCOG.properties)
-          break
-        case agencies.SLOCOG:
-            this.set("currentAgency", agencies.SRTA)
-            this.set("details", agencies.SRTA.properties)
-          break
-        case agencies.SRTA:
-            this.set("currentAgency", agencies.AMBAG)
-            this.set("details", agencies.AMBAG.properties)
-          break
-      }
+      return later(this, function () {
+        switch(this.currentAgency) {
+          case agencies.AMBAG.properties:
+            this.set("currentAgency", agencies.SLOCOG.properties)
+            break
+          case agencies.SLOCOG.properties:
+              this.set("currentAgency", agencies.SRTA.properties)
+            break
+          case agencies.SRTA.properties:
+              this.set("currentAgency", agencies.AMBAG.properties)
+            break
+        }
+        this.runner = this.updateAgency();
+      }, 5000);
     }
-  
 }

@@ -1,12 +1,11 @@
 <footer>
     <div class="agencyInfo">
-        <img class="agencylogo"  src="/assets/images/{{details.logo}}" style="display:block;">
+        <img class="agencylogo"  src="/assets/images/{{currentAgency.logo}}" style="display:block;">
         <div class="agency-details" style="display:block;">
-            <span><b>{{details.name}}</b></span>
-            <span>{{details.address}}, {{details.city}} {{details.postalCode}}</span>
-            <a href="tel:{{details.phone}}">{{details.phoneFormatted}}</a>
-            <a href="mailto:{{details.email}}">{{details.email}}</a> 
+            <span><b>{{currentAgency.name}}</b></span>
+            <span>{{currentAgency.address}}, {{currentAgency.city}} {{currentAgency.postalCode}}</span>
+            <a href="tel:{{currentAgency.phone}}">{{currentAgency.phoneFormatted}}</a>
+            <a href="mailto:{{currentAgency.email}}">{{currentAgency.email}}</a> 
         </div>
-        <button onclick={{action "updateAgency"}}>update</button>
     </div>
 </footer>
