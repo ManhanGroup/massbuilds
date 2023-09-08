@@ -2,11 +2,11 @@ import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 
 
-export default Component.extend({
+export default class extends Component {
 
   @action
   view(id) {
     this.sendAction('viewDevelopment', id);
   }
 
-});
+}
