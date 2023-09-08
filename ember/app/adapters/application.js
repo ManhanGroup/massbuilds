@@ -5,5 +5,9 @@ import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: config.host,
-  authorizer: 'authorizer:devise',
+  authorize(xhr) {
+    let { email, token } = this.get('session.data.authenticated');
+    let authData = `Token token="${token}", email="${email}"`;
+    xhr.setRequestHeader('Authorization', authData);
+  }
 });
