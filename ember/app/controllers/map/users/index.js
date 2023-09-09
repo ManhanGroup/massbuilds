@@ -54,6 +54,7 @@ export default class extends Controller {
     }
   }
 
+  @computed
   get fetchMunis() {
     const munisList = munis.map(row => row.text)
     munisList.push('STATE')
