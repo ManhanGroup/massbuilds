@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 import { capitalize } from 'calbuilds/helpers/capitalize';
-import { action, computed } from 'ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 
 export default class extends Controller {
   @service map;

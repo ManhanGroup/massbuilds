@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { attr } from 'ember-decorators/data';
+import { attr } from '@ember-decorators/data';
 
 
 export default class extends DS.Model {

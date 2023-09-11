@@ -1,7 +1,7 @@
 import RSVP from 'rsvp';
 import { isEmpty } from '@ember/utils';
 import Service from '@ember/service';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 
 
 export default class extends Service {

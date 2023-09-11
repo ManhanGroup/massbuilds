@@ -1,6 +1,6 @@
 import ModerationController from 'calbuilds/controllers/ModerationController';
-import { action } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
+import { action } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 
 
 export default class extends ModerationController {

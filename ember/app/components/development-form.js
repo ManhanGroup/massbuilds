@@ -1,8 +1,8 @@
 import { later } from '@ember/runloop';
 import Component from '@ember/component';
 import filters from 'calbuilds/utils/filters';
-import { service } from 'ember-decorators/service';
-import { action, computed } from 'ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
 
 
 export default class extends Component {

@@ -1,6 +1,6 @@
 import DS from 'ember-data';
-import { computed } from 'ember-decorators/object';
-import { attr, belongsTo, hasMany } from 'ember-decorators/data';
+import { computed } from '@ember-decorators/object';
+import { attr, belongsTo, hasMany } from '@ember-decorators/data';
 
 export default class extends DS.Model {
   @belongsTo('user', { async: true }) user;

@@ -1,7 +1,6 @@
 import { htmlSafe } from '@ember/template';
-import $ from 'jquery';
 import Component from '@ember/component';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 import statusColors from 'calbuilds/utils/status-colors';
 import pointInPolygon from '@turf/boolean-point-in-polygon';
 import centerOfMass from '@turf/center-of-mass';
@@ -31,7 +30,7 @@ export default class extends Component {
     // difficult because it becomes time sensitive. Since the width and left
     // properties of the panel are set in pixels we can set that here as a constant.
     if (this.get('map.showingLeftPanel')) {
-      const mapWidth = parseInt(this.$().css('width'));
+      const mapWidth = parseInt(this.element.getBoundingClientRect().width);
       if (mapWidth < 1180) {
         return 480;
       }
@@ -164,8 +163,8 @@ export default class extends Component {
       this.get('map.followMode') &&
       this.mapboxglMap &&
       this.mapboxglMap.getSource('selector') &&
-      $('.left-panel-layer') &&
-      this.$()
+      this.element.querySelectorAll('.left-panel-layer') &&
+      this.element
     ) {
       const bounds =
         this.get('focusTargetBounds') || this.mapboxglMap.getBounds();
@@ -178,7 +177,7 @@ export default class extends Component {
           return 0.5;
         }
         const leftPanelWidth = this.getLeftPanelWidth();
-        const mapWidth = parseInt(this.$().css('width'));
+        const mapWidth = parseInt(this.element.getBoundingClientRect().width);
         return ((mapWidth - leftPanelWidth) / 2 + leftPanelWidth) / mapWidth;
       })();
       const coordinates = [
@@ -193,7 +192,7 @@ export default class extends Component {
   getBoundsFromCoordinates(coordinates) {
     const boundsWidth = 0.01;
     const leftPanelWidth = this.getLeftPanelWidth();
-    const mapWidth = parseInt(this.$().css('width'));
+    const mapWidth = parseInt(this.element.getBoundingClientRect().width);
     const ratio = ((mapWidth - leftPanelWidth) / 2 + leftPanelWidth) / mapWidth;
     const northEast = [
       coordinates[0] + (1 - ratio) * boundsWidth,

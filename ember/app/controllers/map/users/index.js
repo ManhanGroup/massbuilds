@@ -1,6 +1,6 @@
 import { copy } from '@ember/object/internals';
 import Controller from '@ember/controller';
-import { action, computed } from 'ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 import munis from '../../../utils/municipalities';
 
 export default class extends Controller {
@@ -55,7 +55,7 @@ export default class extends Controller {
   }
 
   @computed
-  fetchMunis() {
+  get fetchMunis() {
     const munisList = munis.map(row => row.text)
     munisList.push('STATE')
     return munisList.sort();

@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import config from 'calbuilds/config/environment';
-import { service } from 'ember-decorators/service';
-import { action, computed } from 'ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
 
 
 export default class extends Component {
