@@ -25,9 +25,6 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'connect-src': '*',
     },
-    'ember-simple-auth': {
-      authenticationRoute: 'map',
-    },
     admin: {
       email: 'ya@manhangroup.com',
     }
