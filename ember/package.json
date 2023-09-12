@@ -53,7 +53,7 @@
     "ember-fetch": "^8.1.2",
     "ember-load-initializers": "^2.0.0",
     "ember-math-helpers": "^2.3.0",
-    "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-maybe-import-regenerator": "^1.0.0",
     "ember-moment": "^8.0.0",
     "ember-resolver": "^11.0.0",
     "ember-simple-auth": "^1.9.2",
