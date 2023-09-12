@@ -35,6 +35,10 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV['host'] = 'http://localhost:3000';
+    // extra logging options
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.APP.LOG_BINDINGS = true;
   }
 
   if (environment === 'staging') {
