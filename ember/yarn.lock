@@ -5886,7 +5886,7 @@ ember-cli-version-checker@^5.1.1, ember-cli-version-checker@^5.1.2:
     semver "^7.3.4"
     silent-error "^1.1.1"
 
-ember-cli@^3.0.1:
+ember-cli@^3.0.4:
   version "3.28.6"
   resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.28.6.tgz#477a6a134501639d6cb03da6746158501c41efce"
   integrity sha512-aGHIDXM5KujhU+tHyfp1X5bUp3yj47sIWI0zgybyIw6vv6ErAu/eKWWMSib5PF8cQDdXG9vttBcXnvQ4QBNIPQ==
