@@ -20,6 +20,8 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@ember/jquery": "^2.0.0",
     "@ember/optional-features": "^2.0.0",
+    "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/center-of-mass": "^6.5.0",
     "@types/ember": "^4.0.1",
     "@types/ember-data": "^4.4.4",
     "@types/ember-qunit": "^5.0.2",
@@ -65,21 +67,14 @@
     "ember-welcome-page": "^3.0.0",
     "loader.js": "^4.2.3",
     "lodash-es": "^4.17.21",
+    "mapbox-gl": "^2.15.0",
     "sass": "^1.64.2",
     "typescript": "^4.8.4",
+    "url": "^0.11.2",
     "webpack": "^5.61.0"
   },
   "engines": {
     "node": ">=14.*"
-  },
-  "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.0.1",
-    "@turf/center-of-mass": "^6.0.1",
-    "babel-polyfill": "^6.26.0",
-    "bufferutil": "^4.0.1",
-    "mapbox-gl": "^1.13.0",
-    "url": "^0.11.0",
-    "utf-8-validate": "^5.0.2"
   },
   "browserslist": {
     "production": [
