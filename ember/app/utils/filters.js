@@ -93,7 +93,12 @@ const filters = {
 
   'asofright': { name: 'As of Right', glossaryKey: 'AS_OF_RIGHT', type: 'boolean', ...defaultMetric },
   'ovr55': { name: 'Age restricted', glossaryKey: 'AGE_RESTRICTED', type: 'boolean', ...defaultMetric },
-
+  
+  //srta only fields
+  'mf2_4': {name: 'Multifamily units 2-4', glossaryKey: 'MULTI_FAMILY_2TO4', type: 'number', ...defaultMetric},
+  'mf5up': {name: 'Multifamily units 5up', glossaryKey: 'MULTI_FAMILY_5UP', type: 'number', ...defaultMetric},
+  'mobile': {name: 'Mobile Home', glossaryKey: 'MOBILE', type: 'number', ...defaultMetric},
+ 
   // Commercial
 
   'commsf': { name: 'Commercial area', glossaryKey: 'COMMERCIAL_AREA', type: 'number', ...defaultMetric },
@@ -107,8 +112,23 @@ const filters = {
   'hotelSqft': { name: 'Hotel room', glossaryKey: 'HOTEL_ROOM_AREA', type: 'number', ...defaultMetric },
   'hotelrms': { name: 'Hotel rooms', glossaryKey: 'HOTEL_ROOMS', type: 'number', ...defaultMetric },
   'rptdemp': { name: 'Reported employment', glossaryKey: 'REPORTED_EMPLOYMENT', type: 'number', ...defaultMetric },
-
+  
   'headqtrs': { name: 'Company HQ', glossaryKey: 'COMPANY_HEADQUARTERS', type: 'boolean', ...defaultMetric },
+  
+  //srta only
+  
+  'studunip': {name: 'Student Enrollment University', glossaryKey: 'STUDENT_ENROLLMENT_UNIVERSITY', type: 'number', ...defaultMetric},
+  'studk12p': {name: 'Student Enrollment K', glossaryKey: 'STUDENT_ENROLLMENT_KTO12', type: 'number', ...defaultMetric},
+  'empedu': {name: 'Employment in Education', glossaryKey: 'EDUCATION_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empfoo': {name: 'Employment in Food Service', glossaryKey: 'FOOD_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empgov': {name: 'Employment in Government', glossaryKey: 'GOVERNMENT_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empind': {name: 'Employment in Industry', glossaryKey: 'INDUSTRY_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empmed': {name: 'Employment in Medical Service', glossaryKey: 'MEDICAL_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empofc': {name: 'Employment in Office', glossaryKey: 'OFFICE_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empoth': {name: 'Employment in Other', glossaryKey: 'OTHER_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empret': {name: 'Employment in Retail', glossaryKey: 'RETAIL_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empsvc': {name: 'Employment in Service', glossaryKey: 'SERVICE_EMPLOYMENT', type: 'number', ...defaultMetric},
+ 
 
 };
 
@@ -162,6 +182,8 @@ const metricGroups = {
         'units1bd',
         'units2bd',
         'units3bd',
+        'mf2_4',
+        'mf5up'
       ]
     },
     {
@@ -182,6 +204,14 @@ const metricGroups = {
       ]
     },
   ],
+  'School': [
+    {
+      title: 'Enrollment',
+      metrics: [
+        'studk12p ',
+        'studunip',
+      ]
+    }],
   'Commercial': [
     {
       title: 'General',
@@ -191,7 +221,7 @@ const metricGroups = {
       ]
     },
     {
-      title: 'Makeup',
+      title: 'SQFT Makeup',
       metrics: [
         'retSqft',
         'ofcmdSqft',
@@ -201,6 +231,20 @@ const metricGroups = {
         'eiSqft',
         'hotelSqft',
         'otherSqft',
+      ]
+    },
+    {
+      title: 'Employment Makeup',
+      metrics: [
+        'empedu',
+        'empfoo',
+        'empgov',
+        'empind',
+        'empmed',
+        'empofc',
+        'empoth',
+        'empret',
+        'empsvc'
       ]
     },
     {

@@ -328,6 +328,27 @@
                       <td>{{number-format model.multifam decimals=0}}</td>
                       <td>{{round (mult 100 (div model.multifam model.hu))}}%</td>
                     </tr>
+                    {{#if model.mf2_4}}
+                    <tr>
+                      <td>{{defined-term key="MULTI_FAMILY_2to4"}}</td>
+                      <td>{{number-format model.mf2_4 decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.mf2_4 model.hu))}}%</td>
+                    </tr>
+                    {{/if}}
+                    {{#if model.mf5up}}
+                    <tr>
+                      <td>{{defined-term key="MULTI_FAMILY_5up"}}</td>
+                      <td>{{number-format model.mf5up decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.mf5up model.hu))}}%</td>
+                    </tr>
+                    {{/if}}
+                    {{#if model.mobile}}
+                    <tr>
+                      <td>{{defined-term key="MOBILE"}}</td>
+                      <td>{{number-format model.mobile decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.mobile model.hu))}}%</td>
+                    </tr>
+                    {{/if}}
                   {{/if}}
 
 
@@ -439,17 +460,6 @@
 
             <div class="row">
               <div class="column">
-                {{#if model.rptdemp}}
-                  <div class="field">
-                    <label for="rptdemp">
-                      {{defined-term key="REPORTED_EMPLOYMENT"}}
-                    </label>
-                    {{number-format model.rptdemp decimals=0}}
-                  </div>
-                {{/if}}
-              </div>
-
-              <div class="column">
                 {{#if model.hotelrms}}
                   <div class="field">
                     <label for="hotelrms">
@@ -471,6 +481,106 @@
             <div class="table-wrapper">
               <div class="table-heading">
                 <h3 class="field">
+                  <label for="rptdemp">
+                    {{defined-term key="REPORTED_EMPLOYMENT"}}
+                  </label>
+                </h3>
+                <span>
+                  {{#if model.rptdemp}}
+                    {{number-format model.rptdemp decimals=0}}
+                  {{else}}
+                    <em>No Reported Employment Information</em>
+                  {{/if}}
+                </span>
+              </div>
+
+              {{#if model.commsf}}
+                <table class="commercial-makeup emp">
+                  <tr class="table-header">
+                    <td>Use Type</td>
+                    <td># of Employment</td>
+                    <td>Percentage</td>
+                  </tr>
+
+                  {{#if model.empedu}}
+                    <tr>
+                     <td>Education</td>
+                     <td>{{number-format model.empedu decimals=0}}</td>
+                     <td>{{round (mult 100 (div model.empedu model.rptdemp))}}%</td>
+                   </tr>
+                  {{/if}}
+                
+                  {{#if model.empfoo}}
+                    <tr>
+                      <td>Food</td>
+                     <td>{{number-format model.empfoo decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.empfoo model.rptdemp))}}%</td>
+                   </tr>
+                 {{/if}}
+
+                 {{#if model.empgov}}
+                   <tr>
+                     <td>Government</td>
+                     <td>{{number-format model.empgov decimals=0}}</td>
+                     <td>{{round (mult 100 (div model.empgov model.rptdemp))}}%</td>
+                   </tr>
+                  {{/if}}
+
+                  {{#if model.empind}}
+                   <tr>
+                      <td>Industrial</td>
+                      <td>{{number-format model.empind decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.empind model.rptdemp))}}%</td>
+                   </tr>
+                  {{/if}}
+
+                  {{#if model.empmed}}
+                    <tr>
+                      <td>Medical</td>
+                      <td>{{number-format model.empmed decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.empmed model.rptdemp))}}%</td>
+                   </tr>
+                 {{/if}}
+
+                  {{#if model.empofc}}
+                    <tr>
+                      <td>Office</td>
+                      <td>{{number-format model.empofc decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.empofc model.rptdemp))}}%</td>
+                    </tr>
+                  {{/if}}
+
+                  {{#if model.empoth}}
+                    <tr>
+                      <td>Other</td>
+                      <td>{{number-format model.empoth decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.empoth model.rptdemp))}}%</td>
+                    </tr>
+                  {{/if}}
+
+                  {{#if model.empret}}
+                    <tr>
+                      <td>Retail</td>
+                      <td>{{number-format model.empret decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.empret model.rptdemp))}}%</td>
+                    </tr>
+                  {{/if}}
+
+                  {{#if model.empsvc}}
+                    <tr>
+                      <td>Service</td>
+                      <td>{{number-format model.empsvc decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.empsvc model.rptdemp))}}%</td>
+                    </tr>
+                  {{/if}}               
+                 
+                </table>
+              {{/if}}
+            </div>
+
+            <div class="table-wrapper">
+              <div class="table-heading">
+                <h3 class="field">
                   <label for="commsf">
                     {{defined-term key="COMMERCIAL_AREA"}}
                   </label>
@@ -479,7 +589,7 @@
                   {{#if model.commsf}}
                     {{number-format model.commsf decimals=0}} sqft.
                   {{else}}
-                    <em>No Commercial Usage</em>
+                    <em>No Commercial SQFT Information</em>
                   {{/if}}
                 </span>
               </div>
@@ -559,6 +669,37 @@
               {{/if}}
             </div>
           </article>
+           <article>
+            {{#if (or (gt model.studk12p 0) (gt model.studunip 0))}}
+              <h4>School</h4>
+              <div class="row">
+                <div class="column">
+                  {{#if (gt model.studk12p 0)}}
+                    <div class="field">
+                      <label for="studk12p">
+                        {{defined-term key="STUDENT_ENROLLMENT_KTO12"}}
+                      </label>
+                      {{number-format model.studk12p decimals=0}}
+                   </div>
+                  {{/if}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="column">
+                  {{#if (gt model.studunip 0)}}
+                    <div class="field">
+                      <label for="studunip">
+                        {{defined-term key="STUDENT_ENROLLMENT_UNIVERSITY"}}
+                      </label>
+                      {{number-format model.studunip decimals=0}}
+                   </div>
+                  {{/if}}
+                </div>
+            </div>
+            {{/if}}
+            
+          </article>
+
           <article>
             {{#if model.mixedUse}}
               <div class="field long-form">

@@ -228,6 +228,52 @@ class Edit < ApplicationRecord
         },
         "aff_unknown": {
           "type": "number"
+        },
+        "mf2_4": {
+          "type": "number"
+
+        },
+        "mf5up": {
+          "type": "number"
+        },
+        "mobile":{
+          "type": "number"
+        },
+        "school": {
+          "type": "boolean"
+        },
+        "studk12p":{
+          "type": "number"
+        },
+        "studunip":{
+          "type": "number"
+        },
+        "empedu":{
+          "type": "number"
+        },
+        "empfoo":{
+          "type": "number"
+        },
+        "empgov":{
+          "type": "number"
+        },
+        "empind":{
+          "type": "number"
+        },
+        "empmed":{
+          "type": "number"
+        },
+        "empofc":{
+          "type": "number"
+        }, 
+        "empoth":{
+          "type": "number"
+        },
+        "empret":{
+          "type": "number"
+        },
+        "empsvc":{
+          "type": "number"
         }
       }
     }

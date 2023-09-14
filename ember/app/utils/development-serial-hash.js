@@ -9,6 +9,7 @@ const manual = {
   'aff5080': 'aff_50_80',
   'aff80120': 'aff_80_120',
   'aff120p': 'aff_120p',
+  'mf24': 'mf2_4'
 };
 
 export default manual;
