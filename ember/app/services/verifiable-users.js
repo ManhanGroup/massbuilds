@@ -24,6 +24,8 @@ export default class extends Service {
           .query('user', { request_verified_status: true }))
           .then(res => this.set('_count', res.toArray().length));
     }
+    // computed property getters must return a value but this one is a hack
+    return {}
   }
 
 

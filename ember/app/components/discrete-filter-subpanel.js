@@ -22,6 +22,8 @@ export default class extends Component {
   @computed('selectedValues')
   get valueUpdater() {
     this.set('selected', copy(this.get('selectedValues')));
+    // computed properties should return a value, but valueUpdater is hacked to get `selected` to update correctly
+    return {}
   }
 
 
