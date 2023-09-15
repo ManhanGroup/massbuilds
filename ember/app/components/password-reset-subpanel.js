@@ -27,7 +27,7 @@ export default class extends Component {
   }
 
   @computed
-  checkParams() {
+  get checkParams() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('reset_password_token')) {
       return true;
