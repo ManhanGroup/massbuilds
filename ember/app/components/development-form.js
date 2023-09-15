@@ -39,6 +39,9 @@ export default class extends Component {
     this.knownHousingFields = [
       'singfamhu',
       'multifam',
+      'mf24',
+      'mf5up',
+      'mobile'
     ];
 
     this.allHousingFields = [
@@ -54,8 +57,25 @@ export default class extends Component {
       'rndSqft',
       'eiSqft',
       'otherSqft',
-      'hotelSqft',
+      'hotelSqft',      
     ];
+
+    this.srtaEmpFields=[      
+      'empedu',
+      'empfoo',
+      'empgov',
+      'empind',
+      'empmed',
+      'empofc', 
+      'empoth',
+      'empret',
+      'empsvc'
+    ];
+
+    this.srtaSchoolFields=[
+      'studk12p',
+      'studunip',
+    ]
 
     this.allCommercialAreaFields = [
       ...this.knownCommercialFields,
@@ -83,6 +103,7 @@ export default class extends Component {
       ...this.baseCommercialFields,
       ...this.allCommercialAreaFields,
       ...this.miscCommercialFields,
+      ...this.srtaEmpFields,
     ];
 
     this.allResidentialFields = [
@@ -101,6 +122,7 @@ export default class extends Component {
       'descr',
       ...this.baseResidentialFields,
       ...this.baseCommercialFields,
+      ...this.srtaSchoolFields,
     ];
 
     const projected = [
@@ -247,6 +269,13 @@ export default class extends Component {
     this.handleUpdate(fieldName);
     this.handleUpdate('commsf', this.sumProperties(
         this.get('allCommercialAreaFields').map(field => `editing.${field}`)));
+  }
+
+  @action
+  updateRptdEmp(fieldName) {
+    this.handleUpdate(fieldName);
+    this.handleUpdate('rptdemp', this.sumProperties(
+        this.get('allsrtaEmpFields').map(field => `editing.${field}`)));
   }
 
 

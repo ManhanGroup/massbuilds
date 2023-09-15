@@ -1,13 +1,20 @@
 import DS from 'ember-data';
 import config from 'calbuilds/config/environment';
-import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 
-export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
+export default DS.JSONAPIAdapter.extend({
+  session: service(),
+
   host: config.host,
-  authorize(xhr) {
-    let { email, token } = this.get('session.data.authenticated');
-    let authData = `Token token="${token}", email="${email}"`;
-    xhr.setRequestHeader('Authorization', authData);
-  }
+
+  headers: computed('session.data.authenticated.token', function() {
+    let headers = {};
+    if (this.get('session.isAuthenticated')) {
+      let { email, token } = this.get('session.data.authenticated');
+      headers['Authorization'] = `Token token="${token}", email="${email}"`;
+    }
+    return headers;
+  })
 });
