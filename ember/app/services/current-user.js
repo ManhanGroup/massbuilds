@@ -1,26 +1,14 @@
-import RSVP from 'rsvp';
-import { isEmpty } from '@ember/utils';
 import Service from '@ember/service';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
-
-export default class extends Service {
-
+export default class CurrentUserService extends Service {
   @service session
   @service store
 
-
-  load() {
-    const email = this.get('session.data.authenticated.email');
-
-    if (!isEmpty(email)) {
-      return this.get('store').queryRecord('user', { email }).then(user => {
-        this.set('user', user);
-      });
-    }
-    else {
-      return RSVP.resolve();
+  async load() {
+    if (this.session.isAuthenticated) {
+      let user = await this.store.queryRecord('user', { me: true });
+      this.set('user', user);
     }
   }
-
 }
