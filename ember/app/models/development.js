@@ -66,6 +66,20 @@ export default class extends DS.Model {
   @attr('number') affUnknown;
   @attr('number') publicsqft;
   @attr('number') projId;
+  @attr('number') mf24;
+  @attr('number') mf5up;
+  @attr('number') mobile;
+  @attr('number') studk12p;
+  @attr('number') studunip;
+  @attr('number') empedu;
+  @attr('number') empfoo;
+  @attr('number') empgov;
+  @attr('number') empind;
+  @attr('number') empmed;
+  @attr('number') empofc;
+  @attr('number') empoth;
+  @attr('number') empret;
+  @attr('number') empsvc;
 
   @attr('boolean', { default: false }) rdv;
   @attr('boolean', { default: false }) asofright;
