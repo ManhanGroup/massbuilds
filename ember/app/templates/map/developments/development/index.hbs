@@ -328,16 +328,16 @@
                       <td>{{number-format model.multifam decimals=0}}</td>
                       <td>{{round (mult 100 (div model.multifam model.hu))}}%</td>
                     </tr>
-                    {{#if model.mf2_4}}
+                    {{#if model.mf24}}
                     <tr>
-                      <td>{{defined-term key="MULTI_FAMILY_2to4"}}</td>
-                      <td>{{number-format model.mf2_4 decimals=0}}</td>
-                      <td>{{round (mult 100 (div model.mf2_4 model.hu))}}%</td>
+                      <td>{{defined-term key="MULTI_FAMILY_2TO4"}}</td>
+                      <td>{{number-format model.mf24 decimals=0}}</td>
+                      <td>{{round (mult 100 (div model.mf24 model.hu))}}%</td>
                     </tr>
                     {{/if}}
                     {{#if model.mf5up}}
                     <tr>
-                      <td>{{defined-term key="MULTI_FAMILY_5up"}}</td>
+                      <td>{{defined-term key="MULTI_FAMILY_5UP"}}</td>
                       <td>{{number-format model.mf5up decimals=0}}</td>
                       <td>{{round (mult 100 (div model.mf5up model.hu))}}%</td>
                     </tr>
@@ -494,7 +494,7 @@
                 </span>
               </div>
 
-              {{#if model.commsf}}
+              {{#if model.rptdemp}}
                 <table class="commercial-makeup emp">
                   <tr class="table-header">
                     <td>Use Type</td>
@@ -677,7 +677,7 @@
                   {{#if (gt model.studk12p 0)}}
                     <div class="field">
                       <label for="studk12p">
-                        {{defined-term key="STUDENT_ENROLLMENT_KTO12"}}
+                        {{defined-term key="STUDENT_ENROLLMENT_KTOHIGH"}}
                       </label>
                       {{number-format model.studk12p decimals=0}}
                    </div>

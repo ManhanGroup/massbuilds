@@ -95,8 +95,8 @@ const filters = {
   'ovr55': { name: 'Age restricted', glossaryKey: 'AGE_RESTRICTED', type: 'boolean', ...defaultMetric },
   
   //srta only fields
-  'mf2_4': {name: 'Multifamily units 2-4', glossaryKey: 'MULTI_FAMILY_2TO4', type: 'number', ...defaultMetric},
-  'mf5up': {name: 'Multifamily units 5up', glossaryKey: 'MULTI_FAMILY_5UP', type: 'number', ...defaultMetric},
+  'mf2_4': {name: 'Medium Density Multi-family', glossaryKey: 'MULTI_FAMILY_2TO4', type: 'number', ...defaultMetric},
+  'mf5up': {name: 'High Density Multi-family', glossaryKey: 'MULTI_FAMILY_5UP', type: 'number', ...defaultMetric},
   'mobile': {name: 'Mobile Home', glossaryKey: 'MOBILE', type: 'number', ...defaultMetric},
  
   // Commercial
@@ -117,17 +117,17 @@ const filters = {
   
   //srta only
   
-  'studunip': {name: 'Student Enrollment University', glossaryKey: 'STUDENT_ENROLLMENT_UNIVERSITY', type: 'number', ...defaultMetric},
-  'studk12p': {name: 'Student Enrollment K', glossaryKey: 'STUDENT_ENROLLMENT_KTO12', type: 'number', ...defaultMetric},
-  'empedu': {name: 'Employment in Education', glossaryKey: 'EDUCATION_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empfoo': {name: 'Employment in Food Service', glossaryKey: 'FOOD_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empgov': {name: 'Employment in Government', glossaryKey: 'GOVERNMENT_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empind': {name: 'Employment in Industry', glossaryKey: 'INDUSTRY_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empmed': {name: 'Employment in Medical Service', glossaryKey: 'MEDICAL_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empofc': {name: 'Employment in Office', glossaryKey: 'OFFICE_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empoth': {name: 'Employment in Other', glossaryKey: 'OTHER_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empret': {name: 'Employment in Retail', glossaryKey: 'RETAIL_EMPLOYMENT', type: 'number', ...defaultMetric},
-  'empsvc': {name: 'Employment in Service', glossaryKey: 'SERVICE_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'studunip': {name: 'Enrollment University', glossaryKey: 'STUDENT_ENROLLMENT_UNIVERSITY', type: 'number', ...defaultMetric},
+  'studk12p': {name: 'Enrollment Kindergarten to 12th Grade', glossaryKey: 'STUDENT_ENROLLMENT_KTOHIGH', type: 'number', ...defaultMetric},
+  'empedu': {name: 'Education', glossaryKey: 'EDUCATION_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empfoo': {name: 'Food Service', glossaryKey: 'FOOD_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empgov': {name: 'Government', glossaryKey: 'GOVERNMENT_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empind': {name: 'Industry', glossaryKey: 'INDUSTRY_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empmed': {name: 'Medical Service', glossaryKey: 'MEDICAL_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empofc': {name: 'Office', glossaryKey: 'OFFICE_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empoth': {name: 'Other', glossaryKey: 'OTHER_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empret': {name: 'Retail', glossaryKey: 'RETAIL_EMPLOYMENT', type: 'number', ...defaultMetric},
+  'empsvc': {name: 'Service', glossaryKey: 'SERVICE_EMPLOYMENT', type: 'number', ...defaultMetric},
  
 
 };

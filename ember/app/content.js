@@ -160,6 +160,24 @@ const content = {
         'Attached single family homes or townhouses and multifamily homes.',
       ],
     },
+    MULTI_FAMILY_2TO4: {
+      label: 'Medium Density Multi-family',
+      definition: [
+        'Structures with 2 to 4 units.',
+      ],
+    },
+    MULTI_FAMILY_5UP: {
+      label: 'High Density Multi-family',
+      definition: [
+        'Structures with 5 or more units.',
+      ],
+    },
+    MOBILE: {
+      label: 'Mobile Home',
+      definition: [
+        'Mobile home.',
+      ],
+    },
     LARGE_MULTI_FAMILY: {
       label: 'Large Multi-family',
       definition: [
@@ -218,6 +236,14 @@ const content = {
       label: 'Traffic Count URL',
       definition: ['A URL linking to the Caltrans DOT Transportation Impact Assessment Monitoring Report database or another source of data about traffic monitoring/traffic counts.']
     },
+    STUDENT_ENROLLMENT_KTOHIGH: {
+      label: 'Enrollment Kindergarten to 12th Grade',
+      definition: ['Estimated or reported student Enrollment from Kindergarten to 12th Grade for the development dedicated to education uses.']
+    },
+    STUDENT_ENROLLMENT_UNIVERSITY: {
+      label: 'Enrollment University',
+      definition: ['Estimated or reported university student Enrollment for the development dedicated to college education uses.']
+    },
   }, // End of Glossary
 
   OTHER_TERMS: {
@@ -227,7 +253,8 @@ const content = {
     },
     REPORTED_EMPLOYMENT: {
       label: 'Reported Employment',
-      definition: ['If new employment figures are given for a development, enter them into Estimated if the figures are estimates or Reported if they are officially reported new employment figures.'],
+      definition: ['If new employment figures are given for a development, enter them into Estimated if the figures are estimates or Reported if they are officially reported new employment figures.',
+          ],
     },
     RETAIL_AREA: {
       label: 'Retail',
@@ -289,6 +316,42 @@ const content = {
         'If the unit types are unknown, enter the number of housing units here.',
       ],
     },
+    EDUCATION_EMPLOYMENT: {
+      label: 'Education',
+      definition: ['Employment of the development dedicated to educational uses.'],
+    },
+    FOOD_EMPLOYMENT: {
+      label: 'Food Service',
+      definition: ['Employment of the development dedicated to food prepartion or services uses.'],
+    },
+    GOVERNMENT_EMPLOYMENT: {
+      label: 'Government',
+      definition: ['Employment of the development dedicated to government uses.'],
+    },
+    INDUSTRY_EMPLOYMENT: {
+      label: 'Industry',
+      definition: ['Employment of the development dedicated to industry uses.'],
+    },
+    MEDICAL_EMPLOYMENT: {
+      label: 'Medical Service',
+      definition: ['Employment of the development dedicated to medical service uses.'],
+    },
+    OFFICE_EMPLOYMENT: {
+      label: 'Office',
+      definition: ['Employment of the development dedicated to office uses.'],
+    },
+    OTHER_EMPLOYMENT: {
+      label: 'Other',
+      definition: ['Employment of the development dedicated to other uses.'],
+    },
+    RETAIL_EMPLOYMENT :{
+      label: 'Retail',
+      definition: ['Employment of the development dedicated to retail uses.'],
+    },
+    SERVICE_EMPLOYMENT: {
+      label: 'Service',
+      definition: ['Employment of the development dedicated to service uses.'],
+   },
   }
 };
 

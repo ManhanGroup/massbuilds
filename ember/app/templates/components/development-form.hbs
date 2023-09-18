@@ -524,7 +524,7 @@
                 </td>
               </tr>
 
-              {{#if (eq userAgency 'SRTA')}}
+              {{#if (eq userAgency 'SRTA') }} 
                 <tr>
                   <td>
                     <label for="mf24">{{defined-term key="MULTI_FAMILY_2TO4"}}</label>
@@ -534,7 +534,7 @@
                       class=(if inValid.mf24 'invalid')
                       value=editing.mf24
                       placeholder='-'
-                      input=(action updateHu 'mf24')}}
+                      input=(action updateMultifam 'mf24')}}
                   </td>
                   <td>
                     {{#if (gt editing.hu 0)}}
@@ -554,7 +554,7 @@
                       class=(if inValid.mf5up 'invalid')
                       value=editing.mf5up
                       placeholder='-'
-                      input=(action updateHu 'mf5up')}}
+                      input=(action updateMultifam 'mf5up')}}
                   </td>
                   <td>
                     {{#if (gt editing.hu 0)}}
@@ -569,7 +569,7 @@
               <tr>
                 <td>
                   <label for="mobile">
-                    {{defined-term key="MOBILE_HOUSING_UNITS"}}
+                    {{defined-term key="MOBILE"}}
                   </label>
                 </td>
                 <td>
@@ -1055,7 +1055,7 @@
             </table>          
           </div>
 
-          {{#if (eq userAgency 'SRTA') }} 
+         
           <div class="table-wrapper">
             <div class="table-heading">
               <h3 class="field">
@@ -1278,7 +1278,7 @@
               </tr>           
             </table>
           </div>
-        {{/if}}
+        
 
         </article>
       {{/if}}
@@ -1298,7 +1298,7 @@
             <div class="column">
               <div class="field">
                 <label for="studk12p">
-                  {{defined-term key='STUDENT_ENROLLMENT_KTO12'}}
+                  {{defined-term key='STUDENT_ENROLLMENT_KTOHIGH'}}
                 </label>
                 {{input
                   class=(if inValid.studk12p 'invalid')

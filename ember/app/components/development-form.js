@@ -39,13 +39,17 @@ export default class extends Component {
     this.knownHousingFields = [
       'singfamhu',
       'multifam',
-      'mf24',
-      'mf5up',
       'mobile'
+    ];
+
+    this.knownMultifamFields = [
+      'mf24',
+      'mf5up'
     ];
 
     this.allHousingFields = [
       ...this.knownHousingFields,
+      ...this.knownMultifamFields,
       'unknownhu',
     ];
 
@@ -253,6 +257,13 @@ export default class extends Component {
     this.handleUpdate(fieldName);
     this.handleUpdate('hu', this.sumProperties(
         this.get('allHousingFields').map(field => `editing.${field}`)));
+  }
+
+  @action
+  updateMultifam(fieldName) {
+    this.handleUpdate(fieldName);
+    this.handleUpdate('multifam', this.sumProperties(
+        this.get('allMultifamFields').map(field => `editing.${field}`)));
   }
 
 
