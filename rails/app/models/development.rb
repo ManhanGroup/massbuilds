@@ -79,7 +79,7 @@ class Development < ApplicationRecord
 
   def self.to_shp
     attributes = self.column_names.select { |attr| !(@@excluded_attrs_from_export.include? attr) }
-    sql = all.select(attributes.join(", ") + ", ST_Transform(point, 26986) as point").to_sql
+    sql = all.select(attributes.join(", ") + ", point").to_sql
 
     database = Rails.configuration.database_configuration[Rails.env]
     # user name, password and database name must be filled
