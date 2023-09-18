@@ -328,28 +328,29 @@
                       <td>{{number-format model.multifam decimals=0}}</td>
                       <td>{{round (mult 100 (div model.multifam model.hu))}}%</td>
                     </tr>
-                    {{#if model.mf24}}
+                  {{/if}}
+                  {{#if (gt model.mf24 0)}}
                     <tr>
                       <td>{{defined-term key="MULTI_FAMILY_2TO4"}}</td>
                       <td>{{number-format model.mf24 decimals=0}}</td>
                       <td>{{round (mult 100 (div model.mf24 model.hu))}}%</td>
                     </tr>
-                    {{/if}}
-                    {{#if model.mf5up}}
+                  {{/if}}
+                  {{#if (gt model.mf5up 0)}}
                     <tr>
                       <td>{{defined-term key="MULTI_FAMILY_5UP"}}</td>
                       <td>{{number-format model.mf5up decimals=0}}</td>
                       <td>{{round (mult 100 (div model.mf5up model.hu))}}%</td>
                     </tr>
-                    {{/if}}
-                    {{#if model.mobile}}
+                  {{/if}}
+                  {{#if (gt model.mobile 0)}}
                     <tr>
                       <td>{{defined-term key="MOBILE"}}</td>
                       <td>{{number-format model.mobile decimals=0}}</td>
                       <td>{{round (mult 100 (div model.mobile model.hu))}}%</td>
                     </tr>
-                    {{/if}}
                   {{/if}}
+                  
 
 
                   {{#if model.unknownhu}}
@@ -494,7 +495,7 @@
                 </span>
               </div>
 
-              {{#if model.rptdemp}}
+              {{#if (and (gt model.rptdemp 0) (eq model.county 'Shasta'))}}
                 <table class="commercial-makeup emp">
                   <tr class="table-header">
                     <td>Use Type</td>

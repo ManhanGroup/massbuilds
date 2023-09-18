@@ -39,6 +39,7 @@ const filters = {
   'devlper': { name: 'Developer', ...defaultDiscrete },
   'municipal':  { name: 'Town/City', ...defaultDiscrete },
   'nhood': { name: 'Neighborhood', ...defaultDiscrete },
+  'county': {name: 'County', ...defaultDiscrete},
 
   // Key Info
 
