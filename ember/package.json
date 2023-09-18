@@ -12,6 +12,8 @@
   "repository": "https://github.com/manhangroup/calbuilds",
   "scripts": {
     "build": "ember build",
+    "s": "ember server",
+    "pres": "yarn",
     "start": "ember server",
     "test": "ember test"
   },
