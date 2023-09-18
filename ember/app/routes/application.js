@@ -17,16 +17,15 @@ export default Route.extend({
   },
 
   sessionAuthenticated() {
-    this._super(...arguments);
-    this._loadCurrentUser();
+    const _super = this._super;
+
+    this._loadCurrentUser()
+      .then(() => {
+        _super.call(this, ...arguments);
+      });
   },
 
-
-  async _loadCurrentUser() {
-    try {
-      await this.get('currentUser').load()
-    } catch(err) {
-      await this.get('session').invalidate()
-    }
+  _loadCurrentUser() {
+    return this.get('currentUser').load().catch(() => this.get('session').invalidate());
   }
 });
