@@ -179,7 +179,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.json "geojson"
     t.string "apn"
     t.string "agency"
-    t.index ["apn"], name: "parcels_apn_idx", where: "((COALESCE(apn, ''::character varying))::text <> ''::text)"
     t.index ["geom"], name: "parcels_geom_idx", using: :gist
   end
 
