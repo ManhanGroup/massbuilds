@@ -47,7 +47,7 @@
     "ember-composable-helpers": "^2.1.0",
     "ember-cookies": "^1",
     "ember-data": "~3.0.0",
-    "ember-decorators": "^2",
+    "ember-decorators": "^6",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^8.1.2",
     "ember-load-initializers": "^2.0.0",

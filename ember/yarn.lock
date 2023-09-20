@@ -1593,65 +1593,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ember-decorators/component@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "@ember-decorators/component@npm:2.5.2"
+"@ember-decorators/component@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@ember-decorators/component@npm:6.1.1"
   dependencies:
-    "@ember-decorators/utils": ^2.5.2
-    ember-cli-babel: ^6.6.0
-  checksum: 88d80d12c47ca0c0fac6a129d2484acb265ab266fa4f28b8cb5bbe038c507f44eb2f263579dd2ffb79fe0609da5d76912bd1c5d3cf0a7b1c1372f711f0c1e3c6
+    "@ember-decorators/utils": ^6.1.1
+    ember-cli-babel: ^7.1.3
+  checksum: 0b731884ff2d84db32eae9c006179153ad1d7f93eee040260d0622101017f363caf38db98e536ffd4008312af91cc57a8dda0d0f2c71f80d3643d5456658bee6
   languageName: node
   linkType: hard
 
-"@ember-decorators/controller@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "@ember-decorators/controller@npm:2.5.2"
+"@ember-decorators/object@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@ember-decorators/object@npm:6.1.1"
   dependencies:
-    "@ember-decorators/utils": ^2.5.2
-    ember-cli-babel: ^6.6.0
-  checksum: f52e70ac06989aca2c27d0fafba1ee6363c758d913107cf8429877bd9ef0f9374e2f398e56ae9d387d6190201fea0a4cb085389fa7ddd754007f7e58822e2041
+    "@ember-decorators/utils": ^6.1.1
+    ember-cli-babel: ^7.1.3
+  checksum: 806f753a58ecca5924da110efa614e9a33b4ed7734aa5e67ea41a8a5f555734852e50e78dadcd269407efe1cc08756e8dbc55c077183892f9dc38a0701b8641d
   languageName: node
   linkType: hard
 
-"@ember-decorators/data@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "@ember-decorators/data@npm:2.5.2"
+"@ember-decorators/utils@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@ember-decorators/utils@npm:6.1.1"
   dependencies:
-    "@ember-decorators/utils": ^2.5.2
-    ember-cli-babel: ^6.6.0
-  checksum: 643292fd4afb12958af0d243c22f34fa9af7f4d4317adb77a99c2bded4f155d3565eff476e7f0179a33394e77a0c3af28c09a901cef6403c9575995b5d504efa
-  languageName: node
-  linkType: hard
-
-"@ember-decorators/object@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "@ember-decorators/object@npm:2.5.2"
-  dependencies:
-    "@ember-decorators/utils": ^2.5.2
-    ember-cli-babel: ^6.6.0
-    ember-compatibility-helpers: ^1.0.0
-  checksum: 2466c77e84921622d3a64d91f8929fc6b16d5a6a4bd7aa5e345ceb8d6554771b07aeefd3afb660667c44e38cb28c2d09d418de431cbd4f8a6f6b4db92ce1092b
-  languageName: node
-  linkType: hard
-
-"@ember-decorators/service@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "@ember-decorators/service@npm:2.5.2"
-  dependencies:
-    "@ember-decorators/utils": ^2.5.2
-    ember-cli-babel: ^6.6.0
-  checksum: d645436ec375c73cd3c2fdb2a92f32f063b044aa9b3038879a6700ca2939ac7af27b6490757dae5367f4af1dc2afff4e3b9d65855626c466a2b29e21381309c6
-  languageName: node
-  linkType: hard
-
-"@ember-decorators/utils@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "@ember-decorators/utils@npm:2.5.2"
-  dependencies:
-    babel-plugin-debug-macros: ^0.1.11
-    ember-cli-babel: ^6.6.0
-    ember-compatibility-helpers: ^1.0.0
-  checksum: 53483f59c73572e588b1bbf02320965fef763838da90f6783496ff23e5520e92cf9e26347f3eab5950ae97e611cb65f98de662f3c53fae64669274e2e755a79b
+    ember-cli-babel: ^7.1.3
+  checksum: 979075021ce824a263859dc236285b37afee98b1583060cfab9c3583a4888612155bb66a23a4f4d24ab0ca9f459b38a458d32f825f0df073ca38a7f6e0187dc1
   languageName: node
   linkType: hard
 
@@ -3649,15 +3616,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-debug-macros@npm:^0.1.11":
-  version: 0.1.11
-  resolution: "babel-plugin-debug-macros@npm:0.1.11"
-  dependencies:
-    semver: ^5.3.0
-  checksum: 619797fd63444100291b6b834090f4d4a17449fa8f8070292bba80951c6ef80247bc0f075262dd6f263815ab44335ac9e607f3588b0a96dd9456d32ca9c9deb1
-  languageName: node
-  linkType: hard
-
 "babel-plugin-debug-macros@npm:^0.2.0, babel-plugin-debug-macros@npm:^0.2.0-beta.6":
   version: 0.2.0
   resolution: "babel-plugin-debug-macros@npm:0.2.0"
@@ -5389,7 +5347,7 @@ __metadata:
     ember-composable-helpers: ^2.1.0
     ember-cookies: ^1
     ember-data: ~3.0.0
-    ember-decorators: ^2
+    ember-decorators: ^6
     ember-export-application-global: ^2.0.0
     ember-fetch: ^8.1.2
     ember-load-initializers: ^2.0.0
@@ -6510,7 +6468,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-cli-babel@npm:^7.0.0, ember-cli-babel@npm:^7.1.0, ember-cli-babel@npm:^7.1.2, ember-cli-babel@npm:^7.13.0, ember-cli-babel@npm:^7.20.5, ember-cli-babel@npm:^7.23.1, ember-cli-babel@npm:^7.26.11, ember-cli-babel@npm:^7.26.6, ember-cli-babel@npm:^7.7.3":
+"ember-cli-babel@npm:^7.0.0, ember-cli-babel@npm:^7.1.0, ember-cli-babel@npm:^7.1.2, ember-cli-babel@npm:^7.1.3, ember-cli-babel@npm:^7.13.0, ember-cli-babel@npm:^7.20.5, ember-cli-babel@npm:^7.23.1, ember-cli-babel@npm:^7.26.11, ember-cli-babel@npm:^7.26.6, ember-cli-babel@npm:^7.7.3":
   version: 7.26.11
   resolution: "ember-cli-babel@npm:7.26.11"
   dependencies:
@@ -7058,7 +7016,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-compatibility-helpers@npm:^1.0.0, ember-compatibility-helpers@npm:^1.1.2":
+"ember-compatibility-helpers@npm:^1.1.2":
   version: 1.2.6
   resolution: "ember-compatibility-helpers@npm:1.2.6"
   dependencies:
@@ -7139,18 +7097,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-decorators@npm:^2":
-  version: 2.5.2
-  resolution: "ember-decorators@npm:2.5.2"
+"ember-decorators@npm:^6":
+  version: 6.1.1
+  resolution: "ember-decorators@npm:6.1.1"
   dependencies:
-    "@ember-decorators/component": ^2.5.2
-    "@ember-decorators/controller": ^2.5.2
-    "@ember-decorators/data": ^2.5.2
-    "@ember-decorators/object": ^2.5.2
-    "@ember-decorators/service": ^2.5.2
-    ember-cli-babel: ^6.0.0
-    semver: ^5.5.0
-  checksum: 95122dc0263c2d17e75688929f23357ebd19a35388d33a9acffc871953373aa14d30c23d994f1f4abfc207829ab30b56199ff256d1b989520a92f351b675083f
+    "@ember-decorators/component": ^6.1.1
+    "@ember-decorators/object": ^6.1.1
+    ember-cli-babel: ^7.7.3
+  checksum: ffe95d41dae393586190340c0e65d772c2132ff50269ef21a408d999e10fff79214ac9e14a49e1a94bf3fdd18c660759bc23c79de9ca41375f0e9ba8204b5168
   languageName: node
   linkType: hard
 
