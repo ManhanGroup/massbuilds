@@ -1719,7 +1719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ember/test-waiters@npm:^3.0.2":
+"@ember/test-waiters@npm:^3, @ember/test-waiters@npm:^3.0.2":
   version: 3.0.2
   resolution: "@ember/test-waiters@npm:3.0.2"
   dependencies:
@@ -1731,7 +1731,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@embroider/addon-shim@npm:^1.7.1":
+"@embroider/addon-shim@npm:^1.0.0, @embroider/addon-shim@npm:^1.7.1":
   version: 1.8.6
   resolution: "@embroider/addon-shim@npm:1.8.6"
   dependencies:
@@ -4289,13 +4289,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base-64@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "base-64@npm:0.1.0"
-  checksum: 5a42938f82372ab5392cbacc85a5a78115cbbd9dbef9f7540fa47d78763a3a8bd7d598475f0d92341f66285afd377509851a9bb5c67bbecb89686e9255d5b3eb
-  languageName: node
-  linkType: hard
-
 "base64id@npm:2.0.0, base64id@npm:~2.0.0":
   version: 2.0.0
   resolution: "base64id@npm:2.0.0"
@@ -4680,7 +4673,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"broccoli-file-creator@npm:^2.0.0, broccoli-file-creator@npm:^2.1.1":
+"broccoli-file-creator@npm:^2.1.1":
   version: 2.1.1
   resolution: "broccoli-file-creator@npm:2.1.1"
   dependencies:
@@ -4757,7 +4750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"broccoli-funnel@npm:^1.2.0 || ^2.0.0, broccoli-funnel@npm:^2.0.0, broccoli-funnel@npm:^2.0.1, broccoli-funnel@npm:^2.0.2":
+"broccoli-funnel@npm:^2.0.0, broccoli-funnel@npm:^2.0.1, broccoli-funnel@npm:^2.0.2":
   version: 2.0.2
   resolution: "broccoli-funnel@npm:2.0.2"
   dependencies:
@@ -4854,7 +4847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"broccoli-merge-trees@npm:^2.0.0 || ^3.0.0, broccoli-merge-trees@npm:^3.0.1, broccoli-merge-trees@npm:^3.0.2":
+"broccoli-merge-trees@npm:^3.0.1, broccoli-merge-trees@npm:^3.0.2":
   version: 3.0.2
   resolution: "broccoli-merge-trees@npm:3.0.2"
   dependencies:
@@ -5398,7 +5391,7 @@ __metadata:
     ember-moment: ^8.0.0
     ember-radio-button: ^2.0.1
     ember-resolver: ^11.0.0
-    ember-simple-auth: ^3.0.0
+    ember-simple-auth: ^6.0.0
     ember-source: ~3.0.0
     ember-truth-helpers: ^2.0.0
     ember-welcome-page: ^3.0.0
@@ -6510,7 +6503,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-cli-babel@npm:^7.0.0, ember-cli-babel@npm:^7.1.0, ember-cli-babel@npm:^7.1.2, ember-cli-babel@npm:^7.13.0, ember-cli-babel@npm:^7.20.5, ember-cli-babel@npm:^7.23.1, ember-cli-babel@npm:^7.26.11, ember-cli-babel@npm:^7.26.6, ember-cli-babel@npm:^7.7.3":
+"ember-cli-babel@npm:^7.0.0, ember-cli-babel@npm:^7.1.0, ember-cli-babel@npm:^7.1.2, ember-cli-babel@npm:^7.13.0, ember-cli-babel@npm:^7.23.1, ember-cli-babel@npm:^7.26.11, ember-cli-babel@npm:^7.26.6, ember-cli-babel@npm:^7.7.3":
   version: 7.26.11
   resolution: "ember-cli-babel@npm:7.26.11"
   dependencies:
@@ -7083,17 +7076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-cookies@npm:^0.5.0":
-  version: 0.5.2
-  resolution: "ember-cookies@npm:0.5.2"
-  dependencies:
-    ember-cli-babel: ^7.1.0
-    ember-getowner-polyfill: ^1.1.0 || ^2.0.0
-  checksum: f046692a6d421a1077aed0a11c25303f48860919f256c0d1618043d117f2fb331a9529fab385826f207cb2d5fa83415b844fe09c1cf88383022f349cfb2f8eff
-  languageName: node
-  linkType: hard
-
-"ember-cookies@npm:^1":
+"ember-cookies@npm:^1, ember-cookies@npm:^1.0.0":
   version: 1.0.0
   resolution: "ember-cookies@npm:1.0.0"
   dependencies:
@@ -7202,7 +7185,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-getowner-polyfill@npm:^1.1.0 || ^2.0.0, ember-getowner-polyfill@npm:^2.2.0":
+"ember-getowner-polyfill@npm:^2.2.0":
   version: 2.2.0
   resolution: "ember-getowner-polyfill@npm:2.2.0"
   dependencies:
@@ -7359,21 +7342,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-simple-auth@npm:^3.0.0":
-  version: 3.1.0
-  resolution: "ember-simple-auth@npm:3.1.0"
+"ember-simple-auth@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "ember-simple-auth@npm:6.0.0"
   dependencies:
-    base-64: ^0.1.0
-    broccoli-file-creator: ^2.0.0
-    broccoli-funnel: ^1.2.0 || ^2.0.0
-    broccoli-merge-trees: ^2.0.0 || ^3.0.0
-    ember-cli-babel: ^7.20.5
+    "@ember/test-waiters": ^3
+    "@embroider/addon-shim": ^1.0.0
+    "@embroider/macros": ^1.0.0
     ember-cli-is-package-missing: ^1.0.0
-    ember-cookies: ^0.5.0
+    ember-cookies: ^1.0.0
     silent-error: ^1.0.0
   peerDependencies:
-    ember-fetch: ^8.0.1
-  checksum: c93fe6e635525058fe81c55b2eed6470be41a3bfa5d27f419542cd765fc0a0218982e1bd0605b3628ae011e50f864538fa19cd9617713424e78fd1d4454e23c3
+    "@ember/test-helpers": ">= 3 || > 2.7"
+  peerDependenciesMeta:
+    "@ember/test-helpers":
+      optional: true
+  checksum: aed3be063c777a2cddc55c2cb4f6471a48c8d87c2648b8efa71b533a7366209c21f12db5df962bc59557b64f30d34d0807010bbe9ac47dc420f25f55a442ef3c
   languageName: node
   linkType: hard
 
