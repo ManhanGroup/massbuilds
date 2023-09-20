@@ -1731,7 +1731,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@embroider/addon-shim@npm:^1.7.1":
+"@embroider/addon-shim@npm:^1.7.1, @embroider/addon-shim@npm:^1.8.6":
   version: 1.8.6
   resolution: "@embroider/addon-shim@npm:1.8.6"
   dependencies:
@@ -5400,7 +5400,7 @@ __metadata:
     ember-resolver: ^11.0.0
     ember-simple-auth: ^3.0.0
     ember-source: ~3.0.0
-    ember-truth-helpers: ^2.0.0
+    ember-truth-helpers: ^4.0.3
     ember-welcome-page: ^3.0.0
     loader.js: ^4.2.3
     lodash-es: ^4.17.21
@@ -7192,6 +7192,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ember-functions-as-helper-polyfill@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "ember-functions-as-helper-polyfill@npm:2.1.2"
+  dependencies:
+    ember-cli-babel: ^7.26.11
+    ember-cli-typescript: ^5.0.0
+    ember-cli-version-checker: ^5.1.2
+  peerDependencies:
+    ember-source: ^3.25.0 || >=4.0.0
+  checksum: ed1fa320d73f684501b54ecf0679fc39d9db930a192dd0caba33c41672956ac3cf686fce1db8c67c03471fbd9023bcbe1ce11cdd664ac6b2dfffaf3a76e061cc
+  languageName: node
+  linkType: hard
+
 "ember-get-config@npm:":
   version: 2.1.1
   resolution: "ember-get-config@npm:2.1.1"
@@ -7409,12 +7422,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ember-truth-helpers@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "ember-truth-helpers@npm:2.1.0"
+"ember-truth-helpers@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "ember-truth-helpers@npm:4.0.3"
   dependencies:
-    ember-cli-babel: ^6.6.0
-  checksum: c65eb10f612a993e24b906f5e28ed64b27350a7d8c8fdc899aa47f3b97f8ce245c78962f7d02cd613436eec6036bf20fb7eac6d7f49028408980f18d8d8001a1
+    "@embroider/addon-shim": ^1.8.6
+    ember-functions-as-helper-polyfill: ^2.1.2
+  peerDependencies:
+    ember-source: ">=3.28.0"
+  checksum: bcf81ab9848237fa336aa944a928e6894ab9fa50cf1ee37c9bd2721cba4a12728c61f08a52cb635aa9cd625c6451af5704030318e4b5a0b47ed141fe86e6f408
   languageName: node
   linkType: hard
 
