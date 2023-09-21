@@ -10,9 +10,9 @@ module('Integration | Component | defined term', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{defined-term}}`);
+    await render(hbs`{{defined-term key='DEVELOPER'}}`);
 
-    assert.dom('*').hasText('');
+    assert.dom('*').hasText('Developer');
 
     // Template block usage:
     await render(hbs`

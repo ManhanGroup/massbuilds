@@ -12,7 +12,7 @@ module('Integration | Component | account subpanel', function(hooks) {
 
     await render(hbs`{{account-subpanel}}`);
 
-    assert.dom('*').hasText('');
+    assert.dom('*').hasText('Create Development My Developments My Edits Logout');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | account subpanel', function(hooks) {
       {{/account-subpanel}}
     `);
 
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText('Create Development My Developments My Edits Logout');
   });
 });
