@@ -1,11 +1,10 @@
 import DS from 'ember-data';
 import config from 'calbuilds/config/environment';
-import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
 
-export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
+export default DS.JSONAPIAdapter.extend({
   session: service(),
 
   host: config.host,

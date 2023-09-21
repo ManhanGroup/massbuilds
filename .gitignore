@@ -1,2 +1,10 @@
 .vscode/*
 /tmp
+
+ember/.yarn/*
+!ember/.yarn/cache
+!ember/.yarn/patches
+!ember/.yarn/plugins
+!ember/.yarn/releases
+!ember/.yarn/sdks
+!ember/.yarn/versions

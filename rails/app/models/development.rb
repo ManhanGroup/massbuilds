@@ -79,7 +79,7 @@ class Development < ApplicationRecord
 
   def self.to_shp
     attributes = self.column_names.select { |attr| !(@@excluded_attrs_from_export.include? attr) }
-    sql = all.select(attributes.join(", ") + ", ST_Transform(point, 26986) as point").to_sql
+    sql = all.select(attributes.join(", ") + ", point").to_sql
 
     database = Rails.configuration.database_configuration[Rails.env]
     # user name, password and database name must be filled
@@ -124,27 +124,16 @@ class Development < ApplicationRecord
 
   def geocode
     return if !saved_change_to_point?
-    #result = Faraday.get "https://pelias.mapc.org/v1/reverse?point.lat=#{self.latitude}&point.lon=#{self.longitude}"
-    #if result && JSON.parse(result.body)['features'].length > 0
-      #properties = JSON.parse(result.body)['features'][0]['properties']
-      #config.logger.debug "entering geocoding"
-      addr_query = <<~SQL
-      SELECT site_addr,muni, apn, addr_zip
-      FROM parcels
-      WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
-    SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(addr_query).to_a[0]
-    return if sql_result.blank?
+    result = Faraday.get "https://nominatim.openstreetmap.org/reverse?format=geojson&lat=#{self.latitude}&lon=#{self.longitude}"
+    if result && JSON.parse(result.body)['features'].length > 0
+      properties = JSON.parse(result.body)['features'][0]['properties']
+      config.logger.debug "entering geocoding"
       self.update_columns(
-        #municipal: (properties['locality'] || properties['localadmin'] || self.municipal),
-        #address: (properties['street'] || self.address),
-        #zip_code: (properties['postalcode'] || self.zip_code)
-        municipal: sql_result['muni'],
-        apn: sql_result['apn'],
-        address: sql_result['site_addr'],
-        zip_code: sql_result['addr_zip']
-      )
-    #end
+        municipal: (properties['address']['city'] || self.municipal),
+        address: ((properties['address']['house_number'] || '')+' '+ properties['address']['road'] || self.address),
+        zip_code: (properties['address']['postcode'] || self.zip_code)
+        )
+    end
     
   end
 
