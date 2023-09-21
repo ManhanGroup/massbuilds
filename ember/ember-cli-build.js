@@ -28,7 +28,6 @@ module.exports = function (defaults) {
     babel: {
       loose: true,
       plugins: [
-        '@babel/plugin-proposal-object-rest-spread',
         [require.resolve('ember-auto-import/babel-plugin')],
       ],
     },
