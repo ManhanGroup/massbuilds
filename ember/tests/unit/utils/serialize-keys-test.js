@@ -1,10 +1,26 @@
 import serializeKeys from 'calbuilds/utils/serialize-keys';
 import { module, test } from 'qunit';
+import { camelize } from '@ember/string';
 
 module('Unit | Utility | serialize keys', function() {
-  // Replace this with your real tests.
+  // Test camelize
   test('it works', function(assert) {
-    let result = serializeKeys();
-    assert.ok(result);
+    const input = {
+      'Neighborhood-one': 'nhood-nbhood',
+      'APNtoday': 'apn',
+      'DeveloperSchmeveloper': 'devlper',
+      'Town/City-camelmePlease': 'municipal',
+    };
+
+    const expectedResult = {
+      'neighborhoodOne': 'nhood-nbhood',
+      'aPNtoday': 'apn',
+      'developerSchmeveloper': 'devlper',
+      'town/cityCamelmePlease': 'municipal',
+    };
+
+    let result = serializeKeys(input, camelize);
+    
+    assert.equal(JSON.stringify(result), JSON.stringify(expectedResult))
   });
 });

@@ -21,6 +21,6 @@ module('Integration | Component | defined term', function(hooks) {
       {{/defined-term}}
     `);
 
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText('Undefined');
   });
 });

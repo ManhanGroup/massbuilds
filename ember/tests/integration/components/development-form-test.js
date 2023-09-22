@@ -8,9 +8,14 @@ module('Integration | Component | development form', function(hooks) {
 
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
+    this.set('editing', {'parkType': 'unknown'})
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{development-form}}`);
+    await render(hbs`
+      {{development-form
+        editing=editing
+      }}
+    `);
 
     assert.dom('*').hasText('');
 
