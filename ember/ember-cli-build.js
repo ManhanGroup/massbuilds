@@ -26,6 +26,7 @@ module.exports = function (defaults) {
     },
 
     babel: {
+      sourceMaps: 'inline',
       loose: true,
       plugins: [
         [require.resolve('ember-auto-import/babel-plugin')],
