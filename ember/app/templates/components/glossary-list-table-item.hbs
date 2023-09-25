@@ -9,14 +9,14 @@
     {{#each definition as |paragraph|}}
       <p>{{paragraph}}</p>
     {{/each}}
+    <table>
+      {{#each table as |row|}}
+        <tr>
+          {{#each row as |cell|}}
+            <td>{{ cell }}</td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </table>
   </article>
-  <table>
-    {{#each table as |row|}}
-      <tr>
-        {{#each row as |cell|}}
-          <td>{{ cell }}</td>
-        {{/each}}
-      </tr>
-    {{/each}}
-  </table>
 </li>
