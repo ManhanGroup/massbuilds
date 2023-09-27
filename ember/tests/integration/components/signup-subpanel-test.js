@@ -12,15 +12,6 @@ module('Integration | Component | signup subpanel', function(hooks) {
 
     await render(hbs`{{signup-subpanel}}`);
 
-    assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#signup-subpanel}}
-        template block text
-      {{/signup-subpanel}}
-    `);
-
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText("Signup Would you like to request verified status? No Yes, as a member state or regional government Yes, as a member of city or town government Signup Already have an account? Login here");
   });
 });

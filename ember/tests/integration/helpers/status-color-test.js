@@ -9,11 +9,11 @@ module('helper:status-color', function(hooks) {
 
   // Replace this with your real tests.
   test('it renders', async function(assert) {
-    this.set('inputValue', '1234');
+    this.set('inputValue', 'grey');
 
     await render(hbs`{{status-color inputValue}}`);
 
-    assert.dom('*').hasText('1234');
+    assert.dom('*').hasText('grey');
   });
 });
 

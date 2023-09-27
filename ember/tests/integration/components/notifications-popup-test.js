@@ -13,14 +13,5 @@ module('Integration | Component | notifications popup', function(hooks) {
     await render(hbs`{{notifications-popup}}`);
 
     assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#notifications-popup}}
-        template block text
-      {{/notifications-popup}}
-    `);
-
-    assert.dom('*').hasText('template block text');
   });
 });

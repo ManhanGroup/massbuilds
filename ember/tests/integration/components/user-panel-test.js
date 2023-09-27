@@ -12,15 +12,6 @@ module('Integration | Component | user panel', function(hooks) {
 
     await render(hbs`{{user-panel}}`);
 
-    assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#user-panel}}
-        template block text
-      {{/user-panel}}
-    `);
-
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText("A visual database for detailed information on real-estate developments in AMBAG and SLOCOG region. Learn more Login Logging In Login Forgot password? Don't have an account? Signup here");
   });
 });

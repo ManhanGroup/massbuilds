@@ -12,15 +12,6 @@ module('Integration | Component | verified mark', function(hooks) {
 
     await render(hbs`{{verified-mark}}`);
 
-    assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#verified-mark}}
-        template block text
-      {{/verified-mark}}
-    `);
-
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText('Verified');
   });
 });

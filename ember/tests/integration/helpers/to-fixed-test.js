@@ -9,11 +9,11 @@ module('helper:to-fixed', function(hooks) {
 
   // Replace this with your real tests.
   test('it renders', async function(assert) {
-    this.set('inputValue', '1234');
+    this.set('inputValue', 123.0352);
+    this.set('decimals', 3)
+    await render(hbs`{{to-fixed inputValue decimals}}`);
 
-    await render(hbs`{{to-fixed inputValue}}`);
-
-    assert.dom('*').hasText('1234');
+    assert.dom('*').hasText('123.035');
   });
 });
 

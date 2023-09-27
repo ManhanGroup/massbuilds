@@ -27,6 +27,7 @@ module Calbuilds
 
     known_hosts = [
       'http://localhost:4200',
+      'http://localhost:7357',
       'https://staging.calbuilds.com',
       'https://calbuilds.com',
       'https://www.calbuilds.com',

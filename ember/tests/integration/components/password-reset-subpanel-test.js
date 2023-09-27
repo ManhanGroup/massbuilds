@@ -12,15 +12,6 @@ module('Integration | Component | password reset subpanel', function(hooks) {
 
     await render(hbs`{{password-reset-subpanel}}`);
 
-    assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#password-reset-subpanel}}
-        template block text
-      {{/password-reset-subpanel}}
-    `);
-
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText("Password Reset Resetting Password Reset Password Already know your password? Login here Don't have an account? Signup here");
   });
 });
