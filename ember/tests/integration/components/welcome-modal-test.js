@@ -12,15 +12,6 @@ module('Integration | Component | welcome modal', function(hooks) {
 
     await render(hbs`{{welcome-modal}}`);
 
-    assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#welcome-modal}}
-        template block text
-      {{/welcome-modal}}
-    `);
-
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText("Welcome to CalBuilds! x CalBuilds is your Metropolitan Planning Organization’s collaborative inventory of past, present and future real estate development projects. This tool provides governments, data analysts, urban planners, community advocates, and real estate developers with comprehensive data for thousands of projects across California. Learn more Continue to CalBuilds");
   });
 });

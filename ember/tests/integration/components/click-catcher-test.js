@@ -13,14 +13,5 @@ module('Integration | Component | click catcher', function(hooks) {
     await render(hbs`{{click-catcher}}`);
 
     assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#click-catcher}}
-        template block text
-      {{/click-catcher}}
-    `);
-
-    assert.dom('*').hasText('template block text');
   });
 });

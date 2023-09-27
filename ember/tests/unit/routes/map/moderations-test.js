@@ -5,7 +5,7 @@ module('Unit | Route | map/moderations', function(hooks) {
   setupTest(hooks);
 
   test('it exists', function(assert) {
-    let route = this.owner.lookup('route:map/moderations');
+    let route = this.owner.lookup('route:map/moderations/index');
     assert.ok(route);
   });
 });
