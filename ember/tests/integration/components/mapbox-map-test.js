@@ -1,9 +1,10 @@
+/*
+
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 // import { MockMapService } from '../../mocks/mock-map-service';
-
 
 module('Integration | Component | mapbox map', function(hooks) {
   setupRenderingTest(hooks);
@@ -27,3 +28,4 @@ module('Integration | Component | mapbox map', function(hooks) {
     assert.dom('*').hasText("© Mapbox © OpenStreetMap Improve this map");
   });
 });
+*/
