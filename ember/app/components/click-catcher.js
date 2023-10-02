@@ -16,6 +16,15 @@ export default class extends Component {
     this.windowHeight = 0;
   }
 
+  didInsertElement() {
+    this.set('windowWidth', window.innerWidth);
+    this.set('windowHeight', window.innerHeight);
+    window.addEventListener("resize", () => {
+      this.set('windowWidth', window.innerWidth);
+      this.set('windowHeight', window.innerHeight);
+    });
+  }
+
   @computed('openTerm', 'termLabelElement')
   get rect() {
     const element = this.get('termLabelElement');
@@ -23,11 +32,11 @@ export default class extends Component {
     return element.getBoundingClientRect();
   }
 
-  @computed('rect')
+  @computed('rect', 'windowWidth', 'windowHeight')
   get orientation() {
     if (!this.get('rect')) { return 'top-left'; }
-    const midWidth = this.element.getBoundingClientRect().width / 2;
-    const midHeight = this.element.getBoundingClientRect().height / 2;
+    const midWidth = window.innerWidth/ 2;
+    const midHeight = window.innerHeight / 2;
     const rect = this.get('rect');
     if (rect.top > midHeight && rect.left < midWidth) {
       return 'bottom-left';
@@ -37,7 +46,7 @@ export default class extends Component {
 
   @computed('openTerm')
   get label() {
-    if (!this.get('openTerm')) {
+    if (!content.TERMS[this.get('openTerm')]) {
       return '';
     }
     return content.TERMS[this.get('openTerm')].label;
@@ -45,19 +54,19 @@ export default class extends Component {
 
   @computed('openTerm')
   get definition() {
-    if (!this.get('openTerm')) { return ''; }
+    if (!content.TERMS[this.get('openTerm')]) { return ''; }
     return content.TERMS[this.get('openTerm')].definition;
   }
 
   @computed('openTerm')
   get definitionShort() {
-    if (!this.get('openTerm')) { return ''; }
+    if (!content.TERMS[this.get('openTerm')]) { return ''; }
     return content.TERMS[this.get('openTerm')].definitionShort;
   }
 
   @computed('openTerm')
   get unitsShort() {
-    if (!this.get('openTerm')) { return ''; }
+    if (!content.TERMS[this.get('openTerm')]) { return ''; }
     return content.TERMS[this.get('openTerm')].unitsShort;
   }
 
@@ -80,7 +89,7 @@ export default class extends Component {
     if (!rect) { return '0'; }
 
     if (orientation == 'bottom-left') {
-      return `${this.element.getBoundingClientRect().height - rect.bottom - 16}px`;
+      return `${window.innerHeight - rect.bottom - 16}px`;
     }
     return 'auto';
   }
