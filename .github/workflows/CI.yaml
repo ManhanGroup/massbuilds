@@ -32,16 +32,10 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Get Yarn cache directory
-        id: yarn-cache-dir
-        run: echo "dir=$(cd ember && yarn config get cacheFolder)" >> $GITHUB_ENV
-      - uses: actions/cache@v2
-        id: yarn-cache
+      - name: Set up Node.js ⚙️
+        uses: actions/setup-node@v2
         with:
-          path: ${{ env.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version: '18.x'
+          cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn ember test
