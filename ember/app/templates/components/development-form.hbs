@@ -10,7 +10,7 @@
     {{/if}}
 
     {{#loading-spinner message=loadingSpinnerText isLoading=isLoading}}
-      <button onclick={{action update}} class='submit-changes styled' disabled={{not (and fulfilled changes)}}>
+      <button id="submitDevelopmentFormButton" onclick={{action update}} class='submit-changes styled' disabled={{not (and fulfilled changes)}}>
         {{submitText}}
       </button>
     {{/loading-spinner}}

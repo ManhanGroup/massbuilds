@@ -107,7 +107,6 @@ export default class extends Component {
       ...this.baseCommercialFields,
       ...this.allCommercialAreaFields,
       ...this.miscCommercialFields,
-      ...this.srtaEmpFields,
     ];
 
     this.allResidentialFields = [
@@ -126,7 +125,6 @@ export default class extends Component {
       'descr',
       ...this.baseResidentialFields,
       ...this.baseCommercialFields,
-      ...this.srtaSchoolFields,
     ];
 
     const projected = [
