@@ -1,0 +1,14 @@
+.logo-collection {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1em;
+    .logo-image {
+        height: auto;
+        max-width: 30%;
+        max-height: 4em;
+        &.sign-up {
+            max-height: 2em;
+        }
+    }
+}
