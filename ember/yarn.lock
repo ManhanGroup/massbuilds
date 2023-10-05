@@ -4155,26 +4155,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"broccoli-asset-rev@npm:^2.4.5":
-  version: 2.7.0
-  resolution: "broccoli-asset-rev@npm:2.7.0"
+"broccoli-asset-rev@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "broccoli-asset-rev@npm:3.0.0"
   dependencies:
-    broccoli-asset-rewrite: ^1.1.0
+    broccoli-asset-rewrite: ^2.0.0
     broccoli-filter: ^1.2.2
     broccoli-persistent-filter: ^1.4.3
     json-stable-stringify: ^1.0.0
     minimatch: ^3.0.4
     rsvp: ^3.0.6
-  checksum: e8c3d91233e2b17044d79304ebabc1c8a427c4f8b3eec10fd7fdd70dbd5cfefdbc793078df7558a1903b5f5ba94b423f4574b01d8830dea62c2cd9aecd4a87ad
+  checksum: 92822588babb5d82d3a09ce6e3646f59400566138c3a3824c93cdff568cbf74a318900a41be64bb39b322ec8442099ccc11932f335e877637823c1bf0a6de0d6
   languageName: node
   linkType: hard
 
-"broccoli-asset-rewrite@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "broccoli-asset-rewrite@npm:1.1.0"
+"broccoli-asset-rewrite@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "broccoli-asset-rewrite@npm:2.0.0"
   dependencies:
     broccoli-filter: ^1.2.3
-  checksum: 93c9586cfe4d115f07b0a86a16b28ca90d8cbb3da77a01e126e336c5e79365e7dfb91d3b79fdd4db311bfb74448168baba68eb7c485e5f516e4c3e56f6f07ccb
+  checksum: 05a8d882ca6e3f2fd073650acb65e0f2c0945529c09a47b1b220455a0a67099e0d5bed7a0c52b7aaee40ad5f07f8e6db20b641aceb5330256b801fe1b8e39952
   languageName: node
   linkType: hard
 
@@ -5043,7 +5043,7 @@ __metadata:
     "@turf/boolean-point-in-polygon": ^6.5.0
     "@turf/center-of-mass": ^6.5.0
     babel-eslint: ^8.0.2
-    broccoli-asset-rev: ^2.4.5
+    broccoli-asset-rev: ^3.0.0
     ember-auto-import: ^2.4.2
     ember-cli: ^3.0.4
     ember-cli-app-version: ^3.2.0

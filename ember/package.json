@@ -22,7 +22,7 @@
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/center-of-mass": "^6.5.0",
     "babel-eslint": "^8.0.2",
-    "broccoli-asset-rev": "^2.4.5",
+    "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^2.4.2",
     "ember-cli": "^3.0.4",
     "ember-cli-app-version": "^3.2.0",
