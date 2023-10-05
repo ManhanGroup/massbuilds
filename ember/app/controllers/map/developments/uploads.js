@@ -12,10 +12,8 @@ export default class extends Controller {
 
 
   @action
-  uploadFile(file) {
-    let uploadData = file.blob
-    let formData = new FormData();
-    formData.append('file', uploadData);
+  uploadFile(event) {
+    let formData = new FormData(event.currentTarget);
     fetch(`${config.host}/developments/import`, {
       method: 'POST',
       body: formData,

@@ -83,7 +83,7 @@ class Development < ApplicationRecord
 
   def self.import file
     # csv import copied from rails/lib/tasks/import.rake
-    csv_text = File.read(file.path)
+    csv_text = File.read(file)
     csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
 
     csv.each do |row|
@@ -211,7 +211,6 @@ class Development < ApplicationRecord
     result = Faraday.get "https://nominatim.openstreetmap.org/reverse?format=geojson&lat=#{self.latitude}&lon=#{self.longitude}"
     if result && JSON.parse(result.body)['features'].length > 0
       properties = JSON.parse(result.body)['features'][0]['properties']
-      config.logger.debug "entering geocoding"
       self.update_columns(
         municipal: (properties['address']['city'] || self.municipal),
         address: ((properties['address']['house_number'] || '')+' '+ properties['address']['road'] || self.address),

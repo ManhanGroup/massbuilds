@@ -64,7 +64,7 @@ class DevelopmentsController < ApplicationController
   # POST /developments/import
   def import
     # TODO: ensure that the user id of the uploader is reflected in each development
-    Development.import( params[:file] )
+    Development.import( params[:filename] )
     # TODO: possibly redirect to uploaded developments here
     # TODO: add exception handling
   end

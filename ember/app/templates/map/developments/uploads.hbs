@@ -6,11 +6,8 @@
         Close
       {{/link-to}}
     </div>
-    {{#file-upload name="developmentUpload" accept="text/csv" onfileadd=(action 'uploadFile')}}
-            <div class="icon-wrapper">
-        <img src="/assets/images/plus.svg">
-        </div>
-
-        File upload
-    {{/file-upload}}
+    <form onsubmit={{action "uploadFile"}}>
+      <input type="file" id="myFile" name="filename">
+      <input type="submit">
+    </form>
 </section>
