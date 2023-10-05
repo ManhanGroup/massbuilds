@@ -1,10 +1,10 @@
 import Component from '@ember/component';
 import config from 'calbuilds/config/environment';
-import { action, computed } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import fetch from 'fetch';
 
 export default class extends Component {
-  @service ajax;
   @service notifications;
 
   constructor() {
@@ -27,7 +27,7 @@ export default class extends Component {
   }
 
   @computed
-  checkParams() {
+  get checkParams() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('reset_password_token')) {
       return true;
@@ -55,12 +55,15 @@ export default class extends Component {
 
       const email = this.get('username');
 
-      this.get('ajax')
-        .post(`${config.host}/password_resets`, {
-          contentType: 'application/json',
-          accept: 'application/json',
-          data: { email },
+      fetch(`${config.host}/password_resets`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email
         })
+      })
         .then(() => {
           this.get('notifications').show(
             `You have successfully requested to reset your password for ${email}! Please check your email.`
@@ -86,24 +89,25 @@ export default class extends Component {
       this.set('errorMessage', null);
 
       const urlParams = new URLSearchParams(window.location.search);
-
-      this.get('ajax')
-        .put(`${config.host}/my/users/password`, {
-          contentType: 'application/vnd.api+json',
-          accept: 'application/vnd.api+json',
+      fetch(`${config.host}/my/users/password`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'accept': 'application/vnd.api+json',
+        },
+        body: JSON.stringify({
           data: {
-            data: {
-              type: 'user',
-              id: null,
-              attributes: {
-                password: this.get('password'),
-                password_conformation: this.get('password_confirmation'),
-                commit: 'Change my password',
-                reset_password_token: urlParams.get('reset_password_token'),
-              },
+            type: 'user',
+            id: null,
+            attributes: {
+              password: this.get('password'),
+              password_conformation: this.get('password_confirmation'),
+              commit: 'Change my password',
+              reset_password_token: urlParams.get('reset_password_token'),
             },
           },
-        })
+        }),
+      })
         .then(() => {
           this.get('notifications').show(
             'You have successfully reset your password! Please log in.'

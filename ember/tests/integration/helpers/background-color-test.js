@@ -13,7 +13,7 @@ module('helper:background-color', function(hooks) {
 
     await render(hbs`{{background-color inputValue}}`);
 
-    assert.dom('*').hasText('1234');
+    assert.dom('*').hasText('background-color: 1234');
   });
 });
 

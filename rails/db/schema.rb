@@ -10,86 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_194018) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
-
-  create_table "ambag_2015_taz", id: false, force: :cascade do |t|
-    t.bigint "id"
-    t.float "area"
-    t.bigint "taz_number"
-    t.bigint "universalt"
-    t.float "pumaregion"
-    t.float "tract_id"
-    t.text "blockgroup"
-    t.text "county"
-    t.text "jurisdicti"
-    t.float "jurisdict1"
-    t.bigint "population"
-    t.bigint "groupquart"
-    t.bigint "households"
-    t.float "agricultur"
-    t.float "constructi"
-    t.float "industrial"
-    t.float "retail_emp"
-    t.float "service_em"
-    t.float "public_emp"
-    t.float "total_empl"
-    t.float "agr"
-    t.float "mfg"
-    t.float "tr_con"
-    t.float "whl"
-    t.float "ret"
-    t.float "fire"
-    t.float "edu"
-    t.float "hlt"
-    t.float "srv"
-    t.float "pub"
-    t.float "self"
-    t.float "total_emp1"
-    t.bigint "k12_enroll"
-    t.bigint "university"
-    t.bigint "visitors"
-    t.bigint "hotel_room"
-    t.text "external_s"
-    t.text "region"
-    t.float "urban_zone"
-    t.float "rural_zone"
-    t.float "nounivtrip"
-    t.float "visitor_sh"
-    t.text "taz_descri"
-    t.float "f2005_taz"
-    t.float "salinas_su"
-    t.text "bg"
-    t.float "hhp1"
-    t.float "hhp2"
-    t.float "hhp3"
-    t.float "hhp4"
-    t.float "hhp5"
-    t.float "hh1"
-    t.float "hh2"
-    t.float "hh3"
-    t.float "hh4"
-    t.float "hh5"
-    t.float "hhveh0"
-    t.float "hhveh1"
-    t.float "hhveh2"
-    t.float "hhveh3"
-    t.float "hhinc1"
-    t.float "hhinc2"
-    t.float "hhinc3"
-    t.float "hhinc4"
-    t.float "hhinc5"
-    t.float "hhinc6"
-    t.float "hhinc7"
-    t.float "workers"
-    t.float "nonworkers"
-    t.float "daypark"
-    t.float "hourpark"
-    t.geometry "geometry", limit: {:srid=>4269, :type=>"geometry"}
-    t.index ["geometry"], name: "idx_AMBAG_2015_TAZ_geometry", using: :gist
-  end
 
   create_table "ca_place", primary_key: "gid", id: :serial, force: :cascade do |t|
     t.string "geoid"
@@ -97,25 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_194018) do
     t.string "namelsad"
     t.geometry "geom", limit: {:srid=>4269, :type=>"multi_polygon"}
     t.index ["geom"], name: "ca_place_geom_idx", using: :gist
-  end
-
-  create_table "census2020tracts_poly", primary_key: "ogc_fid", id: :serial, force: :cascade do |t|
-    t.decimal "objectid", precision: 9
-    t.string "statefp", limit: 80
-    t.string "countyfp", limit: 80
-    t.string "tractce", limit: 80
-    t.string "geoid", limit: 80
-    t.string "name", limit: 80
-    t.string "namelsad", limit: 80
-    t.string "mtfcc", limit: 80
-    t.string "funcstat", limit: 80
-    t.decimal "aland", precision: 38, scale: 8
-    t.decimal "awater", precision: 38, scale: 8
-    t.string "intptlat", limit: 80
-    t.string "intptlon", limit: 80
-    t.string "shape", limit: 254
-    t.geometry "wkb_geometry", limit: {:srid=>26986, :type=>"multi_polygon"}
-    t.index ["wkb_geometry"], name: "census2020tracts_poly_wkb_geometry_geom_idx", using: :gist
   end
 
   create_table "counties_polym", primary_key: "geoid", id: :string, force: :cascade do |t|
@@ -144,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_194018) do
     t.integer "year_compl"
     t.integer "prjarea"
     t.integer "singfamhu"
+    t.integer "multifam"
     t.integer "hu"
     t.integer "gqpop"
     t.integer "rptdemp"
@@ -169,21 +75,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_194018) do
     t.boolean "forty_b"
     t.boolean "residential"
     t.boolean "commercial"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "municipal"
     t.string "devlper"
     t.boolean "yrcomp_est"
+    t.integer "percomp_24"
+    t.integer "percomp_28"
+    t.integer "percomp_35"
+    t.integer "percomp_45"
     t.integer "units_1bd"
     t.integer "units_2bd"
     t.integer "units_3bd"
+    t.integer "unknownhu"
     t.integer "affrd_unit"
+    t.integer "aff_u50"
     t.integer "aff_50_80"
+    t.integer "aff_80_120"
+    t.integer "aff_120p"
+    t.integer "aff_unknown"
     t.boolean "headqtrs"
     t.string "park_type"
     t.integer "publicsqft"
-    t.integer "unknownhu"
-    t.integer "aff_unknown"
     t.integer "unk_sqft"
     t.bigint "loc_id"
     t.integer "parcel_fy"
@@ -198,22 +109,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_194018) do
     t.boolean "traffic_count_data_present"
     t.integer "taz"
     t.string "apn"
-    t.boolean "trunc"
-    t.integer "percomp_24"
-    t.integer "percomp_28"
-    t.integer "percomp_35"
-    t.integer "percomp_45"
-    t.text "gluc"
-    t.text "placetype"
-    t.text "mixeduse_desc"
-    t.integer "aff_u50"
-    t.integer "aff_80_120"
-    t.integer "aff_120p"
-    t.integer "multifam"
+    t.boolean "trunc", default: false
+    t.string "gluc"
+    t.string "placetype"
     t.integer "proj_id"
-    t.text "stat_comts"
-    t.text "mix_descr"
-    t.text "notes"
+    t.string "stat_comts"
+    t.string "mix_descr"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "sb_type"
+    t.integer "mf2_4"
+    t.integer "mf5up"
+    t.integer "mobile"
+    t.integer "studk12p"
+    t.integer "studunip"
+    t.integer "empedu"
+    t.integer "empfoo"
+    t.integer "empgov"
+    t.integer "empind"
+    t.integer "empmed"
+    t.integer "empofc"
+    t.integer "empoth"
+    t.integer "empret"
+    t.integer "empsvc"
+    t.boolean "school"
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
 
@@ -259,7 +179,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_194018) do
     t.json "geojson"
     t.string "apn"
     t.string "agency"
-    t.index ["apn"], name: "parcels_apn_idx", where: "((COALESCE(apn, ''::character varying))::text <> ''::text)"
     t.index ["geom"], name: "parcels_geom_idx", using: :gist
   end
 

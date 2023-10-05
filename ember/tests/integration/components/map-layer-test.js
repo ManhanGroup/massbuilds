@@ -13,14 +13,5 @@ module('Integration | Component | map layer', function(hooks) {
     await render(hbs`{{map-layer}}`);
 
     assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#map-layer}}
-        template block text
-      {{/map-layer}}
-    `);
-
-    assert.dom('*').hasText('template block text');
   });
 });

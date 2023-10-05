@@ -4,7 +4,7 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 
 export default Route.extend(ApplicationRouteMixin, {
-
+  session: service(),
   currentUser: service(),
 
 
@@ -28,6 +28,5 @@ export default Route.extend(ApplicationRouteMixin, {
       this.get('session').invalidate();
     });
   }
-
 
 });

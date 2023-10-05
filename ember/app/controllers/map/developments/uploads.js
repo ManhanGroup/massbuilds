@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import { service } from 'ember-decorators/service';
-import { action } from 'ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { action } from '@ember-decorators/object';
 import config from 'calbuilds/config/environment';
 import fetch from 'fetch';
 
@@ -27,11 +27,9 @@ export default class extends Controller {
       this.sendAction('redirect'); // ?? where is this going to go?
     })
     .catch((e) => {
-      console.log("upload failed")
-      console.log(e)
       this.set(
         'errorMessage',
-        'We could not upload more developments at this time.'
+        `We could not upload more developments at this time.${e}`
         // more details, was there a csv parsing error?
       );
     })

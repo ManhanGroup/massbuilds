@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import mapboxgl from 'mapbox-gl';
-import { computed } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
+import { computed } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 
 export const massLng = -121.846450;
 export const massLat = 36.58017;

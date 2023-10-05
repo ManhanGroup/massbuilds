@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { action, computed } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 
 export default class extends Component {
 
@@ -12,7 +12,7 @@ export default class extends Component {
   }
 
   @computed('active')
-  getClassNames() {
+  get getClassNames() {
     return this.get('active')
         ? 'component welcome-modal active'
         : 'component welcome-modal';

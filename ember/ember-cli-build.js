@@ -26,10 +26,9 @@ module.exports = function (defaults) {
     },
 
     babel: {
+      sourceMaps: 'inline',
       loose: true,
       plugins: [
-        '@babel/plugin-proposal-object-rest-spread',
-        ['@babel/plugin-proposal-decorators', { legacy: true }],
         [require.resolve('ember-auto-import/babel-plugin')],
       ],
     },

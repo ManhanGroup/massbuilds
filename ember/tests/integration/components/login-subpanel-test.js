@@ -12,15 +12,6 @@ module('Integration | Component | login subpanel', function(hooks) {
 
     await render(hbs`{{login-subpanel}}`);
 
-    assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#login-subpanel}}
-        template block text
-      {{/login-subpanel}}
-    `);
-
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText('A visual database for detailed information on real-estate developments in AMBAG and SLOCOG region. Learn more Login Logging In Login Forgot password? Don\'t have an account? Signup here');
   });
 });

@@ -1,14 +1,14 @@
 import { getOwner } from '@ember/application';
 import Component from '@ember/component';
-import { action, computed } from 'ember-decorators/object';
-import { reads } from 'ember-decorators/object/computed';
-import { service } from 'ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
+import { reads } from '@ember-decorators/object/computed';
+import { service } from '@ember-decorators/service';
 import filters from 'calbuilds/utils/filters';
 import DS from 'ember-data';
+import fetch from 'fetch';
 
 export default class extends Component {
   @service currentUser;
-  @service ajax;
   @service map;
 
   constructor() {
@@ -98,8 +98,7 @@ export default class extends Component {
 
     this.set('loading', true);
     return DS.PromiseArray.create({
-      promise: this.get('ajax')
-        .request(
+      promise: fetch(
           `https://ambag-postrest.herokuapp.com/address?mylabel=like.${searchQuery}*`
          // `https://pelias.ambag.org/v1/search?text=${searchQuery}` +
          //   `&boundary.country=USA&boundary.rect.min_lon=-73.5081481933594` +

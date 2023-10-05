@@ -1,8 +1,8 @@
 import { later } from '@ember/runloop';
 import Component from '@ember/component';
 import filters from 'calbuilds/utils/filters';
-import { service } from 'ember-decorators/service';
-import { action, computed } from 'ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
 
 
 export default class extends Component {
@@ -39,10 +39,17 @@ export default class extends Component {
     this.knownHousingFields = [
       'singfamhu',
       'multifam',
+      'mobile'
+    ];
+
+    this.knownMultifamFields = [
+      'mf24',
+      'mf5up'
     ];
 
     this.allHousingFields = [
       ...this.knownHousingFields,
+      ...this.knownMultifamFields,
       'unknownhu',
     ];
 
@@ -54,8 +61,25 @@ export default class extends Component {
       'rndSqft',
       'eiSqft',
       'otherSqft',
-      'hotelSqft',
+      'hotelSqft',      
     ];
+
+    this.srtaEmpFields=[      
+      'empedu',
+      'empfoo',
+      'empgov',
+      'empind',
+      'empmed',
+      'empofc', 
+      'empoth',
+      'empret',
+      'empsvc'
+    ];
+
+    this.srtaSchoolFields=[
+      'studk12p',
+      'studunip',
+    ]
 
     this.allCommercialAreaFields = [
       ...this.knownCommercialFields,
@@ -233,6 +257,13 @@ export default class extends Component {
         this.get('allHousingFields').map(field => `editing.${field}`)));
   }
 
+  @action
+  updateMultifam(fieldName) {
+    this.handleUpdate(fieldName);
+    this.handleUpdate('multifam', this.sumProperties(
+        this.get('allMultifamFields').map(field => `editing.${field}`)));
+  }
+
 
   @action
   updateAffrdUnit(fieldName) {
@@ -247,6 +278,13 @@ export default class extends Component {
     this.handleUpdate(fieldName);
     this.handleUpdate('commsf', this.sumProperties(
         this.get('allCommercialAreaFields').map(field => `editing.${field}`)));
+  }
+
+  @action
+  updateRptdEmp(fieldName) {
+    this.handleUpdate(fieldName);
+    this.handleUpdate('rptdemp', this.sumProperties(
+        this.get('allsrtaEmpFields').map(field => `editing.${field}`)));
   }
 
 

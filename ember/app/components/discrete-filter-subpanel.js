@@ -1,7 +1,7 @@
 import { copy } from '@ember/object/internals';
 import Component from '@ember/component';
-import { action, computed } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 import discreteMap from 'calbuilds/utils/discrete-map';
 
 

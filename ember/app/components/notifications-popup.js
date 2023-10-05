@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { service } from 'ember-decorators/service';
-import { computed } from 'ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { computed } from '@ember-decorators/object';
 
 
 export default class extends Component {

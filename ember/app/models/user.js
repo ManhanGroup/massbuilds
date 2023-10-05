@@ -1,6 +1,6 @@
 import DS from 'ember-data';
-import { computed } from 'ember-decorators/object';
-import { attr, hasMany } from 'ember-decorators/data';
+import { computed } from '@ember-decorators/object';
+import { attr, hasMany } from '@ember-decorators/data';
 
 
 export default class extends DS.Model {
@@ -23,19 +23,37 @@ export default class extends DS.Model {
   @computed('firstName', 'lastName')
   get fullName() {
     const { firstName, lastName } = this.getProperties('firstName', 'lastName');
-    return `${firstName} ${lastName}`;
+    return `${firstName} ${lastName}`;  
   }
 
-  @computed('firstName', 'lastName', 'email')
+  @computed('firstName', 'lastName', 'email', 'agency')
   get displayName() {
-    const { fullName, email } = this.getProperties('fullName', 'email');
-    return email.endsWith('ambag.org') ? 'AMBAG Staff' : fullName;
+    const { fullName, email, agency } = this.getProperties('fullName', 'email', 'agency');
+    if(email.endsWith('ambag.org') || agency==='AMBAG' ){
+      return 'AMBAG Staff';
+    } else if(email.endsWith('slocog.org') || agency==='SLOCOG'){
+      return 'SLOCOG Staff';
+    } else if(email.endsWith('srta.org') || agency==='SRTA'){
+      return 'SRTA Staff';
+    } else {
+      return fullName;
+    }
+
   }
 
   @computed('agency', 'email')
   get userAgency() {
     const {agency, email } = this.getProperties('agency', 'email');
-    return email.endsWith('ambag.org') || agency==='AMBAG'? 'AMBAG' : 'SLOCOG';
+   
+    if(email.endsWith('ambag.org') || agency==='AMBAG' ){
+      return 'AMBAG';
+    } else if(email.endsWith('slocog.org') || agency==='SLOCOG'){
+      return 'SLOCOG';
+    }else if(email.endsWith('srta.org') || agency==='SRTA'){
+      return 'SRTA';
+    } else{
+      return 'AMBAG'
+    }
   }
 
 }

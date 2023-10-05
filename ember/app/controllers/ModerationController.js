@@ -2,7 +2,7 @@ import { camelize } from '@ember/string';
 import { copy } from '@ember/object/internals';
 import Controller from '@ember/controller';
 import { filters } from 'calbuilds/utils/filters';
-import { action, computed } from 'ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 
 
 export default class extends Controller {

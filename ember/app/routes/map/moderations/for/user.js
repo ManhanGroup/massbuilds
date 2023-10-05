@@ -1,6 +1,6 @@
 import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 
 
 export default class extends Route {

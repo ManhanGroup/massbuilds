@@ -25,9 +25,6 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'connect-src': '*',
     },
-    'ember-simple-auth': {
-      authenticationRoute: 'map',
-    },
     admin: {
       email: 'ya@manhangroup.com',
     }
@@ -35,6 +32,10 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV['host'] = 'http://localhost:3000';
+    // extra logging options
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.APP.LOG_BINDINGS = true;
   }
 
   if (environment === 'staging') {
@@ -44,12 +45,13 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV['host'] = 'https://api.calbuilds.com';
+    ENV['host'] = 'https://calbuilds-api.herokuapp.com/';
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
+    ENV['host'] = 'http://localhost:3000';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;

@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 import Development from 'calbuilds/models/development';
 import castToModel from 'calbuilds/utils/cast-to-model';
-import { action, computed } from 'ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 
 
 export default class extends Controller {

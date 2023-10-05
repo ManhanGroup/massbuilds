@@ -1,7 +1,7 @@
 import Component from '@ember/component';
-import { action } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
-import { alias } from 'ember-decorators/object/computed';
+import { action } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { alias } from '@ember-decorators/object/computed';
 import content from 'calbuilds/content';
 
 export default class extends Component.extend({

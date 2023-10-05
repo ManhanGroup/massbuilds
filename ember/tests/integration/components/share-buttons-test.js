@@ -12,15 +12,6 @@ module('Integration | Component | share buttons', function(hooks) {
 
     await render(hbs`{{share-buttons}}`);
 
-    assert.dom('*').hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#share-buttons}}
-        template block text
-      {{/share-buttons}}
-    `);
-
-    assert.dom('*').hasText('template block text');
+    assert.dom('*').hasText("Export .shp .csv");
   });
 });

@@ -1,13 +1,11 @@
-import $ from 'jquery';
 import Component from '@ember/component';
-import { action, computed } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
-import { alias } from 'ember-decorators/object/computed';
+import { action, computed } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
+import { alias } from '@ember-decorators/object/computed';
 import content from 'calbuilds/content';
 
-export default class extends Component.extend({
-  tagName: '',
-}) {
+export default class extends Component {
+
   @service term
   @alias('term.openTerm') openTerm
   @alias('term.element') termLabelElement
@@ -19,11 +17,11 @@ export default class extends Component.extend({
   }
 
   didInsertElement() {
-    this.set('windowWidth', $(window).width());
-    this.set('windowHeight', $(window).height());
-    $(window).resize(() => {
-      this.set('windowWidth', $(window).width());
-      this.set('windowHeight', $(window).height());
+    this.set('windowWidth', window.innerWidth);
+    this.set('windowHeight', window.innerHeight);
+    window.addEventListener("resize", () => {
+      this.set('windowWidth', window.innerWidth);
+      this.set('windowHeight', window.innerHeight);
     });
   }
 
@@ -37,8 +35,8 @@ export default class extends Component.extend({
   @computed('rect', 'windowWidth', 'windowHeight')
   get orientation() {
     if (!this.get('rect')) { return 'top-left'; }
-    const midWidth = this.get('windowWidth') / 2;
-    const midHeight = this.get('windowHeight') / 2;
+    const midWidth = window.innerWidth/ 2;
+    const midHeight = window.innerHeight / 2;
     const rect = this.get('rect');
     if (rect.top > midHeight && rect.left < midWidth) {
       return 'bottom-left';
@@ -48,7 +46,7 @@ export default class extends Component.extend({
 
   @computed('openTerm')
   get label() {
-    if (!this.get('openTerm')) {
+    if (!content.TERMS[this.get('openTerm')]) {
       return '';
     }
     return content.TERMS[this.get('openTerm')].label;
@@ -56,19 +54,19 @@ export default class extends Component.extend({
 
   @computed('openTerm')
   get definition() {
-    if (!this.get('openTerm')) { return ''; }
+    if (!content.TERMS[this.get('openTerm')]) { return ''; }
     return content.TERMS[this.get('openTerm')].definition;
   }
 
   @computed('openTerm')
   get definitionShort() {
-    if (!this.get('openTerm')) { return ''; }
+    if (!content.TERMS[this.get('openTerm')]) { return ''; }
     return content.TERMS[this.get('openTerm')].definitionShort;
   }
 
   @computed('openTerm')
   get unitsShort() {
-    if (!this.get('openTerm')) { return ''; }
+    if (!content.TERMS[this.get('openTerm')]) { return ''; }
     return content.TERMS[this.get('openTerm')].unitsShort;
   }
 
@@ -88,11 +86,10 @@ export default class extends Component.extend({
   get bottom() {
     const rect = this.get('rect');
     const orientation = this.get('orientation');
-    const windowHeight = this.get('windowHeight');
     if (!rect) { return '0'; }
 
     if (orientation == 'bottom-left') {
-      return `${windowHeight - rect.bottom - 16}px`;
+      return `${window.innerHeight - rect.bottom - 16}px`;
     }
     return 'auto';
   }

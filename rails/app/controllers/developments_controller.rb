@@ -117,7 +117,8 @@ class DevelopmentsController < ApplicationController
                   :commercial, :municipal, :devlper, :yrcomp_est, :units_1bd, :units_2bd, :units_3bd,
                   :affrd_unit, :aff_u50, :aff_50_80, :aff_80_120, :aff_120p, :headqtrs, :park_type, :sb_type, :publicsqft,
                   :unknownhu, :aff_unknown, :unk_sqft, :flag, :traffic_count_data_present, :proj_id,:proj_id_present,
-                  :traffic_count_data)
+                  :traffic_count_data, :mf2_4,:mf5up,:mobile,:school,:studk12p,:studunip,:empedu,:empfoo,:empgov,:empind,:empmed,:empofc, 
+                  :empoth,:empret,:empsvc)
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -134,7 +135,8 @@ class DevelopmentsController < ApplicationController
                                                                        latitude longitude parcel_id apn mixed_use mix_descr point programs forty_b residential
                                                                        commercial municipal devlper yrcomp_est units_1bd units_2bd units_3bd
                                                                        affrd_unit aff_u50 aff_50_80 aff_80_120 aff_120p headqtrs park_type sb_type publicsqft
-                                                                       unknownhu aff_unknown unk_sqft flag proj_id traffic_count_data proj_id_present traffic_count_data_present])
+                                                                       unknownhu aff_unknown unk_sqft flag proj_id traffic_count_data proj_id_present traffic_count_data_present
+                                                                       mf2_4 mf5up mobile school studk12p studunip empedu empfoo empgov empind empmed empofc empoth empret empsvc])
       end
     end
   end
