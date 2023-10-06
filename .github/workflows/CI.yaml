@@ -1,0 +1,48 @@
+name: CI
+
+on: [pull_request]
+
+defaults:
+  run:
+    working-directory: ./ember
+
+jobs:
+  # lint:
+  #   name: Lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout github repo (+ download lfs dependencies)
+  #       uses: actions/checkout@v4
+  #       with:
+  #         lfs: true
+  #     - name: Checkout LFS objects
+  #       run: git lfs checkout
+  #     - name: Set up Node.js ⚙️
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '18.x'
+  #         cache: 'yarn'
+  #         cache-dependency-path: ./ember/yarn.lock
+  #     - run: yarn install --immutable --immutable-cache
+  #     - run: yarn lint:js
+  #     - run: yarn lint:hbs
+  #     - run: yarn prettier --check "**/*.{json,md,yml}"
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout github repo (+ download lfs dependencies)
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - name: Set up Node.js ⚙️
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'yarn'
+          cache-dependency-path: ./ember/yarn.lock
+      - run: yarn install --immutable --immutable-cache
+      - run: yarn ember test
