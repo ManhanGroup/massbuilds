@@ -60,7 +60,19 @@
               </div>
               <div class="field long-form">
                 <label for="description">{{defined-term key="DESCRIPTION"}}</label>
-                <p>{{model.descr}}</p>
+                {{#if descriptionTable}}
+                  <table>
+                    {{#each descriptionTable as |row|}}
+                      <tr>
+                        {{#each row as |cell|}}
+                          <td>{{ cell }}</td>
+                        {{/each}}
+                      </tr>
+                    {{/each}}
+                  </table>
+                {{else}}
+                  <p>{{model.descr}}</p>
+                {{/if}}
               </div>
               <div class="field long-form">
                 <label for="notes">{{defined-term key="NOTES"}}</label>

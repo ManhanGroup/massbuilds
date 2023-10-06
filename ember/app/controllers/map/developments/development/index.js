@@ -152,4 +152,33 @@ export default class extends Controller {
 
     return attributes.join(', ');
   }
+
+  isJson(item) {
+    let value = typeof item !== "string" ? JSON.stringify(item) : item;    
+    try {
+      value = JSON.parse(value);
+    } catch (e) {
+      return false;
+    }
+      
+    return typeof value === "object" && value !== null;
+  }
+
+  @computed('model.descr')
+  get descriptionTable() {
+    const description = this.get('model.descr')
+    const fixedDescription = "{" + description + "}"
+    if (this.isJson(fixedDescription)) {
+      const descriptionObject = JSON.parse(fixedDescription)
+      var descriptionArray = []
+      for (let key in descriptionObject ) {
+        let value = descriptionObject[key];
+        descriptionArray.push([key.toString(), value.toString()]);
+      }
+      return descriptionArray
+    } else {
+      return null
+    }
+  }
+
 }
