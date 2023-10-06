@@ -13,14 +13,6 @@
         p {
           display: none;
         }
-        .logo-image {
-          width: 28%;
-        }
-      }
-      @media screen and (max-height: 620px) {
-        .logo-image {
-          width: 20%;
-        }
       }
     }
 
@@ -39,18 +31,6 @@
         .scroll-wrapper {
           padding-bottom: 20px;
         }
-      }
-    }
-    .logo-image {
-      width: 40%;
-      height: auto;
-      margin: 0 auto;
-      &.sign-up {
-        width: 40px;
-        margin: 0;
-        position: absolute;
-        left: 25px;
-        top: 20px;
       }
     }
 
@@ -197,20 +177,9 @@
   &.account-subpanel {
     height: calc(100vh - 138px);
     .subpanel-content {
-      padding-top: 100px;
+      padding-top: 85px;
 
       @include media('small') { padding-top: 70px; }
-    }
-
-    .logo-image {
-      width: 35%;
-      height: auto;
-      margin-bottom: 30px;
-
-      @include media('small') {
-        width: 30%;
-        margin-bottom: 25px;
-      }
     }
 
     .user-info {
