@@ -13,7 +13,6 @@ export default class extends Controller {
   @service currentUser
   @alias('map.baseMap') baseMap
   @alias('map.currentZoom') currentZoom
-  @alias('map.parcelTileVisible') parcelTileVisible
 
   constructor() {
     super(...arguments);
