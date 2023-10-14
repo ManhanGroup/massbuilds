@@ -334,9 +334,11 @@ export default class extends Component {
     if (visibility){
       this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'visible'); 
       this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'visible');
     }else{
       this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'none'); 
       this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'none');
     }
    
   }
