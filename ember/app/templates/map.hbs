@@ -71,7 +71,7 @@
         <button class="selector" disabled={{eq baseMap 'satellite'}} onclick={{action setBaseMap 'satellite'}}>
           Satellite
         </button>
-        <button class="selector" disabled={{eq currentZoom 10}} onclick={{action toggleParcelTile}}>
+        <button class="selector" disabled={{lt currentZoom 11}} onclick={{action toggleParcelTile}}>
           Parcel
         </button>
       </div>
