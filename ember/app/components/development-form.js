@@ -39,7 +39,6 @@ export default class extends Component {
     this.knownHousingFields = [
       'singfamhu',
       'multifam',
-      'mobile'
     ];
 
     this.knownMultifamFields = [
@@ -51,6 +50,7 @@ export default class extends Component {
       ...this.knownHousingFields,
       ...this.knownMultifamFields,
       'unknownhu',
+      'mobile'
     ];
 
     this.knownCommercialFields = [
@@ -284,7 +284,7 @@ export default class extends Component {
   updateRptdEmp(fieldName) {
     this.handleUpdate(fieldName);
     this.handleUpdate('rptdemp', this.sumProperties(
-        this.get('allsrtaEmpFields').map(field => `editing.${field}`)));
+        this.get('srtaEmpFields').map(field => `editing.${field}`)));
   }
 
 

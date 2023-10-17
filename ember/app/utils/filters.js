@@ -209,7 +209,7 @@ const metricGroups = {
     {
       title: 'Enrollment',
       metrics: [
-        'studk12p ',
+        'studk12p',
         'studunip',
       ]
     }],

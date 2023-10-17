@@ -148,6 +148,7 @@
                 {{defined-term key='STATUS'}}
               </label>
               <select
+                id="status"
                 class={{if inValid.status 'invalid'}}
                 name="status"
                 onchange={{action updateStatus}}
@@ -184,6 +185,7 @@
                 {{defined-term key='YEAR_COMPLETE'}}
               </label>
               {{input
+                id="yearCompl"
                 class=(if inValid.yearCompl 'invalid')
                 value=editing.yearCompl class="required-field"
                 placeholder="Enter here"
@@ -191,8 +193,9 @@
             </div>
 
             <div class="field">
-              <label for="yrcompEst">Complete Date Estimated?</label>
-              {{input type="checkbox" checked=editing.yrcompEst click=(action checkForUpdated 'yrcompEst')}}
+              <label>Complete Date Estimated?
+                {{input type="checkbox" checked=editing.yrcompEst click=(action checkForUpdated 'yrcompEst')}}
+              </label>
             </div>
 
             {{#if (gt editing.yearCompl 2024) }}
@@ -201,6 +204,7 @@
                 {{defined-term key='PERCOMP24'}}
               </label>
               {{input
+                id="percomp24"
                 class=(if inValid.percomp24 'invalid')
                 value=editing.percomp24
                 placeholder="Percent complete in 2024"
@@ -212,6 +216,7 @@
                 {{defined-term key='PERCOMP28'}}
               </label>
               {{input
+                id="percomp28"
                 class=(if inValid.percomp28 'invalid')
                 value=editing.percomp28
                 placeholder="Percent complete in 2028"
@@ -223,6 +228,7 @@
                 {{defined-term key='PERCOMP35'}}
               </label>
               {{input
+                id="percomp35"
                 class=(if inValid.percomp35 'invalid')
                 value=editing.percomp35
                 placeholder="Percent complete in 2035"
@@ -234,6 +240,7 @@
                 {{defined-term key='PERCOMP45'}}
               </label>
               {{input
+                id="percomp45"
                 class=(if inValid.percomp45 'invalid')
                 value=editing.percomp45
                 placeholder="Percent complete in 2045"
@@ -247,17 +254,18 @@
                 {{defined-term key='GLUC'}}
               </label>
               <select
-                class={{if inValid.gluc 'invalid'}}
-                name="gluc"
-                onchange={{action updateGluc}}
-              >
+                  id="gluc"
+                  class={{if inValid.gluc 'invalid'}}
+                  name="gluc"
+                  onchange={{action updateGluc}}
+                >
                 {{#unless editing.gluc}}
                   <option disabled selected>Select Gluc</option>
                 {{/unless}}
                 {{#each filters.gluc.options as |option|}}
                   <option value={{option}} selected={{if (eq option editing.gluc) 'selected'}}>{{capitalize option}}</option>
                 {{/each}}
-              </select>
+              </select>             
             </div>
             {{else}}
             <div class="field">
@@ -265,6 +273,7 @@
                 {{defined-term key='PLACE_TYPE'}}
               </label>
               {{input
+                id="placetype"
                 value=editing.placetype
                 class=(if inValid.placetype 'invalid')
                 placeholder="Enter Place Type"
@@ -273,7 +282,7 @@
             {{/if}}
 
             <div class="field">
-              <label for="sbType">{{defined-term key="SBTYPE"}}</label>
+              <label>{{defined-term key="SBTYPE"}}</label>
               <ul class="multi-check-options">
                 {{#each filters.sbType.options as |option|}}
                   <li>
@@ -303,6 +312,7 @@
                 {{defined-term key='COST_OF_CONSTRUCTION'}}
               </label>
               ${{input
+                id="totalCost"
                 class=(if inValid.totalCost 'invalid')
                 value=editing.totalCost
                 placeholder="Enter here"
@@ -314,13 +324,14 @@
                 {{defined-term key='PROJECT_AREA'}}
               </label>
               {{input
+                id="prjarea"
                 class=(if inValid.prjarea 'invalid')
                 value=editing.prjarea placeholder="Enter here"
                 input=(action checkForUpdated 'prjarea')}}
             </div>
 
             <div class="field">
-              <label for="parkType">Parking Type</label>
+              <label>Parking Type</label>
               <ul class="multi-check-options">
                 {{#each filters.parkType.options as |option|}}
                   <li>
@@ -338,38 +349,38 @@
           <label>Attributes:</label>
 
           <span>
-            <label for="rdv">
+            <label>
               {{defined-term key='REDEVELOPMENT'}}
+              {{input type='checkbox' checked=editing.rdv click=(action checkForUpdated 'rdv')}}
             </label>
-            {{input type='checkbox' checked=editing.rdv click=(action checkForUpdated 'rdv')}}
           </span>,
 
           <span>
-            <label for="phased">
-              {{defined-term key='PHASED'}}
+            <label>
+              {{defined-term key='PHASED'}}          
+              {{input type='checkbox' checked=editing.phased click=(action checkForUpdated 'phased')}}
             </label>
-            {{input type='checkbox' checked=editing.phased click=(action checkForUpdated 'phased')}}
           </span>,
 
           <span>
-            <label for="stalled">
+            <label>
               {{defined-term key='STALLED'}}
+              {{input type='checkbox' checked=editing.stalled click=(action checkForUpdated 'stalled')}}
             </label>
-            {{input type='checkbox' checked=editing.stalled click=(action checkForUpdated 'stalled')}}
           </span>,
 
           <span>
-            <label for="asofright">
+            <label>
               {{defined-term key='AS_OF_RIGHT'}}
+              {{input type='checkbox' checked=editing.asofright click=(action checkForUpdated 'asofright')}}
             </label>
-            {{input type='checkbox' checked=editing.asofright click=(action checkForUpdated 'asofright')}}
           </span>,
 
           <span>
-            <label for="mixedUse">
+            <label>
               {{defined-term key='MIXED_USE'}}
+              {{input type='checkbox' checked=editing.mixedUse click=(action checkForUpdated 'mixedUse')}}
             </label>
-            {{input type='checkbox' checked=editing.mixedUse click=(action checkForUpdated 'mixedUse')}}
           </span>
 
 
@@ -441,6 +452,7 @@
                   {{defined-term key='GROUP_QUARTERS_POPULATION'}}
                 </label>
                 {{input
+                  id="gqpop"
                   class=(if inValid.gqpop 'invalid')
                   value=editing.gqpop
                   placeholder="Enter here"
@@ -455,17 +467,17 @@
             <label>Attributes:</label>
 
             <span>
-              <label for="ovr55">
+              <label>
                 {{defined-term key='AGE_RESTRICTED'}}
+                {{input type='checkbox' checked=editing.ovr55 click=(action checkForUpdated 'ovr55')}}
               </label>
-              {{input type='checkbox' checked=editing.ovr55 click=(action checkForUpdated 'ovr55')}}
             </span>
           </p>
 
           <div class="table-wrapper">
             <div class="table-heading">
               <h3 class="field">
-                <label for="hu" class="required">
+                <label class="required">
                   {{defined-term key='HOUSING_UNITS'}}
                 </label>
               </h3>
@@ -486,7 +498,7 @@
 
               <tr>
                 <td>
-                  <label for="singfamhu">{{defined-term key="SINGLE_FAMILY"}}</label>
+                  <label>{{defined-term key="SINGLE_FAMILY"}}</label>
                 </td>
                 <td>
                   {{input
@@ -506,7 +518,7 @@
 
               <tr>
                 <td>
-                  <label for="multifam">{{defined-term key="MULTI_FAMILY"}}</label>
+                  <label>{{defined-term key="MULTI_FAMILY"}}</label>
                 </td>
                 <td>
                   {{input
@@ -527,7 +539,7 @@
               {{#if (eq userAgency 'SRTA') }} 
                 <tr>
                   <td>
-                    <label for="mf24">{{defined-term key="MULTI_FAMILY_2TO4"}}</label>
+                    <label>{{defined-term key="MULTI_FAMILY_2TO4"}}</label>
                   </td>
                   <td>
                     {{input
@@ -547,7 +559,7 @@
 
                 <tr>
                   <td>
-                    <label for="mf5up">{{defined-term key="MULTI_FAMILY_5UP"}}</label>
+                    <label>{{defined-term key="MULTI_FAMILY_5UP"}}</label>
                   </td>
                   <td>
                     {{input
@@ -568,7 +580,7 @@
 
               <tr>
                 <td>
-                  <label for="mobile">
+                  <label>
                     {{defined-term key="MOBILE"}}
                   </label>
                 </td>
@@ -590,7 +602,7 @@
 
               <tr>
                 <td>
-                  <label for="unknownhu">
+                  <label>
                     {{defined-term key="UNKNOWN_HOUSING_UNITS"}}
                   </label>
                 </td>
@@ -617,7 +629,7 @@
                 <td>Percentage</td>
               </tr>
               <tr>
-                <td><label for="units1bd">Studio/1 Bedroom</label></td>
+                <td><label>Studio/1 Bedroom</label></td>
                 <td>
                   {{input
                     class=(if inValid.units1bd 'invalid')
@@ -635,7 +647,7 @@
               </tr>
 
               <tr>
-                <td><label for="units2bd">2 Bedroom</label></td>
+                <td><label>2 Bedroom</label></td>
                 <td>
                   {{input
                     class=(if inValid.units2bd 'invalid')
@@ -653,7 +665,7 @@
               </tr>
 
               <tr>
-                <td><label for="units3bd">3 Bedroom</label></td>
+                <td><label>3 Bedroom</label></td>
                 <td>
                   {{input
                     class=(if inValid.units3bd 'invalid')
@@ -675,7 +687,7 @@
           <div class="table-wrapper">
             <div class="table-heading">
               <h3 class="field">
-                <label for="affrdUnit">
+                <label>
                   {{defined-term key='AFFORDABLE_UNITS'}}
                 </label>
               </h3>
@@ -696,7 +708,7 @@
               </tr>
 
               <tr>
-                <td><label for="affU50">Units &lt;50% AMI</label></td>
+                <td><label>Units &lt;50% AMI</label></td>
                 <td>
                   {{input
                     class=(if inValid.affU50 'invalid')
@@ -714,7 +726,7 @@
               </tr>
 
               <tr>
-                <td><label for="aff5080">Units 50-80% AMI</label></td>
+                <td><label>Units 50-80% AMI</label></td>
                 <td>
                   {{input
                     class=(if inValid.aff5080 'invalid')
@@ -732,7 +744,7 @@
               </tr>
 
               <tr>
-                <td><label for="aff80120">Units 80-120% AMI</label></td>
+                <td><label>Units 80-120% AMI</label></td>
                 <td>
                   {{input
                     class=(if inValid.aff80120 'invalid')
@@ -750,7 +762,7 @@
               </tr>
 
               <tr>
-                <td><label for="aff120p">Above Units 120% AMI</label></td>
+                <td><label>Above Units 120% AMI</label></td>
                 <td>
                   {{input
                     class=(if inValid.aff120p 'invalid')
@@ -800,6 +812,7 @@
                   {{defined-term key='PUBLIC_AREA'}}
                 </label>
                 {{input
+                  id="publicsqft"
                   class=(if inValid.publicsqft 'invalid')
                   value=editing.publicsqft
                   placeholder="Enter here"
@@ -813,6 +826,7 @@
                   {{defined-term key='HOTEL_ROOMS'}}
                 </label>
                 {{input
+                  id="hotelrms"
                   class=(if inValid.hotelrms 'invalid')
                   value=editing.hotelrms
                   placeholder="Enter here"
@@ -826,10 +840,10 @@
             <label>Attributes:</label>
 
             <span>
-              <label for="headqtrs">
-                {{defined-term key='COMPANY_HEADQUARTERS'}}
+              <label>
+                {{defined-term key='COMPANY_HEADQUARTERS'}}              
+                {{input type='checkbox' checked=editing.headqtrs click=(action checkForUpdated 'headqtrs')}}
               </label>
-              {{input type='checkbox' checked=editing.headqtrs click=(action checkForUpdated 'headqtrs')}}
             </span>
           </p>       
               
@@ -837,7 +851,7 @@
           <div class="table-wrapper">
             <div class="table-heading">
               <h3 class="field">
-                <label for="commsf" class="required">
+                <label class="required">
                   {{defined-term key='COMMERCIAL_AREA'}}
                 </label>
               </h3>
@@ -859,7 +873,7 @@
 
               <tr>
                 <td>
-                  <label for="retSqft">
+                  <label>
                     {{defined-term key='RETAIL_AREA'}}
                   </label>
                 </td>
@@ -881,7 +895,7 @@
 
               <tr>
                 <td>
-                  <label for="ofcmdSqft">
+                  <label>
                     {{defined-term key='OFFICE_MEDICAL_AREA'}}
                   </label>
                 </td>
@@ -903,7 +917,7 @@
 
               <tr>
                 <td>
-                  <label for="indmfSqft">
+                  <label>
                     {{defined-term key='INDUSTRIAL_MANUFACTURING_AREA'}}
                   </label>
                 </td>
@@ -925,7 +939,7 @@
 
               <tr>
                 <td>
-                  <label for="whsSqft">
+                  <label>
                     {{defined-term key='WAREHOUSE_SHIPPING_AREA'}}
                   </label>
                 </td>
@@ -947,7 +961,7 @@
 
               <tr>
                 <td>
-                  <label for="rndSqft">
+                  <label>
                     {{defined-term key='RESEARCH_DEVELOPMENT_AREA'}}
                   </label>
                 </td>
@@ -969,7 +983,7 @@
 
               <tr>
                 <td>
-                  <label for="eiSqft">
+                  <label>
                     {{defined-term key='EDUCATIONAL_INSTITUTIONAL_AREA'}}
                   </label>
                 </td>
@@ -990,7 +1004,7 @@
 
               <tr>
                 <td>
-                  <label for="hotelSqft">
+                  <label>
                     {{defined-term key='HOTEL_ROOM_AREA'}}
                   </label>
                 </td>
@@ -1011,7 +1025,7 @@
 
               <tr>
                 <td>
-                  <label for="otherSqft">
+                  <label>
                     {{defined-term key='OTHER_AREA'}}
                   </label>
                 </td>
@@ -1033,7 +1047,7 @@
 
               <tr>
                 <td>
-                  <label for="unkSqft">
+                  <label>
                     {{defined-term key='UNKNOWN_AREA'}}
                   </label>
                 </td>
@@ -1059,7 +1073,7 @@
           <div class="table-wrapper">
             <div class="table-heading">
               <h3 class="field">
-                <label for="rptdemp" class="required">
+                <label class="required">
                   {{defined-term key='REPORTED_EMPLOYMENT'}}
                 </label>
               </h3>
@@ -1081,7 +1095,7 @@
 
               <tr>
                 <td>
-                  <label for="empedu">
+                  <label>
                     {{defined-term key='EDUCATION_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1103,7 +1117,7 @@
 
               <tr>
                 <td>
-                  <label for="empfoo">
+                  <label>
                     {{defined-term key='FOOD_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1125,7 +1139,7 @@
               
               <tr>
                 <td>
-                  <label for="empgov">
+                  <label>
                     {{defined-term key='GOVERNMENT_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1147,7 +1161,7 @@
 
               <tr>
                 <td>
-                  <label for="empind">
+                  <label>
                     {{defined-term key='INDUSTRY_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1169,7 +1183,7 @@
 
               <tr>
                 <td>
-                  <label for="empmed">
+                  <label>
                     {{defined-term key='MEDICAL_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1191,7 +1205,7 @@
 
               <tr>
                 <td>
-                  <label for="empofc">
+                  <label>
                     {{defined-term key='OFFICE_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1213,7 +1227,7 @@
 
               <tr>
                 <td>
-                  <label for="empoth">
+                  <label>
                     {{defined-term key='OTHER_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1235,7 +1249,7 @@
 
               <tr>
                 <td>
-                  <label for="empret">
+                  <label>
                     {{defined-term key='RETAIL_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1257,7 +1271,7 @@
 
               <tr>
                 <td>
-                  <label for="empsvc">
+                  <label>
                     {{defined-term key='SERVICE_EMPLOYMENT'}}
                   </label>
                 </td>
@@ -1301,6 +1315,7 @@
                   {{defined-term key='STUDENT_ENROLLMENT_KTOHIGH'}}
                 </label>
                 {{input
+                  id="studk12p"
                   class=(if inValid.studk12p 'invalid')
                   value=editing.studk12p
                   placeholder="Enter here"
@@ -1315,6 +1330,7 @@
                   {{defined-term key='STUDENT_ENROLLMENT_UNIVERSITY'}}
                 </label>
                 {{input
+                  id="studuniq"
                   class=(if inValid.studunip 'invalid')
                   value=editing.studunip
                   placeholder="Enter here"
