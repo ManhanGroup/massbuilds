@@ -7,7 +7,7 @@ FactoryBot.define do
     email
     password { 'P@sswordT3st' }
     role { 'admin' }
-    municipality { 'Boston' }
+    municipality { 'Santa Cruz' }
     request_verified_status { false }
   end
 end
