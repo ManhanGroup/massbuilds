@@ -19,10 +19,14 @@ export default class extends Component {
   didInsertElement() {
     this.set('windowWidth', window.innerWidth);
     this.set('windowHeight', window.innerHeight);
-    window.addEventListener("resize", () => {
+    window.addEventListener(this.get("resize"), () => {
       this.set('windowWidth', window.innerWidth);
       this.set('windowHeight', window.innerHeight);
     });
+  }
+
+  willDestroyElement() {
+    this.$(window).off(this.get('clickElement'));   
   }
 
   @computed('openTerm', 'termLabelElement')
