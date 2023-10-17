@@ -20,4 +20,4 @@ jobs:
          bundler-cache: true
       - name: Run rspec examples
         run: |
-        bundle exec rspec
+          bundle exec rspec
