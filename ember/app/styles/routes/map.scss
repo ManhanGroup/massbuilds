@@ -309,9 +309,9 @@
         }
       }
       img {
-        width: 20%;
-        height: 75%;
-        margin: 0 20px;
+        min-width: fit-content;
+        min-height: fit-content;
+        height: 80%;
       }
     }
   }
