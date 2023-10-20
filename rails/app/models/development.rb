@@ -131,9 +131,9 @@ class Development < ApplicationRecord
       logger.debug "entering geocoding"
       logger.debug properties['address']['city']
       self.update_columns(
-        municipal: (properties['address']['city'] || self.municipal),
-        address: ((properties['address']['house_number'] || '')+' '+ properties['address']['road'] || self.address),
-        zip_code: (properties['address']['postcode'] || self.zip_code)
+        municipal: (properties['address']['city'].to_s || self.municipal),
+        address: ((properties['address']['house_number'].to_s || '')+' '+ properties['address']['road'].to_s || self.address),
+        zip_code: (properties['address']['postcode'].to_s || self.zip_code)
         )
     end
     
