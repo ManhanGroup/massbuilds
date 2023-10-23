@@ -12,6 +12,7 @@ export default class extends Controller {
   @service map
   @service currentUser
   @alias('map.baseMap') baseMap
+  @alias('map.currentZoom') currentZoom
 
   constructor() {
     super(...arguments);
@@ -172,9 +173,8 @@ export default class extends Controller {
 
   @action
   toggleParcelTile() { 
-    const visible=this.get('map').get('parcelTileVisible')
-    this.get('map').set('parcelTileVisible',!visible);
-    
+    const visible=this.get('map.parcelTileVisible')
+    this.set('map.parcelTileVisible',!visible);    
   }
 
   @action

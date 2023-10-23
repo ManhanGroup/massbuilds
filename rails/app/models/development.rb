@@ -209,12 +209,15 @@ class Development < ApplicationRecord
   def geocode
     return if !saved_change_to_point?
     result = Faraday.get "https://nominatim.openstreetmap.org/reverse?format=geojson&lat=#{self.latitude}&lon=#{self.longitude}"
+    
     if result && JSON.parse(result.body)['features'].length > 0
       properties = JSON.parse(result.body)['features'][0]['properties']
+      logger.debug "entering geocoding"
+      logger.debug properties['address']['city']
       self.update_columns(
-        municipal: (properties['address']['city'] || self.municipal),
-        address: ((properties['address']['house_number'] || '')+' '+ properties['address']['road'] || self.address),
-        zip_code: (properties['address']['postcode'] || self.zip_code)
+        municipal: (properties['address']['city'].to_s || self.municipal),
+        address: ((properties['address']['house_number'].to_s || '')+' '+ properties['address']['road'].to_s || self.address),
+        zip_code: (properties['address']['postcode'].to_s || self.zip_code)
         )
     end
     

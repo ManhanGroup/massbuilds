@@ -80,6 +80,11 @@ export default class extends Service {
       });
   }
 
+  @computed('focusedDevelopment')
+  get focusedDevelopmentID() {
+    return this.get('focusedDevelopment.id')
+  }
+
   @computed('stored', 'filteredData')
   get remainder() {
     const filtered = this.get('filteredData').reduce(

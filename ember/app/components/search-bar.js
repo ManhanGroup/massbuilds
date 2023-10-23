@@ -1,11 +1,12 @@
 import { getOwner } from '@ember/application';
 import Component from '@ember/component';
-import { action, computed } from '@ember-decorators/object';
+import { action, computed, observes } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
-import filters from 'calbuilds/utils/filters';
+import { debounce } from '@ember/runloop';
 import DS from 'ember-data';
 import fetch from 'fetch';
+import filters from 'calbuilds/utils/filters';
 
 export default class extends Component {
   @service currentUser;
@@ -18,9 +19,18 @@ export default class extends Component {
     this.sortOrder = ['municipal', 'nhood', 'apn','devlper', 'name', 'address'];
     this.appCtrl = getOwner(this).lookup('controller:application');
     this.loading = false;
+    this.settledSearchQuery = '';
   }
 
   @reads('model') developments;
+
+  @observes('searchQuery')
+  startDebounce() {
+    debounce(this, this.setSearchQuery, 900)
+  }
+  setSearchQuery() {
+    this.set('settledSearchQuery', this.get('searchQuery'))
+  }
 
   @computed('developments.[]')
   get municipal() {
@@ -60,9 +70,9 @@ export default class extends Component {
     return role !== null && role !== undefined;
   }
 
-  @computed('searchQuery')
+  @computed('settledSearchQuery')
   get searchList() {
-    const searchQuery = this.get('searchQuery').toLowerCase().trim();
+    const searchQuery = this.get('settledSearchQuery').toLowerCase().trim();
     let filtered = {};
     if (searchQuery.length < 2) {
       return filtered;
@@ -89,9 +99,9 @@ export default class extends Component {
     return filtered;
   }
 
-  @computed('searchQuery')
+  @computed('settledSearchQuery')
   get gotoList() {
-    const searchQuery = this.get('searchQuery').toLowerCase().trim();
+    const searchQuery = this.get('settledSearchQuery').toLowerCase().trim();
     if (searchQuery.length <= 1) {
       return [];
     }

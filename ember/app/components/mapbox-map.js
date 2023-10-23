@@ -334,9 +334,11 @@ export default class extends Component {
     if (visibility){
       this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'visible'); 
       this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'visible');
     }else{
       this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'none'); 
       this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'none');
     }
    
   }
@@ -600,7 +602,10 @@ export default class extends Component {
     });
 
     this.mapboxglMap.on('click', 'all', (e) => {
-      this.sendAction('viewDevelopment', e.features[0].properties.id);
+      let id = e.features[0].properties.id
+      if (mapService.get('focusedDevelopmentID') != id) { 
+        this.sendAction('viewDevelopment', id);
+      }
     });
 
     const popup = new mapboxgl.Popup({
