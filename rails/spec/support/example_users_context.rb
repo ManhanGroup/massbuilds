@@ -25,6 +25,15 @@ RSpec.shared_context 'example users' do
       'Accept': 'application/vnd.api+json'
     }
   end
+  
+  let(:other_municipal_user_session) do
+    user = FactoryBot.create(:user, role: 'municipal', municipality: "Far Out")
+    {
+      Authorization: "Token token=#{user.authentication_token}, email=#{user.email}",
+      'Content-Type': 'application/vnd.api+json',
+      'Accept': 'application/vnd.api+json'
+    }
+  end
 
   let(:admin_user_session) do
     user = FactoryBot.create(:user, role: 'admin')
