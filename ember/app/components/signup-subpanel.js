@@ -20,11 +20,13 @@ export default class extends Component {
     this.username = '';
     this.password = '';
     this.municipality = null;
+    this.agency=null;
     this.confirmPassword = '';
 
     this.errorMessage = null;
 
     this.munis = [];
+    this.rpas=["AMBAG","SLOCOG","SRTA"];
     this.isFetching = false;
     this.muniFailure = false;
     this.requesting = null;
@@ -40,6 +42,12 @@ export default class extends Component {
   @action
   updateMunicipality(muni) {
     this.set('municipality', muni);
+  }
+
+ 
+  @action
+  updateAgency(agency) {
+    this.set('agency', agency);
   }
 
 
@@ -71,7 +79,13 @@ export default class extends Component {
     const municipality = requesting == 'municipal'
         ? this.get('municipality')
         : (requesting == 'state' ? 'STATE' : null);
-    const agency = email.endsWith('ambag.org')? 'AMBAG' : 'SLOCOG';
+    const agency = requesting=='state'
+        ? this.get('agency') 
+        : (email.endsWith('srta.org')
+          ? 'SRTA' 
+          : (email.endsWith('slocog.org') 
+            ? 'SLOCOG' 
+            : 'AMBAG'));
     const requestVerifiedStatus = !!requesting;
 
 
@@ -115,7 +129,7 @@ export default class extends Component {
      */
 
     if (noErrors) {
-      const userSchema = { firstName, lastName, email, password, municipality,agency, requestVerifiedStatus };
+      const userSchema = { firstName, lastName, email, password, municipality, agency, requestVerifiedStatus };
 
       this.set('loadingText', 'Signing Up');
       this.set('isCreating', true);
