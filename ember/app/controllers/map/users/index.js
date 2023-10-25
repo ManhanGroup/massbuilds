@@ -3,6 +3,7 @@ import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
 import munis from '../../../utils/municipalities';
 
+
 export default class extends Controller {
 
   constructor() {
@@ -27,7 +28,7 @@ export default class extends Controller {
     const roleFilter = this.get('roleFilter');
     const searchQuery = this.get('searchQuery').toLowerCase();
 
-    const searchable = ['lastName', 'firstName', 'email', 'fullName', 'municipality'];
+    const searchable = ['lastName', 'firstName', 'email', 'fullName', 'municipality', 'agency'];
     let filteredUsers = copy(sortedUsers);
 
     if (roleFilter !== 'all') {
@@ -73,3 +74,4 @@ export default class extends Controller {
     user.save();
   }
 }
+

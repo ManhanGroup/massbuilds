@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  {{input value=searchQuery placeholder='Search by First/Last Name or Email'}}
+  {{input value=searchQuery placeholder='Search by First/Last Name, Email, Municipality or Agency'}}
 
   <div class="table-wrapper">
     {{#if filteredUsers}}
@@ -33,6 +33,7 @@
           <td>Name</td>
           <td>Email</td>
           <td>Municipality</td>
+          <td>Agency</td>
           <td>Date Joined</td>
           <td>Role</td>
         </tr>
@@ -59,6 +60,7 @@
                 -
               {{/if}}
             </td>
+            <td>{{user.agency}}</td>
             <td>
               {{user.createdAt}}
             </td>
