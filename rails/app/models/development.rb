@@ -186,7 +186,7 @@ class Development < ApplicationRecord
   def update_municipality
     return if !saved_change_to_point?
     municipalities_query = <<~SQL
-      SELECT namelsad, geom
+      SELECT replace(initcap(namelsad), ' Cdp', ' CDP') as namelsad, geom
       FROM ca_place
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), geom);
     SQL
