@@ -143,7 +143,10 @@ class DevelopmentsController < ApplicationController
     filter_hash.values.each do |filter|
       column = filter['col']
 
-      if filter['filter'] == 'discrete'
+      if column=='municipal'
+        sql << '(' + filter['value'].map { |_| "lower(#{column}) = lower(?)" }.join(' OR ') + ')'
+        values = [*values, *filter['value']]
+      elsif filter['filter'] == 'discrete'
         sql << '(' + filter['value'].map { |_| "#{column} = ?" }.join(' OR ') + ')'
         values = [*values, *filter['value']]
 
