@@ -12,8 +12,8 @@ export default class extends Route {
     const currentUser = this.get('currentUser.user');
 
     if (currentUser) {
-      if (currentUser.get('id') !== params['map.moderations.for.user'].user_id) { 
-        this.transitionTo('map.moderations.for.user', currentUser);
+      if (currentUser.get('id') !== params['map.moderations.user'].user_id) { 
+        this.transitionTo('map.moderations.user', currentUser);
       }
     }
     else {
