@@ -33,6 +33,7 @@ export default class extends Service {
     this.selectedCoordinates = [0, 0];
     this.jumpToSelectedCoordinates = false;
     this.showingLeftPanel = false;
+    this.focusCityCoords=null;
 
     this.get('store')
       .query('development', { trunc: true })

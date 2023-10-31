@@ -195,6 +195,21 @@
     }
   }
 
+  .top-middle-select{
+    position: absolute;
+    top: 15px;
+    right: 40%;
+    z-index: 500;
+
+    select{
+      background-color: white;
+    }
+
+    option{
+      background-color: white;
+    }
+  }
+
   .panel-layer {
     z-index: 25;
 

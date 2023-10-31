@@ -6,6 +6,9 @@ import { service } from '@ember-decorators/service';
 import filters from 'calbuilds/utils/filters';
 import { capitalize } from 'calbuilds/helpers/capitalize';
 import { alias } from '@ember-decorators/object/computed';
+import DS from 'ember-data';
+import fetch from 'fetch';
+import munis from '../utils/municipalities';
 
 export default class extends Controller {
 
@@ -13,6 +16,7 @@ export default class extends Controller {
   @service currentUser
   @alias('map.baseMap') baseMap
   @alias('map.currentZoom') currentZoom
+  @alias('map.focusCityCoords') focusCityCoords
 
   constructor() {
     super(...arguments);
@@ -42,6 +46,8 @@ export default class extends Controller {
     this.updateChildren = 0;
     this.panel = null;
     this.leftPanelWidth = 'filter-width';
+    this.munis=munis.map(row => row.text).sort();
+    this.currentMuni='';
   }
 
   @computed('target.currentRouteName')
@@ -269,5 +275,44 @@ export default class extends Controller {
   showLoginForm() {
     this.transitionToRoute('map', { queryParams: { panel: null } });
   }
+
+  @action
+  getCityBoundary(muni){
+    this.set('currentMuni',muni.toLowerCase().trim());
+    this.loadData();
+  }
+
+
+  loadData() {
+    this.set('loading', true);
+    //const queryParameter = `mytype=like.City&mylabel=like.${this.currentMuni}*`;
+    const queryParameter = `mytype=like.CityBoundary&mylabel=like.${this.currentMuni}*`;
+
+    let promiseArray=DS.PromiseArray.create({
+      promise: fetch(
+         // `https://ambag-postrest.herokuapp.com/address?${queryParameter}*`)
+         `https://ambag-postrest.herokuapp.com/adm_polygons?${queryParameter}*`)
+        .then((resp) => {return resp.json()}).then((data)=>{
+          const items = data.slice(0, 1).map((feature) => {
+          return {
+            label: feature.mylabel,
+            type: feature.mytype,
+            geometry: feature.geom,
+          };
+        });
+        return items;
+      })
+    });
+
+    promiseArray.then((items)=>{
+      this.set('loading', false);
+      this.set('focusCityCoords', items[0]['geometry']['coordinates']);
+      }).catch(()=>{
+        this.set('loading', false);
+      });
+
+  }
+
+  
 
 }
