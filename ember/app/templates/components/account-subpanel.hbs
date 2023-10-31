@@ -49,7 +49,7 @@
       Create Development
     {{/link-to}}
 
-    {{#link-to 'map.developments.for.user' currentUser.user.id click=(action closeMenu)}}
+    {{#link-to 'map.developments.user' currentUser.user.id click=(action closeMenu)}}
       <div class="icon-wrapper">
         <img src="/assets/images/map-pin.svg">
       </div>
@@ -58,7 +58,7 @@
     {{/link-to}}
 
     {{#unless (eq currentUser.user.role 'admin')}}
-      {{#link-to 'map.moderations.for.user' currentUser.user.id click=(action closeMenu)}}
+      {{#link-to 'map.moderations.user' currentUser.user.id click=(action closeMenu)}}
         <div class="icon-wrapper">
           <img src="/assets/images/edit-3.svg">
         </div>

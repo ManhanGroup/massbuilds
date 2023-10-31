@@ -6,7 +6,7 @@ module('Unit | Controller | map/moderations/for/user', function(hooks) {
 
   // Replace this with your real tests.
   test('it exists', function(assert) {
-    let controller = this.owner.lookup('controller:map/moderations/for/user');
+    let controller = this.owner.lookup('controller:map/moderations/user');
     assert.ok(controller);
   });
 });
