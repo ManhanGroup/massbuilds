@@ -81,15 +81,14 @@ class Development < ApplicationRecord
     return x.to_s.downcase == "true"
   end
 
-  def self.import file
+  def self.import file, user
     # csv import copied from rails/lib/tasks/import.rake
     csv_text = File.read(file)
     csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
-
+    developmentsAdded = []
     csv.each do |row|
       development = Development.new(
-        #id: row['project_id'], # the db should create this itself
-        user_id: row["creator_id"],
+
         rdv: self.to_bool(row["rdv"]),
         asofright: self.to_bool(row["asofright"]),
         ovr55: self.to_bool(row["ovr55"]),
@@ -103,20 +102,15 @@ class Development < ApplicationRecord
         address: row["address"],
         state: row["state"],
         zip_code: row["zip_code"],
-        # height: row["height"],
-        # stories: row["stories"],
         year_compl: row["year_compl"],
         prjarea: row["prjarea"],
         singfamhu: row["singfamhu"],
-        # smmultifam: row["smmultifam"],
-        # lgmultifam: row["lgmultifam"],
         hu: row["hu"],
         yrcomp_est: self.to_bool(row["yrcomp_est"]),
         gqpop: row["gqpop"],
         rptdemp: row["rptdemp"],
         commsf: row["commsf"],
         hotelrms: row["hotelrms"],
-        # onsitepark: row["onsitepark"],
         total_cost: row["total_cost"],
         ret_sqft: row["ret_sqft"],
         ofcmd_sqft: row["ofcmd_sqft"],
@@ -142,23 +136,19 @@ class Development < ApplicationRecord
         units_2bd: row["units_2bd"],
         units_3bd: row["units_3bd"],
         affrd_unit: row["affrd_unit"],
-        # aff_u30: row["aff_u30"],
-        # aff_30_50: row["aff_30_50"],
-        # aff_50_80: row["aff_50_80"],
-        # aff_80p: row["aff_80p"],
         headqtrs: self.to_bool(row["headqtrs"]),
         park_type: row["park_type"],
         publicsqft: row["publicsqft"],
         devlper: row["devlper"],
         loc_id: row["loc_id"],
         parcel_fy: row["parcel_fy"],
-        # n_transit: [row.try(:[], 'n_transit')],
-        # d_n_trnsit: row["d_n_trnsit"],
         updated_at: row["updated_at"],
-        # point: self.convert_srid(row["geom"])
       )
+      development.user = user
       development.save(validate: false)
+      developmentsAdded.push(development)
     end
+    return developmentsAdded
   end
 
   def self.to_shp

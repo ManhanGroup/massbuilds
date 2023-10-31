@@ -1,6 +1,6 @@
 class DevelopmentsController < ApplicationController
   before_action :set_development, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: %i[index show import]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /developments
   def index
@@ -63,9 +63,11 @@ class DevelopmentsController < ApplicationController
 
   # POST /developments/import
   def import
-    # TODO: ensure that the user id of the uploader is reflected in each development
-    Development.import( params[:filename] )
-    # TODO: possibly redirect to uploaded developments here
+    respond_to do |format|
+      format.jsonapi { render json: {
+        result: Development.import( params[:filename], current_user )
+      }.to_json }
+    end
     # TODO: add exception handling
   end
   

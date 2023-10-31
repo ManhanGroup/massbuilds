@@ -254,4 +254,21 @@ RSpec.describe 'Developments:', type: :request do
       expect(response).to have_http_status(:unauthorized)
     end
   end
+
+  describe 'importing developments' do
+    it 'fart imports a development from a csv' do
+      file = Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_development_upload.csv")
+
+      post "/developments/import", headers: admin_user_session, params: {
+        filename: file
+      }
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body['result']).not_to be_nil
+      developmentResult = parsed_body['result'][0]
+
+      expect(developmentResult['id']).not_to be_nil
+      expect(developmentResult['user_id']).not_to be_nil
+    end
+  end
+
 end
