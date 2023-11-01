@@ -12,7 +12,7 @@ export default Route.extend({
     const currentUser = this.get('currentUser.user');
 
     if (currentUser.get('role') !== 'admin')  {
-      this.transitionTo('map.moderations.for.user', currentUser.get('id'));
+      this.transitionTo('map.moderations.user', currentUser.get('id'));
     }
   },
 

@@ -11,7 +11,7 @@ export default class extends Route {
     const currentUser = this.get('currentUser.user');
 
     if (currentUser) {
-      this.transitionTo('map.developments.for.user', currentUser);
+      this.transitionTo('map.developments.user', currentUser);
     }
     else {
       this.transitionTo('map');

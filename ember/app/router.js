@@ -15,17 +15,13 @@ Router.map(function() {
 
       this.route('create');
 
-      this.route('for', function() {
-        this.route('user', { path: '/:user_id' });
-      });
+      this.route('user', { path: '/user/:user_id' });
     });
     this.route('users', function() {
       this.route('verify');
     });
     this.route('moderations', function() {
-      this.route('for', function() {
-        this.route('user', { path: '/:user_id' });
-      });
+      this.route('user', { path: '/user/:user_id' });
     });
   });
   this.route('glossary');

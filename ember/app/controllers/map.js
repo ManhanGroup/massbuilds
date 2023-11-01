@@ -82,7 +82,7 @@ export default class extends Controller {
       'map.developments.development.index',
       'map.developments.development.edit',
       'map.developments.create',
-      'map.developments.for.user',
+      'map.developments.user',
     ].indexOf(this.get('target.currentRouteName')) !== -1;
   }
 
