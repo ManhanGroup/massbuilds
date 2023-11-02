@@ -92,6 +92,7 @@ export default class extends Component {
         this,
         'drawSelectedCoordinates'
       );
+      mapService.addObserver('focusCityCoords', this, 'focusCityCoordsChangeHandler');
 
       if (mapService.get('stored').length) {
         this.draw(mapService);
@@ -136,6 +137,7 @@ export default class extends Component {
       this,
       'drawSelectedCoordinates'
     );
+    mapService.removeObserver('focusCity',this, 'focusCityChangeHandler');
     this.mapboxglMap.remove();
   }
 
@@ -155,6 +157,12 @@ export default class extends Component {
     this.set('previousParcel', null);
     this.updateSelection(true);
   }
+
+  focusCityCoordsChangeHandler(mapService) {
+    this.draw(mapService);
+    this.fly2City(mapService);
+  }
+
 
   updateSelection(notFromFitBounds) {
     // If the user triggered the drag or zoom...
@@ -448,6 +456,25 @@ export default class extends Component {
       ]);
       this.mapboxglMap.fitBounds(bounds);
     }
+  }
+
+  fly2City(mapService) {
+    const focusCityCoords = mapService.get('focusCityCoords');
+  
+    if (focusCityCoords) {
+      const bounds = this.getCityBounds(focusCityCoords);
+      this.mapboxglMap.fitBounds(bounds);
+    }
+  }
+
+  getCityBounds(coords){
+    const bounds=new mapboxgl.LngLatBounds();
+    coords.forEach((p)=>{
+      p.forEach((c)=>{
+        bounds.extend(c);
+      });
+    });
+    return bounds;
   }
 
   focus(mapService) {

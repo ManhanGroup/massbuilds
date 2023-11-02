@@ -32,7 +32,7 @@ class DevelopmentPolicy < ApplicationPolicy
       #return (properties['locality'] || properties['localadmin']).upcase
     #end
     place_query = <<~SQL
-      SELECT trim(replace(UPPER(namelsad),'CITY','')) as city
+      SELECT trim(replace(replace(UPPER(namelsad),'CITY',''),' CDP','')) as city
       FROM ca_place
       WHERE ST_Intersects(st_transform(ST_GeomFromText('POINT(#{record.longitude} #{record.latitude})', 4326),4269), geom);
     SQL

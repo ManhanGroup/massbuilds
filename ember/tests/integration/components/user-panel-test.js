@@ -12,6 +12,6 @@ module('Integration | Component | user panel', function(hooks) {
 
     await render(hbs`{{user-panel}}`);
 
-    assert.dom('*').hasText("A visual database for detailed information on real-estate developments in AMBAG and SLOCOG region. Learn more Login Logging In Login Forgot password? Don't have an account? Signup here");
+    assert.dom('*').hasText("A visual database for detailed information on real-estate developments in AMBAG, SLOCOG and SRTA region. Learn more Login Logging In Login Forgot password? Don't have an account? Signup here");
   });
 });

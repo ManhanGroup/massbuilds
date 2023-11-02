@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def user_params
     respond_to do |format|
-      format.jsonapi { ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:email, :password, :role, :first_name, :last_name, :municipality, :request_verified_status]) }
+      format.jsonapi { ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:email, :password, :role, :first_name, :last_name, :municipality, :agency, :request_verified_status]) }
     end
   end
 end
