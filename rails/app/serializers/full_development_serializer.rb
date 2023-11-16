@@ -6,8 +6,9 @@ class FullDevelopmentSerializer
 
   [:id, :name, :status, :stat_comts, :address, :year_compl, :yrcomp_est, :nhood, :municipal,:apn,
     :devlper, :user_id, :rdv, :asofright, :ovr55, :clusteros, :phased, :stalled, :county,
-    :descr,:notes, :prj_url,:gluc,:placetype, :state, :zip_code, :percomp_24, :percomp_28,:percomp_35, :percomp_45, :prjarea,
-    :singfamhu, :multifam,  :hu, :gqpop, :rptdemp,
+    :descr,:notes, :prj_url,:gluc,:placetype, :state, :zip_code, :percomp_25, :percomp_30,
+    :percomp_35,:percomp_40,  :percomp_45, :prjarea,
+    :singfamhu, :multifam,  :hu, :gqpop, :rptdemp, :rhna, :ab1317,
     :commsf, :hotelrms,  :total_cost, :ret_sqft, :rpa_name,
     :county, :n_transit, :ofcmd_sqft, :indmf_sqft, :whs_sqft, :rnd_sqft,
     :ei_sqft, :other_sqft, :hotel_sqft, :other_rate, :affordable, :parcel_id,

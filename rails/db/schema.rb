@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_060320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -78,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.string "municipal"
     t.string "devlper"
     t.boolean "yrcomp_est"
-    t.integer "percomp_24"
-    t.integer "percomp_28"
+    t.integer "percomp_25"
+    t.integer "percomp_30"
     t.integer "percomp_35"
     t.integer "percomp_45"
     t.integer "units_1bd"
@@ -134,6 +134,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.integer "empret"
     t.integer "empsvc"
     t.boolean "school"
+    t.boolean "rhna"
+    t.integer "percomp_40"
+    t.boolean "ab1317"
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
 
@@ -179,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.json "geojson"
     t.string "apn"
     t.string "agency"
+    t.index ["apn"], name: "parcels_apn_idx", where: "((COALESCE(apn, ''::character varying))::text <> ''::text)"
     t.index ["geom"], name: "parcels_geom_idx", using: :gist
   end
 

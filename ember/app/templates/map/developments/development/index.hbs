@@ -127,57 +127,80 @@
                     {{defined-term key="YEAR_COMPLETE"}}
                     {{#if model.yrcompEst}}
                       <small>(Estimated)</small>
-                    {{/if}}
+                    {{/if}}                    
                   </label>
                   {{model.yearCompl}}
                 </div>
 
-                {{#if (gt model.yearCompl 2024) }}
-                 <div class="field">
-                  <label for="percomp24">
-                    {{defined-term key="PERCOMP24"}}
-                  </label>
-                  {{#if model.percomp24}}
-                    {{number-format model.percomp24 decimals=0}} %
-                  {{else}}
-                    <span class="unknown">Unknown</span>
-                  {{/if}}
-                </div>
+                {{#if model.rhna}}
+                    <div class="field">
+                    <label for="rhna">
+                      {{defined-term key="RHNA"}}   
+                    </label>  
+                    Yes
+                  </div>
+                 {{/if}}
+                
 
-                <div class="field">
-                  <label for="percomp28">
-                    {{defined-term key="PERCOMP28"}}
-                  </label>
-                  {{#if model.percomp28}}
-                    {{number-format model.percomp28 decimals=0}} %
-                  {{else}}
-                    <span class="unknown">Unknown</span>
-                  {{/if}}
-                </div>
-
-                <div class="field">
-                  <label for="percomp35">
-                    {{defined-term key="PERCOMP35"}}
-                  </label>
-                  {{#if model.percomp35}}
-                    {{number-format model.percomp35 decimals=0}} %
-                  {{else}}
-                    <span class="unknown">Unknown</span>
-                  {{/if}}
-                </div>
-
-                <div class="field">
-                  <label for="percomp45">
-                    {{defined-term key="PERCOMP45"}}
-                  </label>
-                  {{#if model.percomp45}}
-                    {{number-format model.percomp45 decimals=0}} %
-                  {{else}}
-                    <span class="unknown">Unknown</span>
-                  {{/if}}
-                </div>
+                {{#if model.percomp25}}
+                  <div class="field">
+                    <label for="percomp25">
+                      {{defined-term key="percomp25"}}
+                    </label>                  
+                    {{number-format model.percomp25 decimals=0}} %                
+                  </div>
                 {{/if}}
 
+                {{#if model.percomp30}}
+                  <div class="field">
+                    <label for="percomp30">
+                      {{defined-term key="percomp30"}}
+                    </label>                  
+                    {{number-format model.percomp30 decimals=0}} %                
+                  </div>
+                {{/if}}
+
+                {{#if model.percomp35}}
+                  <div class="field">
+                    <label for="percomp35">
+                      {{defined-term key="percomp35"}}
+                    </label>                  
+                    {{number-format model.percomp35 decimals=0}} %                
+                  </div>
+                {{/if}}
+
+                {{#if model.percomp40}}
+                  <div class="field">
+                    <label for="percomp40">
+                      {{defined-term key="percomp40"}}
+                    </label>                  
+                    {{number-format model.percomp40 decimals=0}} %                
+                  </div>
+                {{/if}}
+
+                {{#if model.percomp45}}
+                  <div class="field">
+                    <label for="percomp45">
+                      {{defined-term key="percomp45"}}
+                    </label>                  
+                    {{number-format model.percomp45 decimals=0}} %                
+                  </div>
+                {{/if}}                
+               
+
+                
+
+                {{#if model.apn}}
+                  <div class="field">
+                  <label for="apn">{{defined-term key="APN"}}</label>
+                  <span>{{model.apn}}</span>
+                  </div>
+                {{/if}}
+
+                
+              </div>
+
+              <div class="column">
                 {{#if model.placetype}}
                   <div class="field">
                   <label for="placetype">{{defined-term key="PLACE_TYPE"}}</label>
@@ -192,26 +215,13 @@
                   </div>
                 {{/if}}
 
-                <div class="field">
-                  <label for="sbType">{{defined-term key="SBTYPE"}}</label>
-                  {{#if sbTypes}}
-                    {{sbTypes}}
-                  {{else}}
-                    <span class="unknown">Unknown</span>
-                  {{/if}}
-                </div>
-
-                {{#if model.apn}}
+                {{#if sbTypes}}
                   <div class="field">
-                  <label for="apn">{{defined-term key="APN"}}</label>
-                  <span>{{model.apn}}</span>
-                  </div>
+                    <label for="sbType">{{defined-term key="SBTYPE"}}</label>                  
+                    {{sbTypes}} 
+                </div>
                 {{/if}}
 
-                
-              </div>
-
-              <div class="column">
                 <div class="field">
                   <label for="totalCost">
                     {{defined-term key="COST_OF_CONSTRUCTION" labelOverride="Cost"}}
@@ -245,14 +255,21 @@
                   {{/if}}
                 </div-->
 
-                <div class="field">
-                  <label for="parkType">Parking Type</label>
-                  {{#if parkTypes}}
-                    {{parkTypes}}
-                  {{else}}
-                    <span class="unknown">Unknown</span>
-                  {{/if}}
-                </div>
+                {{#if parkTypes}}
+                  <div class="field">
+                  <label for="parkType">Parking Type</label>                 
+                    {{parkTypes}}                  
+                   </div>
+                {{/if}}
+
+                {{#if ab1317}}
+                  <div class="field">
+                    <label for="ab1317">
+                    {{defined-term key="AB1317"}}                    
+                    </label>
+                    Yes
+                  </div>
+                {{/if}}
 
                 
               </div>
