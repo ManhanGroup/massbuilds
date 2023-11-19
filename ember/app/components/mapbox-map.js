@@ -16,6 +16,7 @@ mapboxgl.accessToken =
 export default class extends Component {
   @service store;
   @service map;
+  @service session;
 
   constructor() {
     super();
@@ -23,6 +24,7 @@ export default class extends Component {
     this.previousParcel = null;
     this.lastRequest = null;
     this.focusTargetBounds = null;
+    this.sessionAuthenticated=this.get('session.isAuthenticated');
   }
 
   getLeftPanelWidth() {
@@ -76,6 +78,7 @@ export default class extends Component {
       mapService.addObserver('stored', this, 'draw');
       mapService.addObserver('filteredData', this, 'draw');
       mapService.addObserver('viewing', this, 'draw');
+      mapService.addObserver('sessionAuthenticated', this, 'draw');
       mapService.addObserver('filteredData', this, 'focus');
       mapService.addObserver('baseMap', this, 'setStyle');
       mapService.addObserver('parcelTileVisible',this, 'pTVisibleChangeHandler');
@@ -121,6 +124,7 @@ export default class extends Component {
     mapService.removeObserver('stored', this, 'draw');
     mapService.removeObserver('filteredData', this, 'draw');
     mapService.removeObserver('viewing', this, 'draw');
+    mapService.removeObserver('sessionAuthenticated', this, 'draw');
     mapService.removeObserver('filteredData', this, 'focus');
     mapService.removeObserver('baseMap', this, 'setStyle');
     mapService.removeObserver('parcelTileVisible',this,'pTVisibleChangeHandler');
@@ -436,9 +440,11 @@ export default class extends Component {
         color: statusColors[dev.get('status')] || '#888',
         name: dev.get('name'),
         status: dev.get('status'),
+        apn: dev.get('apn'),
         statComts: dev.get('statComts'),
         yrcompEst: dev.get('yrcompEst'),
         yearCompl: dev.get('yearCompl'),
+        hidden: dev.get('hidden'),
       },
       geometry: {
         type: 'Point',
@@ -510,13 +516,14 @@ export default class extends Component {
         ? mapService.get('remainder')
         : mapService.get('stored')
     );
+
     const satelliteMap = mapService.get('baseMap') != 'light';
     const isMuted = mapService.get('followMode');
 
     if (this.mapboxglMap.getLayer('all')) {
       this.mapboxglMap.getSource('all').setData({
         type: 'FeatureCollection',
-        features: allFeatures,
+        features: this.sessionAuthenticated ? allFeatures :  allFeatures.filter(item=>{return !item['properties']['hidden']}),
       });
       Object.entries(
         paintProperties.developments(
@@ -535,7 +542,7 @@ export default class extends Component {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
-            features: allFeatures,
+            features: this.sessionAuthenticated ? allFeatures :  allFeatures.filter(item=>{return !item['properties']['hidden']}),
           },
         },
         paint: paintProperties.developments(

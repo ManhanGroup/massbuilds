@@ -95,7 +95,7 @@ export default class extends DS.Model {
   @attr('boolean', { default: false }) flag;
   @attr('boolean', { default: false }) ab1317;
   @attr('boolean', { default: false }) rhna;
-
+  @attr('boolean', { default: false }) hidden;
 
   @attr('date') createdAt;
   @attr('date') updatedAt;
