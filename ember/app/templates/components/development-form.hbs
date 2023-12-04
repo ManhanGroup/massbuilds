@@ -144,6 +144,11 @@
         <div class="row">
           <div class="column">
             <div class="field">
+              <label>Open to Public View?
+                {{input type="checkbox" checked=editing.ispublic click=(action checkForUpdated 'ispublic')}}
+              </label>
+            </div>
+            <div class="field">
               <label for="status" class="required">
                 {{defined-term key='STATUS'}}
               </label>

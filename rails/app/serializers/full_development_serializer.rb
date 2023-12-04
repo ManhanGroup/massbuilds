@@ -17,7 +17,7 @@ class FullDevelopmentSerializer
     :aff_80_120, :aff_120p, :headqtrs, :park_type,:sb_type, :publicsqft, :unknownhu,
     :unk_sqft, :aff_unknown, :updated_at, :flag, :proj_id, :traffic_count_data,
     :mf2_4, :mf5up, :mobile, :school,:studk12p,:studunip,:empedu,:empfoo,:empgov,:empind,:empmed,
-    :empofc, :empoth,:empret,:empsvc].each { |attr| attribute attr }
+    :empofc, :empoth,:empret,:empsvc, :ispublic].each { |attr| attribute attr }
 
   attribute :latitude do |object|
     object.point.try :y

@@ -283,6 +283,9 @@ class Edit < ApplicationRecord
         },
         "ab1317":{
           "type": "boolean"
+        },
+        "ispublic":{
+          "type": "boolean"
         }
       }
     }

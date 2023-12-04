@@ -186,7 +186,7 @@ namespace :import do
     municipality_query = <<~SQL
       SELECT municipal
       FROM
-        (SELECT namelsad as municipal, ST_TRANSFORM(m.geom, 4326) as geom FROM ca_place) municipality,
+        (SELECT namelsad as municipal, ST_TRANSFORM(m.geom, 4326) as geom FROM places) municipality,
         (SELECT id, name, point FROM developments) development
         WHERE ST_Intersects(development.point, municipality.geom)
         AND id = #{development.id};

@@ -1,5 +1,5 @@
-class AddColumnHiddenToDevelopment < ActiveRecord::Migration[7.0]
+class AddColumnPublicToDevelopment < ActiveRecord::Migration[7.0]
   def change
-    add_column :developments, :hidden, :boolean, null: false, default: false
+    add_column :developments, :ispublic, :boolean, null: false, default: true
   end
 end

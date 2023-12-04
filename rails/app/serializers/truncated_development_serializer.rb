@@ -4,7 +4,7 @@ class TruncatedDevelopmentSerializer
 
   belongs_to :user
 
-  [:id, :name, :status, :apn, :address, :year_compl, :yrcomp_est, :nhood, :municipal, :devlper, :hidden].each { |attr| attribute attr }
+  [:id, :name, :status, :apn, :address, :year_compl, :yrcomp_est, :nhood, :municipal, :devlper, :ispublic].each { |attr| attribute attr }
 
   attribute :latitude do |object|
     object.point.try :y

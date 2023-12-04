@@ -162,8 +162,8 @@ class Development < ApplicationRecord
   def update_rpa
     return if !saved_change_to_point?
     rpa_query = <<~SQL
-      SELECT rpa_name, shape
-      FROM rpa_poly
+      SELECT name as rpa_name, shape
+      FROM rpas
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(rpa_query).to_a[0]
@@ -175,7 +175,7 @@ class Development < ApplicationRecord
     return if !saved_change_to_point?
     counties_query = <<~SQL
       SELECT county, shape
-      FROM counties_polym
+      FROM counties
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(counties_query).to_a[0]
@@ -187,7 +187,7 @@ class Development < ApplicationRecord
     return if !saved_change_to_point?
     municipalities_query = <<~SQL
       SELECT replace(initcap(namelsad), ' Cdp', ' CDP') as namelsad, geom
-      FROM ca_place
+      FROM places
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), geom);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(municipalities_query).to_a[0]

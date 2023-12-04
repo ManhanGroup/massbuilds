@@ -444,7 +444,7 @@ export default class extends Component {
         statComts: dev.get('statComts'),
         yrcompEst: dev.get('yrcompEst'),
         yearCompl: dev.get('yearCompl'),
-        hidden: dev.get('hidden'),
+        ispublic: dev.get('ispublic'),
       },
       geometry: {
         type: 'Point',
@@ -523,7 +523,7 @@ export default class extends Component {
     if (this.mapboxglMap.getLayer('all')) {
       this.mapboxglMap.getSource('all').setData({
         type: 'FeatureCollection',
-        features: this.sessionAuthenticated ? allFeatures :  allFeatures.filter(item=>{return !item['properties']['hidden']}),
+        features: this.sessionAuthenticated ? allFeatures :  allFeatures.filter(item=>{return item['properties']['ispublic']}),
       });
       Object.entries(
         paintProperties.developments(
@@ -542,7 +542,7 @@ export default class extends Component {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
-            features: this.sessionAuthenticated ? allFeatures :  allFeatures.filter(item=>{return !item['properties']['hidden']}),
+            features: this.sessionAuthenticated ? allFeatures :  allFeatures.filter(item=>{return item['properties']['ispublic']}),
           },
         },
         paint: paintProperties.developments(

@@ -17,7 +17,8 @@ const agencies={
       "address": "24580 Silver Cloud Ct",
       "city": "Monterey, CA",
       "postalCode": "93940",
-      "email": "calbuilds@ambag.org"
+      "email": "calbuilds@ambag.org",
+      "acronym": "AMBAG"
     }
   },
  "SLOCOG": {
@@ -38,7 +39,8 @@ const agencies={
         "address": "1114 Marsh St",
         "city": " San Luis Obispo, CA",
         "postalCode": "93401",
-        "email": "calbuilds@srta.org"
+        "email": "calbuilds@srta.org",
+        "acronym": "SLOCOG"
     }
   },  
   "SRTA": {
@@ -59,7 +61,8 @@ const agencies={
         "address": "21225 East Street, Suite 202",
         "city": " Redding, CA",
         "postalCode": "96001",
-        "email": "calbuilds@srta.org"
+        "email": "calbuilds@srta.org",
+        "acronym": "SRTA"
     }
   },  
 };

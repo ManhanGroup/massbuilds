@@ -48,6 +48,7 @@ export default class extends Controller {
     this.leftPanelWidth = 'filter-width';
     this.munis=munis.map(row => row.text).sort();
     this.currentMuni='';
+
   }
 
   @computed('target.currentRouteName')
@@ -83,6 +84,13 @@ export default class extends Controller {
       'map.developments.development.edit',
       'map.developments.create',
       'map.developments.for.user',
+    ].indexOf(this.get('target.currentRouteName')) !== -1;
+  }
+
+  @computed('target.currentRouteName')
+  get showingRpas() {
+    return [
+      'map.rpas.manage',
     ].indexOf(this.get('target.currentRouteName')) !== -1;
   }
 
@@ -137,13 +145,14 @@ export default class extends Controller {
   }
 
 
-  @computed('showingFilters', 'showingDevelopment', 'showingUsers', 'showingModerations')
+  @computed('showingFilters', 'showingDevelopment', 'showingUsers', 'showingModerations','showingRpas')
   get showingLeftPanel() {
     const showing = (
       this.get('showingFilters')
       || this.get('showingDevelopment')
       || this.get('showingUsers')
       || this.get('showingModerations')
+      || this.get('showingRpas')
     );
 
     this.set('searchQuery', '');

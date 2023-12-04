@@ -25,9 +25,6 @@ export default class extends Service {
     this.stored = [];
     this.storedBounds = null;
 
-    this.publicstored=[];
-    this.publicstoredBounds=null;
-
     this.zoomCommand = null;
     this.markerVisible = false;
     this.parcelTileVisible = true;
@@ -43,23 +40,10 @@ export default class extends Service {
       .query('development', { trunc: true })
       .then((results) => {
         this.set('stored', results.toArray());
-        this.set('publicstored', results.filterBy('hidden',false).toArray());
         this.set(
           'storedBounds',
           mapboxgl.LngLatBounds.convert(
             results.map(
-              (result) =>
-                new mapboxgl.LngLat(
-                  result.get('longitude'),
-                  result.get('latitude')
-                )
-            )
-          )
-        );
-        this.set(
-          'publicstoredBounds',
-          mapboxgl.LngLatBounds.convert(
-            results.filterBy('hidden',false).map(
               (result) =>
                 new mapboxgl.LngLat(
                   result.get('longitude'),
