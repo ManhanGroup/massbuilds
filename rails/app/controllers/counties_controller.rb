@@ -21,8 +21,11 @@ class CountiesController < ApplicationController
     @county= County.find(county_params[:id])
     @county.update(county_params)  
     puts county_params
+    
+    #find all places inside a county
+    #Place.where(:county_id => county_params[:id]).update_all(:ispublic => county_params[:ispublic])
     # Find all development records by RPA name
-    @developments = Development.where(county: county_params[:county])
+    @developments = Development.where(county: county_params[:county], municipal: [nil, ''])
 
     # Update the column with the new value for all records
     @developments.update_all(:ispublic => county_params[:ispublic])

@@ -26,13 +26,17 @@ class RpasController < ApplicationController
     @rpa= Rpa.find(rpa_params[:id])
     @rpa.update(rpa_params)  
     #rpa_params[:ispublic]
-    
-    # Find all development records by RPA name
-    @developments = Development.where(rpa_name: rpa_params[:name])
 
-    # Update the column with the new value for all records
-    puts rpa_params[:ispublic]
-    @developments.update_all(:ispublic => rpa_params[:ispublic])
+    #find all counties inside rpa
+    #find all places inside a county
+    #County.where(:rpa_id => rpa_params[:id]).update_all(:ispublic => rpa_params[:ispublic])
+    
+    # # Find all development records by RPA name
+    # @developments = Development.where(rpa_name: rpa_params[:name])
+
+    # # Update the column with the new value for all records
+    # puts rpa_params[:ispublic]
+    # @developments.update_all(:ispublic => rpa_params[:ispublic])
 
 
     respond_to do |format|
