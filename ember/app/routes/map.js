@@ -22,6 +22,13 @@ export default class extends Route {
   }
 
 
+  // @service store;
+  // async model() {
+  //   const rpas = await this.store.findAll('rpa', { include: 'counties' });
+  //   return rpas;
+  // }
+
+
   afterModel() {
     this.controllerFor('map').set('filterParams', this.get('filterParams'));
   }

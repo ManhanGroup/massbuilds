@@ -1,4 +1,5 @@
 class RpasController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
   def index
     if params[:id]
       @rpa= Rpa.find(params[:id])
@@ -8,8 +9,8 @@ class RpasController < ApplicationController
         .where("id in (1,2,12,14,18)")
     end
     respond_to do |format|
-      format.jsonapi { render jsonapi: @rpas }
-      format.all { render json: @rpas }
+      format.jsonapi { render jsonapi: @rpas,  status: :ok }
+      format.all { render json: @rpas,  status: :ok }
     end
   end
 

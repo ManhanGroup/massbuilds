@@ -1,5 +1,11 @@
 class PlaceSerializer < ActiveModel::Serializer
-  attributes :id, :namelsad, :ispublic, :geojson
+  #include FastJsonapi::ObjectSerializer
+  #set_type :place
   belongs_to :county
   belongs_to :rpa
+
+
+  attributes :id, :namelsad, :ispublic, :geojson
+
+  
 end

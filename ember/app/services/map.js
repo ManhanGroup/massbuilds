@@ -34,7 +34,8 @@ export default class extends Service {
     this.jumpToSelectedCoordinates = false;
     this.showingLeftPanel = false;
     this.focusCityCoords=null;
-    
+
+    this.lstrpas=null;
 
     this.get('store')
       .query('development', { trunc: true })
@@ -53,6 +54,12 @@ export default class extends Service {
           )
         );
       });
+
+    this.get('store')
+      .findAll('rpa')
+      .then((results) => {
+      this.set('lstrpas', results);        
+    });
     
     
   }

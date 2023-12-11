@@ -1,0 +1,6 @@
+<select id="city-select" onchange={{action "fly2city" value="target.value"}}>
+  <option value="">-- Select a City --</option>
+  {{#each places as |city|}}
+    <option value={{city.namelsad}}>{{city.namelsad}}</option>
+  {{/each}}
+</select>

@@ -1,12 +1,14 @@
 class CountiesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
   def index
     if params[:id]
       @county = County.find(params[:id])
     else
-      @county = County.select('id,geoid, county, namelsad, ispublic').where("rpa_id in (1,2,12,14,18)")
+      @counties = County.select('id,geoid, county, namelsad, ispublic').where("rpa_id in (1,2,12,14,18)")
     end
     respond_to do |format|
       format.jsonapi { render jsonapi: @county }
+      format.all { render json: @counties}
     end
   end
 

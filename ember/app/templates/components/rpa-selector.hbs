@@ -1,0 +1,10 @@
+<select id="rpa-elect" onchange={{action "selectRpa" value="target.value"}}>
+  <option value="">-- Select a Rpa --</option>
+  {{#each rpas as |rpa|}}
+    <option value={{rpa.id}}>{{rpa.name}}</option>
+  {{/each}}
+</select>
+
+{{#if counties}}
+  {{county-selector counties=counties}}
+{{/if}}

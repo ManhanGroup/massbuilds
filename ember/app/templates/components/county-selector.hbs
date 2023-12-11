@@ -1,0 +1,10 @@
+<select id="county-select" onchange={{action "selectCounty" value="target.value"}}>
+  <option value="">-- Select a County --</option>
+  {{#each counties as |county|}}
+    <option value={{county.id}}>{{county.county}}</option>
+  {{/each}}
+</select>
+
+{{#if places}}
+  {{place-selector places=places}}
+{{/if}}

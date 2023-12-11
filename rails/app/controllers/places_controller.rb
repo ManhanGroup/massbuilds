@@ -1,18 +1,25 @@
 class PlacesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
   def index
     if params[:id]
       @place = Place.find(params[:id])
+    elsif params[:namelsad]
+      @place= Place.where('namelsad ilike',params[:namelsad])
     else
       @places = Place
-        .select('id, namelsad, ispublic, geojson')
+        .select('id, namelsad, ispublic, county_id, geojson')
         .where("rpa_id in (1,2,12,14,18)")
     end
-    # respond_to do |format|
-    #   format.jsonapi { render jsonapi: @places }
-    #   format.all { render json: @places }
-    # end
     respond_to do |format|
-      format.jsonapi { render jsonapi: @place }
+      
+      format.jsonapi do
+        scope = 'zoom2city' if params[:zoom2city]
+        if scope == 'zoom2city'
+          render json: GeoPlaceSerializer.new(@places).serialized_json
+        else
+          render render jsonapi: @places
+        end
+      end
     end
   end
 

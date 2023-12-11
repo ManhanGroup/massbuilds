@@ -11,12 +11,14 @@
 
   <div class="top-middle-select">
     {{#loading-spinner message="Loading Municipalities" isLoading=isFetching}}
-    <select onchange={{action getCityBoundary value="target.value"}}>
+    {{!-- <select onchange={{action getCityBoundary value="target.value"}}>
       <option disabled selected>Select Municipality</option>
       {{#each munis as |muni|}}
         <option value={{muni}}>{{muni}}</option>
       {{/each}}
-    </select>
+    </select> --}}
+    {{rpa-selector rpas=map.lstrpas}}
+    {{!-- {{place-list places=map.lstplaces getCityBoundary=(action getCityBoundary)}} --}}
     {{/loading-spinner}} 
   </div>
 
