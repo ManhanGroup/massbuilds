@@ -6,7 +6,6 @@ export default class extends Component {
   @service store;
   constructor() {
     super();
-
     this.selectedRpa=null;
   }
   
@@ -31,6 +30,12 @@ export default class extends Component {
   @action
   selectRpa(rpa) {
     this.set('selectedRpa', rpa);
+  }
+
+  getCityBoundary(city) {
+    if (city) {
+      this.sendAction('getCityBoundary', city);
+    }
   }
 
 }

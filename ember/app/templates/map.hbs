@@ -17,7 +17,7 @@
         <option value={{muni}}>{{muni}}</option>
       {{/each}}
     </select> --}}
-    {{rpa-selector rpas=map.lstrpas}}
+    {{rpa-selector rpas=map.lstrpas getCityBoundary=(action getCityBoundary)}}
     {{!-- {{place-list places=map.lstplaces getCityBoundary=(action getCityBoundary)}} --}}
     {{/loading-spinner}} 
   </div>

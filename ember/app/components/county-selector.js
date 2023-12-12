@@ -7,7 +7,6 @@ export default class extends Component {
   
   constructor() {
     super();
-
     this.selectedCounty=null;
   }
   
@@ -27,6 +26,13 @@ export default class extends Component {
   @action
   selectCounty(county) {
     this.set('selectedCounty', county);
+  }
+
+  @action
+  getCityBoundary(city) {
+    if (city) {
+      this.sendAction('getCityBoundary', city);
+    }
   }
 
 }

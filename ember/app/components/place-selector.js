@@ -6,11 +6,10 @@ export default class extends Component {
 
   constructor() {
     super();
-    //this.appCtrl = getOwner(this).lookup('controller:map');
   }
   
   @action
-  fly2city(city) {
+  getCityBoundary(city) {
     if (city) {
       this.sendAction('getCityBoundary', city);
     }

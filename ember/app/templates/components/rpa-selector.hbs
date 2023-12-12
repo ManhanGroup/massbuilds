@@ -6,5 +6,5 @@
 </select>
 
 {{#if counties}}
-  {{county-selector counties=counties}}
+  {{county-selector counties=counties getCityBoundary=(action getCityBoundary)}}
 {{/if}}
