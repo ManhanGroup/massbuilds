@@ -1,8 +1,10 @@
 import Component from '@ember/component';
 import { action} from '@ember-decorators/object';
 //import { getOwner } from '@ember/application';
+import { service } from '@ember-decorators/service';
 
 export default class extends Component {
+  @service store;
 
   constructor() {
     super();
@@ -11,7 +13,9 @@ export default class extends Component {
   @action
   getCityBoundary(city) {
     if (city) {
-      this.sendAction('getCityBoundary', city);
+      let mycity =this.get('store').peekRecord('place', city);
+      let mycoords=mycity.get('geojson').coordinates
+      this.sendAction('getCityBoundary', mycoords);
     }
   }
 }

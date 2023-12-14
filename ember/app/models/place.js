@@ -8,6 +8,6 @@ export default class extends DS.Model {
 
   @attr('string') namelsad
   @attr('boolean' , { default: true }) ispublic
-  //@attr('json') geojson
+  @attr('json') geojson
 
 }
