@@ -144,6 +144,11 @@
         <div class="row">
           <div class="column">
             <div class="field">
+              <label>Open to Public View?
+                {{input type="checkbox" checked=editing.ispublic click=(action checkForUpdated 'ispublic')}}
+              </label>
+            </div>
+            <div class="field">
               <label for="status" class="required">
                 {{defined-term key='STATUS'}}
               </label>
@@ -198,29 +203,35 @@
               </label>
             </div>
 
+            <div class="field">
+              <label>Complete Date within the Current RHNA Cycle?
+                {{input type="checkbox" checked=editing.rhna click=(action checkForUpdated 'rhna')}}
+              </label>
+            </div>
+
             {{#if (gt editing.yearCompl 2024) }}
             <div class="field">
-              <label for="percomp24">
-                {{defined-term key='PERCOMP24'}}
+              <label for="percomp25">
+                {{defined-term key='percomp25'}}
               </label>
               {{input
-                id="percomp24"
-                class=(if inValid.percomp24 'invalid')
-                value=editing.percomp24
+                id="percomp25"
+                class=(if inValid.percomp25 'invalid')
+                value=editing.percomp25
                 placeholder="Percent complete in 2024"
-                input=(action checkForUpdated 'percomp24')}}
+                input=(action checkForUpdated 'percomp25')}}
             </div>
 
             <div class="field">
-              <label for="percomp28">
-                {{defined-term key='PERCOMP28'}}
+              <label for="percomp30">
+                {{defined-term key='percomp30'}}
               </label>
               {{input
-                id="percomp28"
-                class=(if inValid.percomp28 'invalid')
-                value=editing.percomp28
+                id="percomp30"
+                class=(if inValid.percomp30 'invalid')
+                value=editing.percomp30
                 placeholder="Percent complete in 2028"
-                input=(action checkForUpdated 'percomp28')}}
+                input=(action checkForUpdated 'percomp30')}}
             </div>
 
             <div class="field">
@@ -233,6 +244,18 @@
                 value=editing.percomp35
                 placeholder="Percent complete in 2035"
                 input=(action checkForUpdated 'percomp35')}}
+            </div>
+
+            <div class="field">
+              <label for="percomp40">
+                {{defined-term key='PERCOMP40'}}
+              </label>
+              {{input
+                id="percomp40"
+                class=(if inValid.percomp40 'invalid')
+                value=editing.percomp40
+                placeholder="Percent complete in 2040"
+                input=(action checkForUpdated 'percomp40')}}
             </div>
 
             <div class="field">
@@ -341,6 +364,14 @@
                 {{/each}}
               </ul>
             </div>
+
+            {{#if (eq userAgency 'SRTA') }} 
+              <div class="field">
+                <label>AB1317 Applicable?
+                  {{input type="checkbox" checked=editing.ab1317 click=(action checkForUpdated 'ab1317')}}
+                </label>
+              </div>
+            {{/if}}
             
           </div>
         </div>

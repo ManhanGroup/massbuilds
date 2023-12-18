@@ -94,6 +94,14 @@
           Verify Users
         {{/link-to}}
       {{/if}}
+
+      {{#link-to 'map.rpas.manage' click=(action closeMenu)}}
+        <div class="icon-wrapper">
+          <img src="/assets/images/rpa.svg">
+        </div>
+
+        Toggle Public View
+      {{/link-to}}
     {{/if}}
   </div>
 

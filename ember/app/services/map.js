@@ -35,6 +35,8 @@ export default class extends Service {
     this.showingLeftPanel = false;
     this.focusCityCoords=null;
 
+    this.lstrpas=null;
+
     this.get('store')
       .query('development', { trunc: true })
       .then((results) => {
@@ -52,6 +54,14 @@ export default class extends Service {
           )
         );
       });
+
+    this.get('store')
+      .findAll('rpa')
+      .then((results) => {
+      this.set('lstrpas', results);        
+    });
+    
+    
   }
 
   setViewing(dev) {
@@ -94,7 +104,7 @@ export default class extends Service {
     );
     return this.get('stored').filter((datum) => !filtered[datum.get('id')]);
   }
-
+  
   remove(development) {
     this.get('stored').removeObject(development);
     this.set('stored', this.get('stored').toArray());

@@ -2,6 +2,21 @@ Rails.application.routes.draw do
   resources :edits, except: [:new, :edit]
   devise_for :users, controllers: { sessions: 'sessions', passwords: 'passwords' }, path_prefix: 'my'
   resources :users
+  resources :rpas do
+    member do
+      patch :update
+    end
+  end
+  resources :counties do
+    member do
+      patch :update
+    end
+  end
+  resources :places do
+    member do
+      patch :update
+    end
+  end
   resources :developments, except: [:new, :edit]
   resources :password_resets, only: [:create]
   resources :parcels, only: [:index]

@@ -1,0 +1,19 @@
+.route.rpas-manage {
+
+  width: 100%;
+  padding: 10px 20px;
+
+  ul.item-list {
+    li {
+      & > div {
+        &:last-child {
+          flex: 0 0 calc(60%);
+        }
+        &:first-of-type  { flex: 0 0 25px; }
+        &:nth-of-type(2) { flex: 0 0 75px;font-weight: 600; }
+        &:nth-of-type(3) { flex: 0 0 calc(40% - 100px); }       
+      }
+    }
+  }
+
+}

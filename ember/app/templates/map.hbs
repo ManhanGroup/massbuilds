@@ -55,14 +55,7 @@
       }}
     </div>
     <div class="top-middle-select">
-      {{#loading-spinner message="Loading Municipalities" isLoading=isFetching}}
-      <select onchange={{action getCityBoundary value="target.value"}}>
-        <option disabled selected>Select Municipality</option>
-        {{#each munis as |muni|}}
-          <option value={{muni}}>{{muni}}</option>
-        {{/each}}
-      </select>
-      {{/loading-spinner}} 
+      {{rpa-selector rpas=map.lstrpas getCityBoundary=(action getCityBoundary)}}
     </div>
     <div class="legend-wrapper">
       {{map-legend showing=showingFilters}}

@@ -38,7 +38,7 @@ class User < ApplicationRecord
     return if municipality.nil? || municipality=='STATE'
     logger.debug municipality
     rpa_query = <<~SQL
-      SELECT upper(acronym) as agency FROM ca_place p JOIN rpa_poly r 
+      SELECT upper(acronym) as agency FROM places p JOIN rpas r 
       ON st_contains(r.shape, st_centroid(p.geom)) 
       WHERE position('#{self.municipality}' in upper(namelsad))>0;      
     SQL

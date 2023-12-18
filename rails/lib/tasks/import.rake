@@ -90,9 +90,10 @@ namespace :import do
         municipal: row["municipal"],
         devlper: row["devlper"],
         yrcomp_est: to_bool(row["yrcomp_est"]),
-        percomp_24: row['percomp_24'],
-        percomp_28: row['percomp_28'],
+        percomp_25: row['percomp_25'],
+        percomp_30: row['percomp_30'],
         percomp_35: row['percomp_35'],
+        percomp_40: row['percomp_40'],
         percomp_45: row['percomp_45'],
         units_1bd: row["units_1bd"],
         units_2bd: row["units_2bd"],
@@ -128,6 +129,8 @@ namespace :import do
         proj_id: row["proj_id"],
         stat_comts: row["stat_comts"],
         mix_descr: row["mix_descr"],
+        rhna: row["rhna"],
+        ab1317: row["ab1317"],
         notes: row["notes"],
         created_at: row["created_at"],
         updated_at: row["updated_at"] 
@@ -183,7 +186,7 @@ namespace :import do
     municipality_query = <<~SQL
       SELECT municipal
       FROM
-        (SELECT namelsad as municipal, ST_TRANSFORM(m.geom, 4326) as geom FROM ca_place) municipality,
+        (SELECT namelsad as municipal, ST_TRANSFORM(m.geom, 4326) as geom FROM places) municipality,
         (SELECT id, name, point FROM developments) development
         WHERE ST_Intersects(development.point, municipality.geom)
         AND id = #{development.id};
