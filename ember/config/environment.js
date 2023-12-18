@@ -41,7 +41,7 @@ module.exports = function(environment) {
   if (environment === 'staging') {
     //ENV.rootURL = '/calbuilds/'
     //ENV['host'] = 'https://calbuilds-api.herokuapp.com/';
-    ENV['host'] = 'https://calbuilds-staging-b6f2e303aef8.herokuapp.com/';
+    ENV['host'] = 'https://calbuilds-pi-toggledeve-ltts5x.herokuapp.com/';
   }
 
   if (environment === 'production') {
