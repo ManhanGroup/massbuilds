@@ -50,6 +50,8 @@ const filters = {
   //'gluc': { name: 'gluc', glossaryKey: 'GLUC', type: 'string', ...defaultMetric },
   'gluc': { name: 'Gluc', glossaryKey: 'GLUC', type: 'string', options: glucOptions, ...defaultMetric }, 
   'parkType': { name: 'Parking type', type: 'string', options: ['garage', 'underground', 'surface', 'other'], ...defaultMetric },
+  'ab1317': { name: 'AB1317', glossaryKey: 'AB1317', type: 'boolean', ...defaultMetric },
+  
   'sbType': { name: 'SB type', type: 'string', options: ['SB6', 'SB8', 'Other'], ...defaultMetric },
   'descr': { name: 'Description', glossaryKey: 'DESCRIPTION', type: 'string', ...defaultMetric },
   'notes': { name: 'NOTES', glossaryKey: 'NOTES', type: 'string', ...defaultMetric },
@@ -60,13 +62,15 @@ const filters = {
   'trafficCountDataPresent': { name: 'Traffic Count Data Present', glossaryKey: 'TRAFFIC_COUNT_DATA_PRESENT', type: 'boolean', ...defaultMetric },
   'phased': { name: 'Phased', glossaryKey: 'PHASED', type: 'boolean', ...defaultMetric },
   'stalled': { name: 'Stalled', glossaryKey: 'STALLED', type: 'boolean', ...defaultMetric },
-  'percomp_24': { name: 'Percent complete by year 2024', glossaryKey: 'PERCOMP24', type: 'number', ...defaultMetric },
-  'percomp_28': { name: 'Percent complete by year 2028', glossaryKey: 'PERCOMP28', type: 'number', ...defaultMetric },
+  'percomp_25': { name: 'Percent complete by year 2025', glossaryKey: 'PERCOMP25', type: 'number', ...defaultMetric },
+  'percomp_30': { name: 'Percent complete by year 2030', glossaryKey: 'percomp30', type: 'number', ...defaultMetric },
   'percomp_35': { name: 'Percent complete by year 2035', glossaryKey: 'PERCOMP35', type: 'number', ...defaultMetric },
+  'percomp_40': { name: 'Percent complete by year 2040', glossaryKey: 'PERCOMP40', type: 'number', ...defaultMetric },
   'percomp_45': { name: 'Percent complete by year 2045', glossaryKey: 'PERCOMP45', type: 'number', ...defaultMetric },
   'mixedUse': { name: 'Mixed use', glossaryKey: 'MIXED_USE', type: 'boolean', ...defaultMetric },
   'mixDescr': { name: 'Mixed use description', glossaryKey: 'MIXED_USE_DESCR', type: 'boolean', ...defaultMetric },
-
+   
+  'rhna': { name: 'Completed in Current RHNA Cycle?', glossaryKey: 'RHNA',  type: 'boolean', ...defaultMetric }, 
   'yearCompl': { name: 'Year complete', glossaryKey: 'YEAR_COMPLETE', type: 'number', ...defaultMetric },
   'yrcompEst': { name: 'Completion year is estimated',  type: 'boolean', ...defaultMetric },
   'prjarea': { name: 'Project area', glossaryKey: 'PROJECT_AREA', type: 'number', unit: 'sqft', ...defaultMetric },
@@ -142,11 +146,13 @@ const metricGroups = {
         'status',
         'totalCost',
         'yearCompl',
+        'rhna',
         'yrcompEst',
         'rdv',
         'phased',
         'stalled',
         'parkType',
+        'ab1317',
         'projId',
         'projIdPresent',
         'trafficCountData',
@@ -156,8 +162,8 @@ const metricGroups = {
    {
       title: 'Schedule',
       metrics: [
-        'percomp_24',
-        'percomp_28',
+        'percomp_25',
+        'percomp_30',
         'percomp_35',
         'percomp_45',
       ]
@@ -209,7 +215,7 @@ const metricGroups = {
     {
       title: 'Enrollment',
       metrics: [
-        'studk12p ',
+        'studk12p',
         'studunip',
       ]
     }],

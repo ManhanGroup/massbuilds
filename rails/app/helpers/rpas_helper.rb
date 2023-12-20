@@ -1,0 +1,2 @@
+module RpasHelper
+end

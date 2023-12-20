@@ -1,0 +1,79 @@
+<section class="route table-panel rpas-manage">
+
+  <div class="panel-headers">
+    <h1>Manage Rpas Public Visibility</h1>
+    <div class="left-panel-links">
+      {{#link-to 'map'}}
+        <img src="/assets/images/chevrons-left.svg">
+        Close
+      {{/link-to}}
+    </div>
+  </div>
+
+  {{#if (gt model.length 0)}}
+  <!--label>
+    {{input type="checkbox" checked=allIspublic onchange=(action toggleIspublic)}}
+    Toggle All RPAs
+  </label-->
+    <ul class="item-list">
+      <li class="list-header">
+        <div></div> 
+        <div>Is Public</div>          
+        <div>RPA</div>
+        <div>RPA Name</div>        
+      </li>
+      <div class='list-body'>
+        {{#each model as |rpa|}}
+          <li>
+            <div><button onclick={{action toggleCounties rpa}}>{{if rpa.isShowingCounties "-" "+"}}</button></div>
+            <div>              
+              {{input type="checkbox" checked=rpa.ispublic change=(action toggleRpaIspublic rpa)}}</div>  
+            <div>{{rpa.acronym}}</div>
+            <div>{{rpa.name}}    </div>
+          </li>  
+          {{#if rpa.counties}}
+            <ul class="item-list" id={{rpa.acronym}} style="display:none">
+              <li class="list-header">
+                <div></div>
+                <div>Is Public</div>
+                <div></div><div>List of Counties:</div>        
+              </li>
+              <div class='list-body'>
+                {{#each rpa.counties as |county|}}
+                  <li>
+                    <div><button onclick={{action toggleCities county}}>{{if county.isShowingCities "-" "+"}}</button></div>
+                    <div>{{input type="checkbox" checked=county.ispublic change=(action toggleCountyIspublic county)}}</div>   
+                    <div></div><div>{{county.namelsad}}</div>
+                  </li>
+                  {{#if county.places}}
+                    <ul class="item-list" id={{county.county}} style="display:none">
+                      <li class="list-header">
+                        <div></div>
+                        <div>Is Public</div>
+                        <div></div><div>List of Cities:</div>
+                      </li>
+                      <div class='list-body'>
+                        {{#each county.places as |place|}}
+                        <li>
+                          <div></div>
+                          <div>{{input type="checkbox" checked=place.ispublic change=(action togglePlaceIspublic place)}}</div>   
+                          <div></div><div>{{place.namelsad}}</div>
+                        </li>
+                        {{/each}}
+                      </div>
+                    </ul>
+                  {{/if}} 
+                {{/each}}
+              </div>
+            </ul>
+          {{/if}}          
+        {{/each}}
+      </div>
+    </ul>    
+  {{else}}
+    <div class="no-records">
+      No Rpas Returned.
+    </div>
+  {{/if}}
+
+</section>

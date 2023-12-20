@@ -24,6 +24,7 @@ module Calbuilds
     config.generators.javscript_engine :js
     config.middleware.use ActionDispatch::Flash
     config.middleware.use Rack::MethodOverride
+    config.active_record.legacy_connection_handling = false
 
     known_hosts = [
       'http://localhost:4200',

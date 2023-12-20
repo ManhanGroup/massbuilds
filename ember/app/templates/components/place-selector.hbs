@@ -1,0 +1,6 @@
+<select id="city-select" onchange={{action "getCityBoundary" value="target.value"}}>
+  <option value="">-- Select a City --</option>
+  {{#each places as |city|}}
+    <option value={{city.id}}>{{city.namelsad}}</option>
+  {{/each}}
+</select>

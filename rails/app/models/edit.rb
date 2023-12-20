@@ -94,13 +94,16 @@ class Edit < ApplicationRecord
         "state": {
           "type": "string"
         },
-        "percomp_24": {
+        "percomp_25": {
           "type": "number"
         },
-        "percomp_28": {
+        "percomp_30": {
           "type": "number"
         },
         "percomp_35": {
+          "type": "number"
+        },
+        "percomp_40": {
           "type": "number"
         },
         "percomp_45": {
@@ -274,6 +277,15 @@ class Edit < ApplicationRecord
         },
         "empsvc":{
           "type": "number"
+        },
+        "rhna":{
+          "type": "boolean"
+        },
+        "ab1317":{
+          "type": "boolean"
+        },
+        "ispublic":{
+          "type": "boolean"
         }
       }
     }

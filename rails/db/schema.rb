@@ -10,25 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_26_044227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
 
-  create_table "ca_place", primary_key: "gid", id: :serial, force: :cascade do |t|
-    t.string "geoid"
-    t.string "placens"
-    t.string "namelsad"
-    t.geometry "geom", limit: {:srid=>4269, :type=>"multi_polygon"}
-    t.index ["geom"], name: "ca_place_geom_idx", using: :gist
+  create_table "ca_cnty", id: false, force: :cascade do |t|
+    t.text "STATEFP"
+    t.text "COUNTYFP"
+    t.text "COUNTYNS"
+    t.text "GEOID"
+    t.text "NAME"
+    t.text "NAMELSAD"
+    t.text "LSAD"
+    t.text "CLASSFP"
+    t.text "MTFCC"
+    t.text "CSAFP"
+    t.text "CBSAFP"
+    t.text "METDIVFP"
+    t.text "FUNCSTAT"
+    t.float "ALAND"
+    t.float "AWATER"
+    t.text "INTPTLAT"
+    t.text "INTPTLON"
+    t.geometry "geometry", limit: {:srid=>0, :type=>"geometry"}
   end
 
-  create_table "counties_polym", primary_key: "geoid", id: :string, force: :cascade do |t|
-    t.string "countyns"
+  create_table "cities", force: :cascade do |t|
+    t.string "city"
     t.string "county"
-    t.string "namelsad"
+    t.string "rpa"
+    t.boolean "ispublic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "counties", id: :serial, force: :cascade do |t|
+    t.text "geoid", null: false
+    t.text "countyns"
+    t.text "county"
+    t.text "namelsad"
     t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
-    t.index ["shape"], name: "counties_polym_shape_idx", using: :gist
+    t.bigint "rpa_id"
+    t.boolean "ispublic", default: true
+    t.index ["rpa_id"], name: "index_counties_on_rpa_id"
   end
 
   create_table "developments", force: :cascade do |t|
@@ -78,8 +103,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.string "municipal"
     t.string "devlper"
     t.boolean "yrcomp_est"
-    t.integer "percomp_24"
-    t.integer "percomp_28"
+    t.integer "percomp_25"
+    t.integer "percomp_30"
     t.integer "percomp_35"
     t.integer "percomp_45"
     t.integer "units_1bd"
@@ -109,7 +134,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.boolean "traffic_count_data_present"
     t.integer "taz"
     t.string "apn"
-    t.boolean "trunc", default: false
     t.string "gluc"
     t.string "placetype"
     t.integer "proj_id"
@@ -134,6 +158,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.integer "empret"
     t.integer "empsvc"
     t.boolean "school"
+    t.boolean "rhna"
+    t.integer "percomp_40"
+    t.boolean "ab1317"
+    t.boolean "ispublic", default: true, null: false
     t.index ["deleted_at"], name: "index_developments_on_deleted_at"
   end
 
@@ -169,6 +197,47 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.index ["shape"], name: "neighborhoods_poly_shape_idx", using: :gist
   end
 
+  create_table "nv_city", id: false, force: :cascade do |t|
+    t.text "STATEFP"
+    t.text "PLACEFP"
+    t.text "PLACENS"
+    t.text "GEOID"
+    t.text "NAME"
+    t.text "NAMELSAD"
+    t.text "LSAD"
+    t.text "CLASSFP"
+    t.text "PCICBSA"
+    t.text "PCINECTA"
+    t.text "MTFCC"
+    t.text "FUNCSTAT"
+    t.float "ALAND"
+    t.float "AWATER"
+    t.text "INTPTLAT"
+    t.text "INTPTLON"
+    t.geometry "geometry", limit: {:srid=>0, :type=>"geometry"}
+  end
+
+  create_table "nv_cnty", id: false, force: :cascade do |t|
+    t.text "STATEFP"
+    t.text "COUNTYFP"
+    t.text "COUNTYNS"
+    t.text "GEOID"
+    t.text "NAME"
+    t.text "NAMELSAD"
+    t.text "LSAD"
+    t.text "CLASSFP"
+    t.text "MTFCC"
+    t.text "CSAFP"
+    t.text "CBSAFP"
+    t.text "METDIVFP"
+    t.text "FUNCSTAT"
+    t.float "ALAND"
+    t.float "AWATER"
+    t.text "INTPTLAT"
+    t.text "INTPTLON"
+    t.geometry "geometry", limit: {:srid=>0, :type=>"geometry"}
+  end
+
   create_table "parcels", primary_key: "gid", id: :serial, force: :cascade do |t|
     t.decimal "objectid", precision: 10
     t.string "muni"
@@ -179,14 +248,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.json "geojson"
     t.string "apn"
     t.string "agency"
+    t.index ["apn"], name: "parcels_apn_idx", where: "((COALESCE(apn, ''::character varying))::text <> ''::text)"
     t.index ["geom"], name: "parcels_geom_idx", using: :gist
   end
 
-  create_table "rpa_poly", primary_key: "rpa_id", id: :serial, force: :cascade do |t|
-    t.string "rpa_name"
+  create_table "places", id: :integer, default: -> { "nextval('places_gid_seq'::regclass)" }, force: :cascade do |t|
+    t.string "geoid"
+    t.string "placens"
+    t.string "namelsad"
+    t.geometry "geom", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.bigint "county_id"
+    t.bigint "rpa_id"
+    t.boolean "ispublic", default: true
+    t.json "geojson"
+    t.index ["county_id"], name: "index_places_on_county_id"
+    t.index ["geom"], name: "ca_place_geom_idx", using: :gist
+    t.index ["rpa_id"], name: "index_places_on_rpa_id"
+  end
+
+  create_table "rpas", id: :integer, default: -> { "nextval('rpas_rpa_id_seq'::regclass)" }, force: :cascade do |t|
+    t.string "name"
     t.string "acronym"
     t.string "website"
     t.geometry "shape", limit: {:srid=>4269, :type=>"multi_polygon"}
+    t.boolean "ispublic", default: true
     t.index ["shape"], name: "rpa_poly_shape_idx", using: :gist
   end
 
@@ -226,9 +311,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_103808) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "counties", "rpas"
   add_foreign_key "developments", "users"
   add_foreign_key "edits", "developments"
   add_foreign_key "edits", "users"
   add_foreign_key "flags", "developments"
   add_foreign_key "flags", "users"
+  add_foreign_key "places", "counties"
+  add_foreign_key "places", "rpas"
 end

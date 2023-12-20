@@ -125,13 +125,15 @@ class Development < ApplicationRecord
   def geocode
     return if !saved_change_to_point?
     result = Faraday.get "https://nominatim.openstreetmap.org/reverse?format=geojson&lat=#{self.latitude}&lon=#{self.longitude}"
+    
     if result && JSON.parse(result.body)['features'].length > 0
       properties = JSON.parse(result.body)['features'][0]['properties']
-      config.logger.debug "entering geocoding"
+      logger.debug "entering geocoding"
+      logger.debug properties['address']['city']
       self.update_columns(
-        municipal: (properties['address']['city'] || self.municipal),
-        address: ((properties['address']['house_number'] || '')+' '+ properties['address']['road'] || self.address),
-        zip_code: (properties['address']['postcode'] || self.zip_code)
+        municipal: (properties['address']['city'].to_s || self.municipal),
+        address: ((properties['address']['house_number'].to_s || '')+' '+ properties['address']['road'].to_s || self.address),
+        zip_code: (properties['address']['postcode'].to_s || self.zip_code)
         )
     end
     
@@ -160,8 +162,8 @@ class Development < ApplicationRecord
   def update_rpa
     return if !saved_change_to_point?
     rpa_query = <<~SQL
-      SELECT rpa_name, shape
-      FROM rpa_poly
+      SELECT name as rpa_name, shape
+      FROM rpas
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(rpa_query).to_a[0]
@@ -173,7 +175,7 @@ class Development < ApplicationRecord
     return if !saved_change_to_point?
     counties_query = <<~SQL
       SELECT county, shape
-      FROM counties_polym
+      FROM counties
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(counties_query).to_a[0]
@@ -184,8 +186,8 @@ class Development < ApplicationRecord
   def update_municipality
     return if !saved_change_to_point?
     municipalities_query = <<~SQL
-      SELECT namelsad, geom
-      FROM ca_place
+      SELECT replace(initcap(namelsad), ' Cdp', ' CDP') as namelsad, geom
+      FROM places
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), geom);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(municipalities_query).to_a[0]

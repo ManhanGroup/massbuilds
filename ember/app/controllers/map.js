@@ -7,11 +7,14 @@ import filters from 'calbuilds/utils/filters';
 import { capitalize } from 'calbuilds/helpers/capitalize';
 import { alias } from '@ember-decorators/object/computed';
 
+
 export default class extends Controller {
 
   @service map
   @service currentUser
   @alias('map.baseMap') baseMap
+  @alias('map.currentZoom') currentZoom
+  @alias('map.focusCityCoords') focusCityCoords
 
   constructor() {
     super(...arguments);
@@ -40,7 +43,7 @@ export default class extends Controller {
 
     this.updateChildren = 0;
     this.panel = null;
-    this.leftPanelWidth = 'filter-width';
+    this.leftPanelWidth = 'filter-width';    
   }
 
   @computed('target.currentRouteName')
@@ -76,6 +79,13 @@ export default class extends Controller {
       'map.developments.development.edit',
       'map.developments.create',
       'map.developments.for.user',
+    ].indexOf(this.get('target.currentRouteName')) !== -1;
+  }
+
+  @computed('target.currentRouteName')
+  get showingRpas() {
+    return [
+      'map.rpas.manage',
     ].indexOf(this.get('target.currentRouteName')) !== -1;
   }
 
@@ -130,13 +140,14 @@ export default class extends Controller {
   }
 
 
-  @computed('showingFilters', 'showingDevelopment', 'showingUsers', 'showingModerations')
+  @computed('showingFilters', 'showingDevelopment', 'showingUsers', 'showingModerations','showingRpas')
   get showingLeftPanel() {
     const showing = (
       this.get('showingFilters')
       || this.get('showingDevelopment')
       || this.get('showingUsers')
       || this.get('showingModerations')
+      || this.get('showingRpas')
     );
 
     this.set('searchQuery', '');
@@ -170,9 +181,8 @@ export default class extends Controller {
 
   @action
   toggleParcelTile() { 
-    const visible=this.get('map').get('parcelTileVisible')
-    this.get('map').set('parcelTileVisible',!visible);
-    
+    const visible=this.get('map.parcelTileVisible')
+    this.set('map.parcelTileVisible',!visible);    
   }
 
   @action
@@ -269,5 +279,10 @@ export default class extends Controller {
   showLoginForm() {
     this.transitionToRoute('map', { queryParams: { panel: null } });
   }
+
+  @action
+  getCityBoundary(muniCoords){
+      this.set('focusCityCoords', muniCoords);
+  } 
 
 }

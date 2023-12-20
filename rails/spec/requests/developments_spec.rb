@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe 'Developments', type: :request do
+RSpec.describe 'Developments:', type: :request do
   let(:valid_jsonapi_params) do
     hash = Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     hash['data']['type'] = 'development'
@@ -9,14 +9,16 @@ RSpec.describe 'Developments', type: :request do
     hash.to_json
   end
 
-  let(:valid_jsonapi_params_worcester) do
+  let(:valid_jsonapi_params_santa_cruz) do
     hash = Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     hash['data']['type'] = 'development'
-    hash['data']['attributes'] = FactoryBot.attributes_for(:development,
-                                                           municipal: 'Worcester',
-                                                           latitude: 42.2626,
-                                                           longitude: -71.8023,
-                                                           point: nil)
+    hash['data']['attributes'] = FactoryBot.attributes_for(
+      :development,
+      municipal: 'Santa Cruz',
+      latitude: 36.96349692940986,
+      longitude: -122.02236744119034,
+      point: nil
+    )
     hash.to_json
   end
 
@@ -59,16 +61,15 @@ RSpec.describe 'Developments', type: :request do
       parsed_body = JSON.parse(response.body)
       expect(parsed_body['data'][0]['attributes']['name']).to eq('Seaport')
       expect(parsed_body['data'][0]['attributes']['status']).to eq('MyString')
-      expect(parsed_body['data'][0]['attributes']['longitude']).to eq(-71.0589)
-      expect(parsed_body['data'][0]['attributes']['latitude']).to eq(42.3601)
-      expect(parsed_body['data'][0]['attributes']['devlper']).to eq('Gilbane')
+      expect(parsed_body['data'][0]['attributes']['longitude']).to eq(-122.0223674411903)
+      expect(parsed_body['data'][0]['attributes']['latitude']).to eq(36.96349692940986)
+      expect(parsed_body['data'][0]['attributes']['devlper']).to eq('Workbench')
     end
 
     it 'returns results within the bounding box' do
-      FactoryBot.create(:development)
-      get developments_path, params: { minLng: '-75', minLat: '0', maxLng: '0', maxLat: '45' }, headers: guest_user_session
-      parsed_body = JSON.parse(response.body)
-      expect(parsed_body['data'][0]['attributes']['name']).to eq('Seaport')
+      FactoryBot.create(:development, name: "Find me")
+      get developments_path, params: { minLng: '-126', minLat: '0', maxLng: '0', maxLat: '45' }, headers: guest_user_session
+      expect(response.body).to include("Find me")
     end
 
     it 'does not return results outside the bounding box' do
@@ -79,48 +80,47 @@ RSpec.describe 'Developments', type: :request do
     end
 
     it 'lets you search for developments by name' do
-      FactoryBot.create(:development)
-      FactoryBot.create(:development, name: 'MAPC')
-      get developments_path, params: { term: 'Seaport' }, headers: guest_user_session
-      expect(response.body).to include('Seaport')
+      FactoryBot.create(:development, name: 'AMBAG')
+      get developments_path, params: { term: 'AMBAG' }, headers: guest_user_session
+      expect(response.body).to include('AMBAG')
     end
 
     it 'lets you search for developments by street address' do
       FactoryBot.create(:development)
-      get developments_path, params: { term: '123 Main Street' }, headers: guest_user_session
-      expect(response.body).to include('123 Main Street')
+      get developments_path, params: { term: '101 Main Street' }, headers: guest_user_session
+      expect(response.body).to include('101 Main Street') # 101 Main Street is the result of the geocode query
     end
 
     it 'lets you search for developments by municipality name' do
       FactoryBot.create(:development)
-      get developments_path, params: { term: 'Boston' }, headers: guest_user_session
-      expect(response.body).to include('Boston')
+      get developments_path, params: { term: 'Santa Cruz' }, headers: guest_user_session
+      expect(response.body).to include('Santa Cruz')
     end
 
     it 'lets you search for developments by hotel rooms' do
       FactoryBot.create(:development)
       get developments_path, params: { hotelrms: 1 }, headers: guest_user_session
-      expect(response.body).to include('Boston')
+      expect(response.body).to include('Santa Cruz')
     end
 
     it 'lets you export developments as a CSV as a registered user' do
       FactoryBot.create(:development)
-      get '/developments.csv', params: { term: 'Boston' }, headers: registered_user_session
+      get '/developments.csv', params: { term: 'Santa Cruz' }, headers: registered_user_session
       expect(response.content_type).to eq('text/csv')
       expect(response.body).to include('Seaport')
     end
 
     it 'lets you export developments as a SHP as a registered user' do
-      pending 'crated development disappears from test DB before pgsql2shop is invoked in this test'
+      pending 'created development disappears from test DB before pgsql2shp is invoked in this test'
       FactoryBot.create(:development)
-      get '/developments.shp', params: { term: 'Boston' }, headers: registered_user_session
+      get '/developments.shp', params: { term: 'Santa Cruz' }, headers: registered_user_session
       expect(response.content_type).to eq('application/zip')
     end
 
     it 'can not export developments as a CSV as a public user' do
       pending 'potentially implement on front-end only'
       FactoryBot.create(:development)
-      get '/developments.csv', params: { term: 'Boston' }, headers: guest_user_session
+      get '/developments.csv', params: { term: 'Santa Cruz' }, headers: guest_user_session
       expect(response).to have_http_status(:unauthorized)
     end
   end
@@ -137,7 +137,7 @@ RSpec.describe 'Developments', type: :request do
     end
 
     it 'does not work as a municipal user outside their municipality' do
-      post developments_path, params: valid_jsonapi_params_worcester, headers: municipal_user_session
+      post developments_path, params: valid_jsonapi_params_santa_cruz, headers: other_municipal_user_session
       expect(response).to have_http_status(:unauthorized)
     end
 
@@ -237,11 +237,8 @@ RSpec.describe 'Developments', type: :request do
     end
 
     it 'does not work as a municipal user outside their own municipality' do
-      development = FactoryBot.create(:development, municipal: 'Worcester',
-                                                    latitude: 42.2626,
-                                                    longitude: -71.8023,
-                                                    point: nil)
-      delete "/developments/#{development.id}", headers: municipal_user_session
+      development = FactoryBot.create(:development)
+      delete "/developments/#{development.id}", headers: other_municipal_user_session
       expect(response).to have_http_status(:unauthorized)
     end
 

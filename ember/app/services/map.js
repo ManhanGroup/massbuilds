@@ -33,6 +33,9 @@ export default class extends Service {
     this.selectedCoordinates = [0, 0];
     this.jumpToSelectedCoordinates = false;
     this.showingLeftPanel = false;
+    this.focusCityCoords=null;
+
+    this.lstrpas=null;
 
     this.get('store')
       .query('development', { trunc: true })
@@ -51,6 +54,14 @@ export default class extends Service {
           )
         );
       });
+
+    this.get('store')
+      .findAll('rpa')
+      .then((results) => {
+      this.set('lstrpas', results);        
+    });
+    
+    
   }
 
   setViewing(dev) {
@@ -80,6 +91,11 @@ export default class extends Service {
       });
   }
 
+  @computed('focusedDevelopment')
+  get focusedDevelopmentID() {
+    return this.get('focusedDevelopment.id')
+  }
+
   @computed('stored', 'filteredData')
   get remainder() {
     const filtered = this.get('filteredData').reduce(
@@ -88,7 +104,7 @@ export default class extends Service {
     );
     return this.get('stored').filter((datum) => !filtered[datum.get('id')]);
   }
-
+  
   remove(development) {
     this.get('stored').removeObject(development);
     this.set('stored', this.get('stored').toArray());

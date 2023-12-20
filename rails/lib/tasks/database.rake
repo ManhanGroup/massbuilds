@@ -14,20 +14,20 @@ namespace :database do
     puts "Vacuum analyzed parcels in #{Time.now - start} seconds"
 
     rpa_query = <<~SQL
-      SELECT rpa.rpa_name, dev.id
-      FROM rpa_poly AS rpa
+      SELECT rpa.name as rpa_name, dev.id
+      FROM rpas AS rpa
       JOIN developments AS dev
       ON ST_Intersects(ST_TRANSFORM(dev.point, 4269), rpa.shape);
     SQL
     county_query = <<~SQL
       SELECT cty.county, dev.id
-      FROM counties_polym AS cty
+      FROM counties AS cty
       JOIN developments AS dev
       ON ST_Intersects(ST_TRANSFORM(dev.point, 4269), cty.shape);
     SQL
     municipality_query = <<~SQL
       SELECT mni.namelsad as municipal, dev.id
-      FROM ca_place AS mni
+      FROM places AS mni
       JOIN developments AS dev
       ON ST_Intersects(ST_TRANSFORM(dev.point, 4269), mni.geom);
     SQL
