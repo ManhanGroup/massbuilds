@@ -1,4 +1,4 @@
-class RpaPolicy < ApplicationPolicy
+class PlacePolicy < ApplicationPolicy
   def index?
     true
   end

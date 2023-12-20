@@ -1,4 +1,4 @@
-class RpaPolicy < ApplicationPolicy
+class CountyPolicy < ApplicationPolicy
   def index?
     true
   end
