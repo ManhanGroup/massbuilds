@@ -1,7 +1,7 @@
-.logo-collection {
+.footerlogo-collection {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: right;
           
     margin-bottom: 1em;
     .logo-image {
@@ -9,10 +9,7 @@
         max-width: 30%;
         max-height: 4em;
         overflow:hidden;   
-        &.sign-up {
-            max-height: 2em; 
-        }
-        &.pheader {
+        &.footer {
             height: 2em;
             width: auto;
         }

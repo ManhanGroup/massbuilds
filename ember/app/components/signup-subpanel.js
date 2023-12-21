@@ -26,7 +26,7 @@ export default class extends Component {
     this.errorMessage = null;
 
     this.munis = [];
-    this.rpas=["AMBAG","SLOCOG","SRTA"];
+    this.rpas=["AMBAG", "BCAG","SLOCOG","SRTA","TRPA"];
     this.isFetching = false;
     this.muniFailure = false;
     this.requesting = null;

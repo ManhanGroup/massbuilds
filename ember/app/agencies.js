@@ -10,7 +10,7 @@ const agencies={
     },
     "properties": {
       "id": "0",
-      "logo": "ambag.jpg",
+      "logo": "ambag_short.png",
       "name": "Association of Monterey Bay Area Governments",
       "phoneFormatted": "(831)883-3750",
       "phone": "+18318833750",
@@ -19,6 +19,28 @@ const agencies={
       "postalCode": "93940",
       "email": "calbuilds@ambag.org",
       "acronym": "AMBAG"
+    }
+  },
+  "BCAG": {
+    "type": "agency",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -121.60067173521647,
+        39.66692936292084
+      ]
+    },
+    "properties": {
+      "id": "1",
+      "logo": "bcag_short.png",
+      "name": "Butte County Association of Governments",
+      "phoneFormatted": "(530)809-4616",
+      "phone": "+15308094616",
+      "address": "326 Huss Ln STE 150",
+      "city": "Chico, CA",
+      "postalCode": "95928",
+      "email": "calbuilds@bcag.org",
+      "acronym": "BCAG"
     }
   },
  "SLOCOG": {
@@ -31,8 +53,8 @@ const agencies={
       ]
     },
     "properties": {
-        "id": "1",
-        "logo": "slocog.jpeg",
+        "id": "2",
+        "logo": "slocog_short.png",
         "name": "San Luis Obispo Council of Governments",
         "phoneFormatted": "(805)781-4219",
         "phone": "+18057814219",
@@ -53,8 +75,8 @@ const agencies={
       ]
     },
     "properties": {
-        "id": "2",
-        "logo": "logo_srta.png",
+        "id": "3",
+        "logo": "shasta_short.png",
         "name": "Shasta Regional Transportation Agency",
         "phoneFormatted": "(530)262-6190",
         "phone": "+15302626190",
@@ -65,6 +87,28 @@ const agencies={
         "acronym": "SRTA"
     }
   },  
+  "TRPA": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -119.93096812883599,
+        38.96642239281229, 
+      ]
+    },
+    "properties": {
+        "id": "4",
+        "logo": "trpa_short.png",
+        "name": "Tahoe Regional Planning Agency",
+        "phoneFormatted": "(775)588-4547",
+        "phone": "+17755884547",
+        "address": "128 Market St",
+        "city": " Stateline, NV",
+        "postalCode": "89410",
+        "email": "calbuilds@trpa.org",
+        "acronym": "TRPA"
+    }
+  }, 
 };
 
 export default agencies;
