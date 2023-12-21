@@ -4,11 +4,7 @@ import { action } from '@ember-decorators/object';
 
 export default class extends Controller {
 
-  // @computed('model.rpas.@each')
-  // get rpas() {
-  //   return this.model.rpas;
-  // }
-  
+
   @action
   toggleCounties(rpa) {
     rpa.set('isShowingCounties',  !rpa.get('isShowingCounties'));   
@@ -47,6 +43,11 @@ export default class extends Controller {
     rpa.get('counties').forEach(async (county)=>{
       county.set('ispublic',newVal);
       await county.save();
+
+      county.get('places').forEach(async (place)=>{
+        place.set('ispublic',newVal);
+        await place.save();
+      })
     })
   }
 
