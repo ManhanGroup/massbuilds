@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { action, computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
-//import munis from '../utils/municipalities';
 
 
 export default class extends Component {

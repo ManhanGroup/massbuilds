@@ -16,6 +16,7 @@
         <div>Name</div>
         <div>Email</div>
         <div>Municipality</div>
+        <div>Agency</div>
         <div></div>
         <div></div>
       </li>
@@ -25,6 +26,7 @@
             <div>{{user.fullName}}</div>
             <div>{{user.email}}</div>
             <div>{{if (eq user.municipality 'STATE') 'State/Regional' user.municipality}}</div>
+            <div>{{user.agency}}</div>
             <div><button class="styled negative" onclick={{action denyUser user}}>Deny</button></div>
             <div><button class="styled" onclick={{action approveUser user}}>Approve</button></div>
           </li>
