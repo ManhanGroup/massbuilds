@@ -34,5 +34,12 @@ export default class extends Component {
       this.sendAction('getCityBoundary', city);
     }
   }
+  
+  @action
+  updateMunicipality(city) {
+    if (city) {
+      this.sendAction('updateMunicipality', city);
+    }
+  }
 
 }

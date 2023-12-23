@@ -31,10 +31,17 @@ export default class extends Component {
   selectRpa(rpa) {
     this.set('selectedRpa', rpa);
   }
-
+ 
   getCityBoundary(city) {
     if (city) {
       this.sendAction('getCityBoundary', city);
+    }
+  }
+
+  
+  updateMunicipality(city) {
+    if (city) {
+      this.sendAction('updateMunicipality', city);
     }
   }
 

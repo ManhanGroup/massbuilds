@@ -1,13 +1,14 @@
 import Component from '@ember/component';
 import { action, computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
-import munis from '../utils/municipalities';
+//import munis from '../utils/municipalities';
 
 
 export default class extends Component {
 
   @service session
   @service store
+  @service lstrpas
 
 
   constructor() {
@@ -25,7 +26,8 @@ export default class extends Component {
 
     this.errorMessage = null;
 
-    this.munis = [];
+   // this.munis = [];
+    this.selaction="updateMunicipality";
     this.rpas=["AMBAG", "BCAG","SLOCOG","SRTA","TRPA"];
     this.isFetching = false;
     this.muniFailure = false;
@@ -33,15 +35,19 @@ export default class extends Component {
   }
 
 
-  @action
-  fetchMunis() {
-    this.set('munis', munis.map(row => row.text).sort());
-  }
+  // @action
+  // fetchMunis() {
+  //   this.set('munis', munis.map(row => row.text).sort());
+  // }
 
 
   @action
   updateMunicipality(muni) {
-    this.set('municipality', muni);
+    let mycity =this.get('store').peekRecord('place', muni);
+    let cityname=mycity.get('namelsad');
+    let rpaname = mycity.get('rpa').get('acronym');
+    this.set('municipality', cityname);
+    this.set('agency', rpaname);
   }
 
  
@@ -81,11 +87,26 @@ export default class extends Component {
         : (requesting == 'state' ? 'STATE' : null);
     const agency = requesting=='state'
         ? this.get('agency') 
-        : (email.endsWith('srta.org')
-          ? 'SRTA' 
-          : (email.endsWith('slocog.org') 
-            ? 'SLOCOG' 
-            : 'AMBAG'));
+        :(requesting == 'municipal'
+          ? this.get('agency')
+          :(email.endsWith('srta.org')
+            ? 'SRTA' 
+            : (email.endsWith('slocog.org')
+              ? 'SLOCOG' 
+              : (email.endsWith('bcag.org')
+                ? 'BCAG'
+                : (email.endsWith('bcag.org')
+                  ? 'TRPA'
+                  : 'AMBAG')))));
+    // const agency = requesting=='state'
+    //     ? this.get('agency') 
+    //     : requesting == 'municipal'
+    //       ? this.get('rpaacronym') 
+    //       :(email.endsWith('srta.org')
+    //         ? 'SRTA' 
+    //         : (email.endsWith('slocog.org') 
+    //           ? 'SLOCOG' 
+    //           : 'AMBAG'));
     const requestVerifiedStatus = !!requesting;
 
 
