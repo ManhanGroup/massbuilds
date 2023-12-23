@@ -55,7 +55,7 @@
       }}
     </div>
     <div class="top-middle-select">
-      {{rpa-selector rpas=map.lstrpas getCityBoundary=(action getCityBoundary)}}
+      {{rpa-selector rpas=lstrpas.lstrpas selectedAction="getCityBoundary" getCityBoundary=(action getCityBoundary)}}
     </div>
     <div class="legend-wrapper">
       {{map-legend showing=showingFilters}}

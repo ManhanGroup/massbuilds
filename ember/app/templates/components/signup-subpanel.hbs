@@ -52,8 +52,7 @@
 
         {{#radio-button
           value="municipal"
-          groupValue=requesting
-          changed=(action fetchMunis)
+          groupValue=requesting          
         }}
           <span>Yes, as a member of city or town government</span>
         {{/radio-button}}
@@ -62,15 +61,7 @@
       {{#if (eq requesting 'municipal')}}
         <div class="input-wrapper labeled">
           <label>Choose the municipality you are associated with</label>
-
-          {{#loading-spinner message="Loading Municipalities" isLoading=isFetching}}
-            <select onchange={{action updateMunicipality value="target.value"}}>
-              <option disabled selected>Select Municipality</option>
-              {{#each munis as |muni|}}
-                <option value={{muni}}>{{muni}}</option>
-              {{/each}}
-            </select>
-          {{/loading-spinner}}
+          {{rpa-selector rpas=lstrpas.lstrpas selectedAction="updateMunicipality" updateMunicipality=(action updateMunicipality)}}
         </div>
       {{/if}}
 

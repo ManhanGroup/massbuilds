@@ -6,5 +6,5 @@
 </select>
 
 {{#if places}}
-  {{place-selector places=places getCityBoundary=(action getCityBoundary)}}
+  {{place-selector places=places selectedAction=selectedAction getCityBoundary=(action getCityBoundary) updateMunicipality=(action updateMunicipality)}}
 {{/if}}
