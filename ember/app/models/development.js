@@ -30,9 +30,10 @@ export default class extends DS.Model {
   @attr('string') trafficCountData;
   @attr('string') mixDescr;
 
-  @attr('number') percomp24;
-  @attr('number') percomp28;
+  @attr('number') percomp25;
+  @attr('number') percomp30;
   @attr('number') percomp35;
+  @attr('number') percomp40;
   @attr('number') percomp45;
   @attr('number') yearCompl;
   @attr('number') prjarea;
@@ -92,7 +93,9 @@ export default class extends DS.Model {
   @attr('boolean', { default: false }) mixedUse;
   @attr('boolean', { default: false }) yrcompEst;
   @attr('boolean', { default: false }) flag;
-
+  @attr('boolean', { default: false }) ab1317;
+  @attr('boolean', { default: false }) rhna;
+  @attr('boolean', { default: true }) ispublic;
 
   @attr('date') createdAt;
   @attr('date') updatedAt;

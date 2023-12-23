@@ -1,0 +1,15 @@
+<h1>Rpa#index</h1>
+<p>Find me in app/views/rpa/index.html.erb</p>
+<%= form_for @rpa, url: rpa_path(@rpa), method: :patch do |f| %>
+  <%= f.label :acronym %>
+  <%= f.text_field :acronym %>
+
+  <%= f.label :name %>
+  <%= f.text_area :name %>
+
+  <%= f.label :ispublic %>
+  <%= f.check_box :ispublic %>
+
+  <%= f.submit %>
+<% end %>
+

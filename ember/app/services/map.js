@@ -51,7 +51,8 @@ export default class extends Service {
             )
           )
         );
-      });
+      });      
+    
   }
 
   setViewing(dev) {
@@ -94,7 +95,7 @@ export default class extends Service {
     );
     return this.get('stored').filter((datum) => !filtered[datum.get('id')]);
   }
-
+  
   remove(development) {
     this.get('stored').removeObject(development);
     this.set('stored', this.get('stored').toArray());

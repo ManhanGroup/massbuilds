@@ -1,0 +1,17 @@
+.footerlogo-collection {
+    display: flex;
+    justify-content: space-around;
+    align-items: right;
+          
+    margin-bottom: 1em;
+    .logo-image {
+        height: auto;
+        max-width: 30%;
+        max-height: 4em;
+        overflow:hidden;   
+        &.footer {
+            height: 2em;
+            width: auto;
+        }
+    }
+}

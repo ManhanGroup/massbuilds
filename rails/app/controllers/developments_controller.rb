@@ -110,9 +110,9 @@ class DevelopmentsController < ApplicationController
 
   def filtered_params
     params.permit(:user_id, :rdv, :asofright, :ovr55, :clusteros, :phased, :stalled, :name, :status,:stat_comts,
-                  :descr,:notes, :prj_url, :address, :state, :zip_code, :percomp_24,:percomp_28,:percomp_35,
+                  :descr,:notes, :prj_url, :address, :state, :zip_code, :percomp_25,:percomp_30,:percomp_35,:percomp_40,
                   :percomp_45, :year_compl, :prjarea, :gluc, :placetype, :singfamhu, :multifam,  :hu, :gqpop,
-                  :rptdemp, :commsf, :hotelrms, :total_cost,
+                  :rptdemp, :commsf, :hotelrms, :total_cost,:rhna,:ab1317,
                   :ret_sqft, :ofcmd_sqft, :indmf_sqft,
                   :whs_sqft, :rnd_sqft, :ei_sqft, :other_sqft, :hotel_sqft, :other_rate, :affordable,
                   :latitude, :longitude, :parcel_id,:apn, :mixed_use,:mix_descr, :point, :programs, :forty_b, :residential,
@@ -129,16 +129,16 @@ class DevelopmentsController < ApplicationController
       format.jsonapi do
         ActiveModelSerializers::Deserialization.jsonapi_parse(params,
                                                               only: %i[user_id rdv asofright ovr55 clusteros phased stalled name status stat_comts
-                                                                       descr notes prj_url address state zip_code percomp_24 percomp_28 percomp_35
-                                                                       percomp_45 year_compl prjarea gluc placetype singfamhu multifam hu gqpop
+                                                                       descr notes prj_url address state zip_code percomp_25 percomp_30 percomp_35
+                                                                       percomp_40 percomp_45 year_compl prjarea gluc placetype singfamhu multifam hu gqpop
                                                                        rptdemp commsf hotelrms  total_cost
-                                                                       ret_sqft ofcmd_sqft indmf_sqft
+                                                                       ret_sqft ofcmd_sqft indmf_sqft rhna ab1317
                                                                        whs_sqft rnd_sqft ei_sqft other_sqft hotel_sqft other_rate affordable
                                                                        latitude longitude parcel_id apn mixed_use mix_descr point programs forty_b residential
                                                                        commercial municipal devlper yrcomp_est units_1bd units_2bd units_3bd
                                                                        affrd_unit aff_u50 aff_50_80 aff_80_120 aff_120p headqtrs park_type sb_type publicsqft
                                                                        unknownhu aff_unknown unk_sqft flag proj_id traffic_count_data proj_id_present traffic_count_data_present
-                                                                       mf2_4 mf5up mobile school studk12p studunip empedu empfoo empgov empind empmed empofc empoth empret empsvc])
+                                                                       mf2_4 mf5up mobile school studk12p studunip empedu empfoo empgov empind empmed empofc empoth empret empsvc ispublic])
       end
     end
   end

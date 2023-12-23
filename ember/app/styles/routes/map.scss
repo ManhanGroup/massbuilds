@@ -197,8 +197,8 @@
 
   .top-middle-select{
     position: absolute;
-    top: 15px;
-    right: 40%;
+    top: -7px;
+    left: calc(100% + 26em);
     background: #FFF;
     border-style: solid;
     border-color: #2e6c85;
@@ -302,6 +302,7 @@
       bottom: 0;
       display: flex;
       height: 10.5em;
+      width: 100%;
       padding: 15px;
       font-size: 0.8em;
       color: $color_brand-primary;

@@ -10,7 +10,6 @@ class User < ApplicationRecord
   has_many :flags
   after_initialize :set_default_role, if: :new_record?
   after_create :new_user_email
-  after_save :update_agency
 
   private
   def ensure_authentication_token
@@ -32,20 +31,5 @@ class User < ApplicationRecord
 
   def set_default_role
     self.role ||= :user
-  end
-
-  def update_agency
-    return if municipality.nil? || municipality=='STATE'
-    logger.debug municipality
-    rpa_query = <<~SQL
-      SELECT upper(acronym) as agency FROM ca_place p JOIN rpa_poly r 
-      ON st_contains(r.shape, st_centroid(p.geom)) 
-      WHERE position('#{self.municipality}' in upper(namelsad))>0;      
-    SQL
-    sql_result = ActiveRecord::Base.connection.exec_query(rpa_query).to_a[0]
-    return if sql_result.blank?
-    self.update_columns(agency: sql_result['agency'])
-  end
-
-  
+  end 
 end

@@ -1,7 +1,7 @@
 <div class="subpanel-content">
 
   <div class="user-info">
-    {{logo-collection}}
+    {{logo-collection small=true}}
 
     <h3>
       {{currentUser.user.fullName}}
@@ -102,6 +102,14 @@
           Verify Users
         {{/link-to}}
       {{/if}}
+
+      {{#link-to 'map.rpas.manage' click=(action closeMenu)}}
+        <div class="icon-wrapper">
+          <img src="/assets/images/check-square.svg">
+        </div>
+
+        Toggle Public View
+      {{/link-to}}
     {{/if}}
   </div>
 

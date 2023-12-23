@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 
 
 export default class extends Route {
-
+ 
   @service currentUser
 
 

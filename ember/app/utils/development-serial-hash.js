@@ -1,7 +1,8 @@
 const manual = {
-  'percomp24': 'percomp_24',
-  'percomp28': 'percomp_28',
+  'percomp25': 'percomp_25',
+  'percomp30': 'percomp_30',
   'percomp35': 'percomp_35',
+  'percomp40': 'percomp_40',
   'percomp45': 'percomp_45',
   'units1bd': 'units_1bd',
   'units2bd': 'units_2bd',

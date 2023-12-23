@@ -19,14 +19,20 @@ export default class extends Component {
       return later(this, function () {
         switch(this.currentAgency) {
           case agencies.AMBAG.properties:
-            this.set("currentAgency", agencies.SLOCOG.properties)
+            this.set("currentAgency", agencies.BCAG.properties)
             break
+          case agencies.BCAG.properties:
+              this.set("currentAgency", agencies.SLOCOG.properties)
+          break
           case agencies.SLOCOG.properties:
               this.set("currentAgency", agencies.SRTA.properties)
             break
           case agencies.SRTA.properties:
-              this.set("currentAgency", agencies.AMBAG.properties)
+              this.set("currentAgency", agencies.TRPA.properties)
             break
+          case agencies.TRPA.properties:
+              this.set("currentAgency", agencies.AMBAG.properties)
+          break
         }
         this.runner = this.updateAgency();
       }, 5000);

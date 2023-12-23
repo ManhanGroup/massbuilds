@@ -1,10 +1,12 @@
 import { copy } from '@ember/object/internals';
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
-import munis from '../../../utils/municipalities';
+//import munis from '../../../utils/municipalities';
+import { service } from '@ember-decorators/service';
 
 
 export default class extends Controller {
+  @service store
 
   constructor() {
     super();
@@ -57,7 +59,8 @@ export default class extends Controller {
 
   @computed
   get fetchMunis() {
-    const munisList = munis.map(row => row.text)
+    //const munisList = munis.map(row => row.text)
+    const munisList=this.store.findAll('place');
     munisList.push('STATE')
     return munisList.sort();
   }

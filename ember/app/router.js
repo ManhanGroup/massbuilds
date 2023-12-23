@@ -28,6 +28,9 @@ Router.map(function() {
         this.route('user', { path: '/:user_id' });
       });
     });
+    this.route('rpas', function() {
+      this.route('manage');
+    });
   });
   this.route('glossary');
   this.route('about');

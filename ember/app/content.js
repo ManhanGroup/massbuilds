@@ -80,17 +80,21 @@ const content = {
       unitsLong: 'Square Feet',
       definition: ['Total area of development site only, not including areas on the site/parcel that are not developed.'],
     },
-    PERCOMP24: {
-      label: 'Percent by 2024',
-      definition: ['Percent completed by year 2024.'],
+    percomp25: {
+      label: 'Percent by 2025',
+      definition: ['Percent completed by year 2025.'],
     },
-    PERCOMP28: {
-      label: 'Percent by 2028',
-      definition: ['Percent completed by year 2028.'],
+    percomp30: {
+      label: 'Percent by 2030',
+      definition: ['Percent completed by year 2030.'],
     },
     PERCOMP35: {
       label: 'Percent by 2035',
       definition: ['Percent completed by year 2035.'],
+    },
+    PERCOMP40: {
+      label: 'Percent by 2040',
+      definition: ['Percent completed by year 2040.'],
     },
     PERCOMP45: {
       label: 'Percent by 2045',
@@ -103,6 +107,13 @@ const content = {
         'If parking spaces are entered, you will be asked to designate what type of parking the spaces are in. Select Garage if the spaces are in an enclosed garage on site, Underground if the spaces are located underneath (below grade) the development, or Surface if they are located on a surface lot (at grade).',
         'If there are multiple types of parking, select one based on where most of the spaces are located and note the breakdowns in the Description.',
       ],
+    },
+    RHNA: {
+      label: 'Completed in the current RHNA cycle?',
+      definition: [
+        'Indicator for whether the development will be completed in the current RHNA cycle or not.',
+      ],
+
     },
     REDEVELOPMENT: {
       label: 'Redevelopment',
@@ -119,6 +130,10 @@ const content = {
     SBTYPE: {
       label: 'SB Type',
       definition: ['Check if this development is SB6 or SB8.'],
+    },
+    AB1317: {
+      label: 'AB1317',
+      definition: ['Indicator for whether AB1317 is applicable or not?'],
     },
     AS_OF_RIGHT: {
       label: 'As of Right',
