@@ -1,0 +1,13 @@
+<section class="route map-developments-uploads map-developments-upload">
+    <h1>Upload Development Files</h1>
+    <div class="left-panel-links">
+      {{#link-to 'map'}}
+        <img src="/assets/images/chevrons-left.svg">
+        Close
+      {{/link-to}}
+    </div>
+    <form onsubmit={{action "uploadFile"}}>
+      <input type="file" id="myFile" name="filename">
+      <input type="submit">
+    </form>
+</section>

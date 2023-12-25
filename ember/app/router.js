@@ -14,6 +14,7 @@ Router.map(function() {
       });
 
       this.route('create');
+      this.route('uploads');
 
       this.route('for', function() {
         this.route('user', { path: '/:user_id' });

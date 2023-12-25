@@ -1,5 +1,5 @@
-require 'csv'
 require 'zip'
+require 'csv'
 class Development < ApplicationRecord
   acts_as_paranoid
   has_many :edits, dependent: :destroy
@@ -75,6 +75,80 @@ class Development < ApplicationRecord
         end
       end
     end
+  end
+
+  def self.to_bool x
+    return x.to_s.downcase == "true"
+  end
+
+  def self.import file, user
+    # csv import copied from rails/lib/tasks/import.rake
+    csv_text = File.read(file)
+    csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
+    developmentsAdded = []
+    csv.each do |row|
+      development = Development.new(
+
+        rdv: self.to_bool(row["rdv"]),
+        asofright: self.to_bool(row["asofright"]),
+        ovr55: self.to_bool(row["ovr55"]),
+        clusteros: self.to_bool(row["clusteros"]),
+        phased: self.to_bool(row["phased"]),
+        stalled: self.to_bool(row["stalled"]),
+        name: row["name"],
+        status: row["status"],
+        descr: row["descr"],
+        prj_url: row["prj_url"],
+        address: row["address"],
+        state: row["state"],
+        zip_code: row["zip_code"],
+        year_compl: row["year_compl"],
+        prjarea: row["prjarea"],
+        singfamhu: row["singfamhu"],
+        hu: row["hu"],
+        yrcomp_est: self.to_bool(row["yrcomp_est"]),
+        gqpop: row["gqpop"],
+        rptdemp: row["rptdemp"],
+        commsf: row["commsf"],
+        hotelrms: row["hotelrms"],
+        total_cost: row["total_cost"],
+        ret_sqft: row["ret_sqft"],
+        ofcmd_sqft: row["ofcmd_sqft"],
+        indmf_sqft: row["indmf_sqft"],
+        whs_sqft: row["whs_sqft"],
+        rnd_sqft: row["rnd_sqft"],
+        ei_sqft: row["ei_sqft"],
+        other_sqft: row["other_sqft"],
+        hotel_sqft: row["hotel_sqft"],
+        other_rate: row["other_rate"],
+        affordable: row["affordable"],
+        latitude: row["latitude"],
+        longitude: row["longitude"],
+        parcel_id: row["parcel_id"],
+        mixed_use: self.to_bool(row["mixed_use"]),
+        programs: row["programs"],
+        forty_b: row["forty_b"],
+        residential: row["residential"],
+        commercial: row["commercial"],
+        created_at: row["created_at"],
+        municipal: row["municipal"],
+        units_1bd: row["units_1bd"],
+        units_2bd: row["units_2bd"],
+        units_3bd: row["units_3bd"],
+        affrd_unit: row["affrd_unit"],
+        headqtrs: self.to_bool(row["headqtrs"]),
+        park_type: row["park_type"],
+        publicsqft: row["publicsqft"],
+        devlper: row["devlper"],
+        loc_id: row["loc_id"],
+        parcel_fy: row["parcel_fy"],
+        updated_at: row["updated_at"],
+      )
+      development.user = user
+      development.save(validate: false)
+      developmentsAdded.push(development)
+    end
+    return developmentsAdded
   end
 
   def self.to_shp

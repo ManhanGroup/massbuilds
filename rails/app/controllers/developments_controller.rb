@@ -61,6 +61,16 @@ class DevelopmentsController < ApplicationController
     end
   end
 
+  # POST /developments/import
+  def import
+    respond_to do |format|
+      format.jsonapi { render json: {
+        result: Development.import( params[:filename], current_user )
+      }.to_json }
+    end
+    # TODO: add exception handling
+  end
+  
   # PATCH/PUT /developments/1
   def update
     development_params.count === 1 && development_params[:flag] ? authorize(@development, :flag?) : authorize(@development)
