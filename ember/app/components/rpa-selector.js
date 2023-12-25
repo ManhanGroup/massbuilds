@@ -7,29 +7,31 @@ export default class extends Component {
   constructor() {
     super();
     this.selectedRpa=null;
+    this.sortedCounties=[];
+    
   }
   
   @computed('selectedRpa')
   get counties() {
-    const selectedRpa = this.get('selectedRpa');
-    
+    const selectedRpa = this.get('selectedRpa');    
     if (selectedRpa) {
       let rpa=this.get('store').peekRecord('rpa', selectedRpa);
-      let mycounties=rpa.get('counties');
-      return mycounties;
-      // rpa.get('counties').then(function(counties) {
-      //   return counties.reload();
-        
-      // });
-      
+      return rpa.get('counties');
+      // return rpa.get('counties').then((counties) => {
+      //   return counties;
+      // }).catch((error) => {
+      //   return null;
+      // });       
     } else {
       return null;
     }
   }
 
   @action
-  selectRpa(rpa) {
+  async selectRpa(rpa) {
     this.set('selectedRpa', rpa);
+    let mycounties=await this.get('counties');
+    this.set('sortedCounties',mycounties.sortBy('county'));
   }
  
   getCityBoundary(city) {

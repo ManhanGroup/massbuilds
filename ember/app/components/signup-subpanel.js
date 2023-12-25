@@ -24,20 +24,11 @@ export default class extends Component {
 
     this.errorMessage = null;
 
-   // this.munis = [];
     this.selaction="updateMunicipality";
-    this.rpas=["AMBAG", "BCAG","SLOCOG","SRTA","TRPA"];
     this.isFetching = false;
     this.muniFailure = false;
     this.requesting = null;
   }
-
-
-  // @action
-  // fetchMunis() {
-  //   this.set('munis', munis.map(row => row.text).sort());
-  // }
-
 
   @action
   updateMunicipality(muni) {
@@ -96,15 +87,7 @@ export default class extends Component {
                 : (email.endsWith('bcag.org')
                   ? 'TRPA'
                   : 'AMBAG')))));
-    // const agency = requesting=='state'
-    //     ? this.get('agency') 
-    //     : requesting == 'municipal'
-    //       ? this.get('rpaacronym') 
-    //       :(email.endsWith('srta.org')
-    //         ? 'SRTA' 
-    //         : (email.endsWith('slocog.org') 
-    //           ? 'SLOCOG' 
-    //           : 'AMBAG'));
+   
     const requestVerifiedStatus = !!requesting;
 
 

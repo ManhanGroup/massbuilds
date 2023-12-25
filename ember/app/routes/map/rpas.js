@@ -1,15 +1,12 @@
 import Route from '@ember/routing/route';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
-export default class extends Route {
-  @service store;
+export default Route.extend({
+  lstrpas: service(),
 
-  async  model() {
-    //return this.get('store').findAll('rpa');
-    const rpas = await this.store.findAll('rpa', { include: 'counties' });
-       
-    return rpas;
-    
+  model() {
+    const rpas=this.get('lstrpas.lstrpas');
+    return rpas;    
   }
 
-}
+})
