@@ -8,6 +8,7 @@ export default class extends Component {
   constructor() {
     super();
     this.selectedCounty=null;
+    this.sortedPlaces = [];
   }
   
   @computed('selectedCounty')
@@ -15,17 +16,22 @@ export default class extends Component {
     const selectedCounty= this.get('selectedCounty');
     if (selectedCounty) {
       let cnty=this.get('store').peekRecord('county', selectedCounty);
-      let myplaces=cnty.get('places');
-      return myplaces;
-      
+      return cnty.get('places');
+      // return cnty.get('places').then((places) => {
+      //   return places;
+      // }).catch((error) => {
+      //   return null;
+      // });             
     } else {
       return null;
     }
   }
 
   @action
-  selectCounty(county) {
+  async selectCounty(county) {
     this.set('selectedCounty', county);
+    let myplaces=await this.get('places');
+    this.set('sortedPlaces',myplaces.sortBy('namelsad'));   
   }
 
   @action

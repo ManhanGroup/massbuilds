@@ -1,10 +1,11 @@
 <select id="county-select" onchange={{action "selectCounty" value="target.value"}}>
   <option value="">-- Select a County --</option>
+  <p>{{counties}}</p>
   {{#each counties as |county|}}
     <option value={{county.id}}>{{county.county}}</option>
   {{/each}}
 </select>
 
-{{#if places}}
-  {{place-selector places=places selectedAction=selectedAction getCityBoundary=(action getCityBoundary) updateMunicipality=(action updateMunicipality)}}
+{{#if sortedPlaces}}
+  {{place-selector places=sortedPlaces selectedAction=selectedAction getCityBoundary=(action getCityBoundary) updateMunicipality=(action updateMunicipality)}}
 {{/if}}

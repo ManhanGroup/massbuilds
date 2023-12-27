@@ -72,8 +72,8 @@
           {{#loading-spinner message="Loading RPAS" isLoading=isFetching}}
             <select onchange={{action updateAgency value="target.value"}}>
               <option disabled selected>Select RPA Agency</option>
-              {{#each rpas as |rpa|}}
-                 <option value={{rpa}}>{{rpa}}</option>
+              {{#each lstrpas.lstrpas as |rpa|}}
+                 <option value={{rpa.acronym}}>{{rpa.name}}</option>
               {{/each}}
             </select>
           {{/loading-spinner}}

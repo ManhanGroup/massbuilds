@@ -5,6 +5,6 @@
   {{/each}}
 </select>
 
-{{#if counties}}
-  {{county-selector counties=counties selectedAction=selectedAction getCityBoundary=(action getCityBoundary) updateMunicipality=(action updateMunicipality)}}
+{{#if sortedCounties}}
+  {{county-selector counties=sortedCounties selectedAction=selectedAction getCityBoundary=(action getCityBoundary) updateMunicipality=(action updateMunicipality)}}
 {{/if}}
