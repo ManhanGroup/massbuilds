@@ -12,6 +12,7 @@ export default class extends Controller {
 
   @action
   uploadFile(event) {
+    event.preventDefault();
     let formData = new FormData(event.currentTarget);
     this.get('authenticatedFetch').post(`${config.host}/developments/import`, formData)
     .then(() => {
