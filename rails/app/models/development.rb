@@ -39,15 +39,17 @@ class Development < ApplicationRecord
   before_save :update_point
   before_save :set_traffic_count_data_present
   before_save :set_proj_id_present
-  after_save :geocode
+  
+  after_save :update_apn
   after_save :update_rpa
   after_save :update_county
   after_save :update_municipality
-  after_save :update_apn
+  
   after_save :update_n_transit
   after_save :update_neighborhood
   after_save :update_loc_id
   after_save :update_taz
+  after_save :geocode
 
   @@excluded_attrs_from_export = [
     'other_rate',
@@ -196,6 +198,7 @@ class Development < ApplicationRecord
     self.point = "POINT (#{longitude} #{latitude})"
   end
 
+  #use openstreetmap geocoding service only if parcel layer doesn't have address
   def geocode
     return if !saved_change_to_point?
     result = Faraday.get "https://nominatim.openstreetmap.org/reverse?format=geojson&lat=#{self.latitude}&lon=#{self.longitude}"
@@ -204,11 +207,12 @@ class Development < ApplicationRecord
       properties = JSON.parse(result.body)['features'][0]['properties']
       logger.debug "entering geocoding"
       logger.debug properties['address']['city']
-      self.update_columns(
-        municipal: (properties['address']['city'].to_s || self.municipal),
-        address: ((properties['address']['house_number'].to_s || '')+' '+ properties['address']['road'].to_s || self.address),
-        zip_code: (properties['address']['postcode'].to_s || self.zip_code)
-        )
+      return if !self.address.blank?
+      self.update_columns(address: ((properties['address']['house_number'].to_s || '')+' '+ properties['address']['road'].to_s ))
+      return if !self.municipal.blank?
+      self.update_columns(municipal: (self.municipal || properties['address']['city'].to_s))
+      return if !self.zip_code.blank?
+      self.update_columns(zip_code: (self.zip_code || properties['address']['postcode'].to_s))      
     end
     
   end
@@ -248,13 +252,18 @@ class Development < ApplicationRecord
   def update_county
     return if !saved_change_to_point?
     counties_query = <<~SQL
-      SELECT county, shape
+      SELECT geoid, county, shape
       FROM counties
       WHERE ST_Intersects(ST_TRANSFORM(ST_GeomFromText('#{point}', 4326), 4269), shape);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(counties_query).to_a[0]
     return if sql_result.blank?
     self.update_columns(county: sql_result['county'])
+    if sql_result['geoid'][0..1] == '06'
+      self.update_columns(state: 'CA')
+    elsif sql_result['geoid'][0..1] == '32'
+      self.update_columns(state: 'NV')
+    end
   end
 
   def update_municipality
@@ -266,19 +275,23 @@ class Development < ApplicationRecord
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(municipalities_query).to_a[0]
     return if sql_result.blank?
+    return if !self.municipal.blank?
     self.update_columns(municipal: sql_result['namelsad'])
   end
 
   def update_apn
     return if !saved_change_to_point?
     apn_query = <<~SQL
-      SELECT apn, geom
+      SELECT apn, site_addr, muni, addr_zip, geom
       FROM parcels
       WHERE ST_Intersects(ST_GeomFromText('#{point}', 4326), geom);
     SQL
     sql_result = ActiveRecord::Base.connection.exec_query(apn_query).to_a[0]
     return if sql_result.blank?
-    self.update_columns(apn: sql_result['apn'])
+    self.update_columns(address: sql_result['site_addr'],
+                        municipal: sql_result['muni'],
+                        zip_code: sql_result['addr_zip'],
+                        apn: sql_result['apn'])
   end
 
   def update_n_transit

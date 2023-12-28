@@ -16,12 +16,7 @@ export default class extends Component {
     const selectedRpa = this.get('selectedRpa');    
     if (selectedRpa) {
       let rpa=this.get('store').peekRecord('rpa', selectedRpa);
-      return rpa.get('counties');
-      // return rpa.get('counties').then((counties) => {
-      //   return counties;
-      // }).catch((error) => {
-      //   return null;
-      // });       
+      return rpa.get('counties');    
     } else {
       return null;
     }

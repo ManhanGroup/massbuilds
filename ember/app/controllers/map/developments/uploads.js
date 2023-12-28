@@ -12,13 +12,16 @@ export default class extends Controller {
 
   @action
   uploadFile(event) {
+    event.preventDefault();
     let formData = new FormData(event.currentTarget);
     this.get('authenticatedFetch').post(`${config.host}/developments/import`, formData)
     .then(() => {
       this.get('notifications').show(
-        `You have successfully uploaded additional developments.`
-      );
-      this.sendAction('redirect'); // ?? where is this going to go?
+        `You have successfully uploaded additional developments.`,
+        { duration: 10000 } // display for 5 seconds
+      );   
+      this.set('successMessage', true);
+     // this.sendAction('redirect'); // ?? where is this going to go? 
     })
     .catch((e) => {
       this.set(
@@ -27,12 +30,13 @@ export default class extends Controller {
         // more details, was there a csv parsing error?
       );
     })
-    .finally(() => {
-      // for example 
-      // this.set('usUploading', false);
-      // reload the map view? 
-      this.transitionToRoute("map");
-    });
+    // .finally(() => {
+    //   // for example 
+    //   // this.set('usUploading', false);
+    //   // reload the map view? 
+    //   this.transitionToRoute("map");
+    // });
+    
   }
 
 }

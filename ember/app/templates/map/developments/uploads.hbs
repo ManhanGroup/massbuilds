@@ -6,8 +6,15 @@
         Close
       {{/link-to}}
     </div>
-    <form onsubmit={{action "uploadFile"}}>
+    <form onsubmit={{action "uploadFile"}} >
       <input type="file" id="myFile" name="filename">
       <input type="submit">
     </form>
+    {{#if successMessage}}
+       <p>Batch Upload was Successful! You can click "close" to return to map or click "Browse" again to load another file. </p>
+    {{/if}}
+    {{#if errorMessage}}
+       <p>Sorry, Batch Upload Failed!</p>
+    {{/if}}
+
 </section>
