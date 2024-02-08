@@ -1,7 +1,6 @@
 import { copy } from '@ember/object/internals';
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
-//import munis from '../../../utils/municipalities';
 import { service } from '@ember-decorators/service';
 
 
@@ -12,7 +11,7 @@ export default class extends Controller {
     super();
 
     this.roles = ['user', 'verified', 'municipal', 'admin', 'disabled'];
-
+    this.agencies = ['AMBAG', 'BCAG', 'SLOCOG', 'SRTA', 'TRPA', null];
     this.searchQuery = '';
     this.roleFilter = 'all';
   }
@@ -55,6 +54,16 @@ export default class extends Controller {
       user.set('role', newRole);
       user.save();
     }
+  }
+
+  @action
+  updateUserAgency(user) {
+    const newAgency = document.querySelector(`select[name="${user.id}-agency"]`).value;
+
+    //if (newAgency) {
+    user.set('agency', newAgency);
+    user.save();
+    //}
   }
 
   @computed

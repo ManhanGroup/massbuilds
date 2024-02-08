@@ -51,6 +51,7 @@ const content = {
       label: 'Status',
       definition: [
         'Select from the drop-down what the current status of the project is.',
+        'Select Unverified if it is not certain whether development will occur on a site/area',
         'Select Projected if it is known development will occur on a site/area but no specifics have been given for the project.',
         'Select Planning if plans for a development have been submitted, and fill out the remaining fields based on the submitted plan. Projects are still Planning even when they are approved.',
         'Select In Construction once a project has officially breaks ground and begun construction work.',
