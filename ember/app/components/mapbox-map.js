@@ -347,10 +347,14 @@ export default class extends Component {
       this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'visible'); 
       this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'visible');
       this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parcelstrpa", 'visibility', 'visible');
+      this.mapboxglMap.setLayoutProperty("parcelsbcag", 'visibility', 'visible');
     }else{
       this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'none'); 
       this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'none');
       this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parcelstrpa", 'visibility', 'none');
+      this.mapboxglMap.setLayoutProperty("parcelsbcag", 'visibility', 'none');
     }
    
   }
