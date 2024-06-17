@@ -79,15 +79,17 @@ export default class extends Component {
         ? this.get('agency') 
         :(requesting == 'municipal'
           ? this.get('agency')
-          :(email.endsWith('srta.org')
-            ? 'SRTA' 
-            : (email.endsWith('slocog.org')
-              ? 'SLOCOG' 
-              : (email.endsWith('bcag.org')
-                ? 'BCAG'
+          :(email.endsWith('ambag.org')
+            ? 'AMBAG' 
+            :(email.endsWith('srta.org')
+              ? 'SRTA' 
+              : (email.endsWith('slocog.org')
+                ? 'SLOCOG' 
                 : (email.endsWith('bcag.org')
-                  ? 'TRPA'
-                  : 'AMBAG')))));
+                  ? 'BCAG'
+                  : (email.endsWith('trpa.org')
+                    ? 'TRPA'
+                    : null))))));
    
     const requestVerifiedStatus = !!requesting;
 

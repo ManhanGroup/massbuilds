@@ -3,6 +3,7 @@ const statusColors = {
   'in_construction': '#b2df8a',
   'planning': '#1f78b4',
   'projected': '#a6cee3',
+  'unverified': '#ff5733',
   'deselected': '#888',
 };
 

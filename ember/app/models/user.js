@@ -35,6 +35,10 @@ export default class extends DS.Model {
       return 'SLOCOG Staff';
     } else if(email.endsWith('srta.org') || agency==='SRTA'){
       return 'SRTA Staff';
+    }else if(email.endsWith('trpa.org') || agency==='TRPA'){
+      return 'TRPA Staff';
+    }else if(email.endsWith('bcag.org') || agency==='BCAG'){
+      return 'BCAG Staff';
     } else {
       return fullName;
     }
@@ -51,8 +55,12 @@ export default class extends DS.Model {
       return 'SLOCOG';
     }else if(email.endsWith('srta.org') || agency==='SRTA'){
       return 'SRTA';
+    }else if(email.endsWith('trpa.org') || agency==='TRPA'){
+      return 'TRPA';
+    }else if(email.endsWith('bcag.org') || agency==='BCAG'){
+      return 'BCAG';
     } else{
-      return 'AMBAG'
+      return null;
     }
   }
 

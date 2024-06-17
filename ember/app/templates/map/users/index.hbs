@@ -45,7 +45,13 @@
             <td>
               {{user.municipality}}
             </td>
-            <td>{{user.agency}}</td>
+            <td>
+              <select name="{{user.id}}-agency" onchange={{action updateUserAgency user}}>
+                {{#each agencies as |agency|}}
+                  <option value={{agency}} selected={{if (eq user.agency agency) 'selected'}}>{{capitalize agency}}</option>
+                {{/each}}
+              </select>
+            </td>
             <td>
               {{user.createdAt}}
             </td>
