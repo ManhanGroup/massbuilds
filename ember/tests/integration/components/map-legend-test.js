@@ -12,7 +12,7 @@ module('Integration | Component | map legend', function(hooks) {
 
     await render(hbs`{{map-legend}}`);
 
-    assert.dom('*').hasText("Completed In Construction Planning Projected Deselected");
+    assert.dom('*').hasText("Completed In Construction Planning Projected Unverified Deselected");
 
     // Template block usage:
     // This component does accept template arguments in calbuilds! Add applicable arguments in future testing
