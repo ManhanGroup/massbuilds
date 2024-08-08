@@ -18,10 +18,10 @@ module('Integration | Component | map legend', function(hooks) {
     // This component does accept template arguments in calbuilds! Add applicable arguments in future testing
     await render(hbs`
       {{#map-legend}}
-      Completed In Construction Planning Projected Deselected
+      Completed In Construction Planning Projected Unverified Deselected
       {{/map-legend}}
     `);
 
-    assert.dom('*').hasText("Completed In Construction Planning Projected Deselected");
+    assert.dom('*').hasText("Completed In Construction Planning Projected Unverified Deselected");
   });
 });
