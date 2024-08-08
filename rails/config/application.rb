@@ -34,6 +34,7 @@ module Calbuilds
       'https://www.calbuilds.com',
       'https://calbuilds.manhan.co',
       'https://calbuilds.5mpos.co',
+      'https://calbuilds.5mpos.co.ambag.org',
       ENV['LOCAL_DEV_IP']
     ].compact
 
