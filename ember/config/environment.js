@@ -26,7 +26,7 @@ module.exports = function(environment) {
       'connect-src': '*',
     },
     admin: {
-      email: 'ya@manhangroup.com',
+      email: 'gschmidt@ambag.org',
     }
   };
 
