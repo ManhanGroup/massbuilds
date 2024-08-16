@@ -8,6 +8,7 @@ export default class extends DS.Model {
   @attr('string') muni
   @attr('string') apn
   @attr('string') site_addr
+  @attr('string') agency
   @attr('json') geojson
 
 }
