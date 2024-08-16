@@ -5,13 +5,11 @@ import statusColors from 'calbuilds/utils/status-colors';
 import pointInPolygon from '@turf/boolean-point-in-polygon';
 import centerOfMass from '@turf/center-of-mass';
 import mapboxgl from 'mapbox-gl';
+import config from 'calbuilds/config/environment';
 
 import paintProperties from 'calbuilds/utils/paint-properties';
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoieWFjd2FuZyIsImEiOiJjbDYxcDBsa2sxemx1M2ptbmd1ZW4ydnpvIn0.U2zECpVKNzxvJsHLLAuoYQ';
-//mapboxgl.accessToken =
-  //'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg';
+mapboxgl.accessToken = config.MAPBOX_ACCESS_TOKEN;
 
 export default class extends Component {
   @service store;
