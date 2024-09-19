@@ -16,6 +16,7 @@ export default class extends Controller {
   @alias('map.baseMap') baseMap
   @alias('map.currentZoom') currentZoom
   @alias('map.focusCityCoords') focusCityCoords
+  @alias('map.parcelAgency') parcelAgency
 
   constructor() {
     super(...arguments);

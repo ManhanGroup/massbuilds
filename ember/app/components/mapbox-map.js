@@ -6,10 +6,9 @@ import pointInPolygon from '@turf/boolean-point-in-polygon';
 import centerOfMass from '@turf/center-of-mass';
 import mapboxgl from 'mapbox-gl';
 import config from 'calbuilds/config/environment';
-
 import paintProperties from 'calbuilds/utils/paint-properties';
 
-mapboxgl.accessToken = config.MAPBOX_ACCESS_TOKEN;
+mapboxgl.accessToken =config.MAPBOX_ACCESS_TOKEN;
 
 export default class extends Component {
   @service store;
@@ -298,6 +297,7 @@ export default class extends Component {
                 },
               ],
             });
+            this.get('map').set('parcelAgency',parcel.get('agency'));
             this.set('previousParcel', parcel);
           } else {
             this.getNewParcel(newCoordinates);
@@ -440,7 +440,7 @@ export default class extends Component {
       properties: {
         id: dev.get('id'),
         color: statusColors[dev.get('status')] || '#888',
-        name: dev.get('name'),
+        name: dev.get('name') || dev.get('address'),
         status: dev.get('status'),
         apn: dev.get('apn'),
         statComts: dev.get('statComts'),

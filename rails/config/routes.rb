@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :edits, except: [:new, :edit]
   devise_for :users, controllers: { sessions: 'sessions', passwords: 'passwords' }, path_prefix: 'my'
   resources :users
+  resources :rpas, only: [:index]
   resources :rpas do
     member do
       patch :update

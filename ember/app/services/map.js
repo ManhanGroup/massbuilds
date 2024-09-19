@@ -34,6 +34,7 @@ export default class extends Service {
     this.jumpToSelectedCoordinates = false;
     this.showingLeftPanel = false;
     this.focusCityCoords=null;
+    this.parcelAgency='AMBAG';
 
     this.get('store')
       .query('development', { trunc: true })

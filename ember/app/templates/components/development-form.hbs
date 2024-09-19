@@ -144,9 +144,17 @@
         <div class="row">
           <div class="column">
             <div class="field">
+              {{#if (eq developmentAgency 'SLOCOG')}}  
+                <label>Open to Public View?
+                  {{input type="checkbox" checked=false disabled=true}}<div class="note">
+                Developments in SLCOG region will only be visible to uers with an account.
+                </div>
+                </label>
+              {{else}}
               <label>Open to Public View?
                 {{input type="checkbox" checked=editing.ispublic click=(action checkForUpdated 'ispublic')}}
               </label>
+              {{/if}}
             </div>
             <div class="field">
               <label for="status" class="required">
@@ -271,7 +279,7 @@
             </div>
             {{/if}}
 
-            {{#if (eq userAgency 'SLOCOG')}}            
+            {{#if (or (eq userAgency 'SLCOG') (eq developmentAgency 'SLCOG'))}}            
             <div class="field">
               <label for="gluc" class="required">
                 {{defined-term key='GLUC'}}
@@ -365,7 +373,7 @@
               </ul>
             </div>
 
-            {{#if (eq userAgency 'SRTA') }} 
+            {{#if (or (eq userAgency 'SRTA') (eq developmentAgency 'SRTA'))}} 
               <div class="field">
                 <label>AB1317 Applicable?
                   {{input type="checkbox" checked=editing.ab1317 click=(action checkForUpdated 'ab1317')}}
@@ -567,7 +575,7 @@
                 </td>
               </tr>
 
-              {{#if (eq userAgency 'SRTA') }} 
+              {{#if (or (eq userAgency 'SRTA') (eq developmentAgency 'SRTA'))}} 
                 <tr>
                   <td>
                     <label>{{defined-term key="MULTI_FAMILY_2TO4"}}</label>
@@ -1328,7 +1336,7 @@
         </article>
       {{/if}}
 
-      {{#if (eq userAgency 'SRTA') }} 
+      {{#if (or (eq userAgency 'SRTA') (eq developmentAgency 'SRTA')) }} 
         <div class="field">
           <label for="school">New School?</label>
           {{input type="checkbox" checked=editing.school click=(action checkForUpdated 'school')}}

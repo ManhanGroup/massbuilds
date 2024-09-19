@@ -408,5 +408,11 @@ export default class extends Component {
     return agency;
   }
 
+  @computed('map.parcelAgency')
+  get developmentAgency() {
+    const agency = this.get('map.parcelAgency');
+    return agency;
+  }
+
 
 }

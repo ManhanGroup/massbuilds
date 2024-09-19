@@ -28,7 +28,8 @@ module.exports = function(environment) {
     MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
     admin: {
       email: 'gschmidt@ambag.org',
-    }
+    },
+    MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
   };
 
   if (environment === 'development') {
