@@ -3,6 +3,8 @@ class RpasController < ApplicationController
   def index
     if params[:id]
       @rpa= Rpa.find(params[:id])
+    elsif params[:Lat] && params[:Lng]
+      @rpas=Rpa.where("ST_Contains(shape, st_transform(ST_SetSRID(ST_MakePoint(#{params[:Lng]}, #{params[:Lat]}), 4326),4269))").first
     else
       @rpas = Rpa
         .select('id, name, acronym, ispublic')
