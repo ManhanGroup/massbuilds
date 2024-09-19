@@ -5,8 +5,7 @@ import statusColors from 'calbuilds/utils/status-colors';
 import pointInPolygon from '@turf/boolean-point-in-polygon';
 import centerOfMass from '@turf/center-of-mass';
 import mapboxgl from 'mapbox-gl';
-import config from 'calbuilds/config/environment'
-
+import config from 'calbuilds/config/environment';
 import paintProperties from 'calbuilds/utils/paint-properties';
 
 mapboxgl.accessToken =config.MAPBOX_ACCESS_TOKEN;
