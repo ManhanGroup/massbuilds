@@ -441,7 +441,7 @@ export default class extends Component {
       properties: {
         id: dev.get('id'),
         color: statusColors[dev.get('status')] || '#888',
-        name: dev.get('name'),
+        name: dev.get('name') || dev.get('address'),
         status: dev.get('status'),
         apn: dev.get('apn'),
         statComts: dev.get('statComts'),
