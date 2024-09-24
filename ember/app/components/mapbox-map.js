@@ -8,7 +8,6 @@ import mapboxgl from 'mapbox-gl';
 import config from 'calbuilds/config/environment';
 import paintProperties from 'calbuilds/utils/paint-properties';
 
-
 mapboxgl.accessToken =config.MAPBOX_ACCESS_TOKEN;
 
 export default class extends Component {
