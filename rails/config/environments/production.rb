@@ -75,12 +75,20 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: Rails.application.secrets.mailgun_api_key,
-    domain: 'mg.ywconsultinggroup.com'
-  }
-  config.action_mailer.default_url_options = { host: 'https://calbuilds-api.herokuapp.com/' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: 'smtpout.secureserver.net',
+  port: 465,
+  domain: '5mpos.co',
+  user_name: Rails.application.credentials.dig(:godaddy, :user),
+  password: Rails.application.credentials.dig(:godaddy, :pw),
+  authentication: 'plain',
+  ssl: true,
+  tls: true,
+  enable_starttls_auto: true
+}
+config.action_mailer.default_url_options = { host: 'https://calbuilds-api.herokuapp.com/' }
+
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
