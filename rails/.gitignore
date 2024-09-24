@@ -25,3 +25,5 @@
 config/secrets.yml.key
 
 spec/examples.txt
+
+/config/master.key
