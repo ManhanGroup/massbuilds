@@ -27,7 +27,7 @@ module.exports = function(environment) {
     },
     MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
     admin: {
-      email: 'gschmidt@ambag.org',
+      email: 'admin@5mpos.co',
     },
     MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
   };

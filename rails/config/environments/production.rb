@@ -77,16 +77,14 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: 'smtpout.secureserver.net',
-  port: 465,
-  domain: '5mpos.co',
-  user_name: Rails.application.credentials.dig(:godaddy, :user),
-  password: Rails.application.credentials.dig(:godaddy, :pw),
-  authentication: 'plain',
-  ssl: true,
-  tls: true,
-  enable_starttls_auto: true
-}
+    address: 'smtp.office365.com',
+    port: 587,
+    domain: '5mpos.co',
+    user_name: Rails.application.credentials.dig(:godaddy, :user),
+    password: Rails.application.credentials.dig(:godaddy, :pw),
+    authentication: 'login',
+    enable_starttls_auto: true
+  }
 config.action_mailer.default_url_options = { host: 'https://calbuilds-api.herokuapp.com/' }
 
 

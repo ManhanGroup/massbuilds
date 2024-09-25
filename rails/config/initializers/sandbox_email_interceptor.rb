@@ -1,6 +1,6 @@
 class SandboxEmailInterceptor
   def self.delivering_email(message)
-    message.to = ['gschmidt@ambag.org']
+    message.to = ['admin@5mpos.co']
   end
 end
 

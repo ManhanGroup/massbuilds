@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'mailgun@mg.ywconsultinggroup.com'
+  default from: 'admin@5mpos.co'
   def password_reset_email(user, password)
     @user = user
     @password = password
