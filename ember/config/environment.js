@@ -24,8 +24,7 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'connect-src': '*',
-    },
-    MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
+    },    
     admin: {
       email: 'admin@5mpos.co',
     },
