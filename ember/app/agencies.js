@@ -17,7 +17,7 @@ const agencies={
       "address": "24580 Silver Cloud Ct",
       "city": "Monterey, CA",
       "postalCode": "93940",
-      "email": "calbuilds@ambag.org",
+      "email": "admin@5mpos.co",
       "acronym": "AMBAG"
     }
   },
@@ -39,7 +39,7 @@ const agencies={
       "address": "326 Huss Ln STE 150",
       "city": "Chico, CA",
       "postalCode": "95928",
-      "email": "calbuilds@bcag.org",
+      "email": "admin@5mpos.co",
       "acronym": "BCAG"
     }
   },
@@ -61,7 +61,7 @@ const agencies={
         "address": "1114 Marsh St",
         "city": " San Luis Obispo, CA",
         "postalCode": "93401",
-        "email": "calbuilds@srta.org",
+        "email": "admin@5mpos.co",
         "acronym": "SLOCOG"
     }
   },  
@@ -83,7 +83,7 @@ const agencies={
         "address": "21225 East Street, Suite 202",
         "city": " Redding, CA",
         "postalCode": "96001",
-        "email": "calbuilds@srta.org",
+        "email": "admin@5mpos.co",
         "acronym": "SRTA"
     }
   },  
@@ -105,7 +105,7 @@ const agencies={
         "address": "128 Market St",
         "city": " Stateline, NV",
         "postalCode": "89410",
-        "email": "calbuilds@trpa.org",
+        "email": "admin@5mpos.co",
         "acronym": "TRPA"
     }
   }, 
