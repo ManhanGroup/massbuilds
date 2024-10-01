@@ -7,6 +7,7 @@ import centerOfMass from '@turf/center-of-mass';
 import mapboxgl from 'mapbox-gl';
 import config from 'calbuilds/config/environment';
 import paintProperties from 'calbuilds/utils/paint-properties';
+import parcelTiles from 'calbuilds/utils/parcel-tiles';
 
 mapboxgl.accessToken =config.MAPBOX_ACCESS_TOKEN;
 
@@ -39,10 +40,10 @@ export default class extends Component {
   }
 
   didInsertElement() {
-    const mapService = this.get('map');
-    let mapStyle = 'mapbox://styles/ambag831/cm1o78qk205f001r79p62842m';   
+    const mapService = this.get('map'); 
+    let mapStyle = 'mapbox://styles/mapbox/streets-v11';
     if (mapService.get('baseMap') == 'satellite') {
-      mapStyle = 'mapbox://styles/ambag831/cm1o7pa8905f101r7cdut4p7t';
+      let mapStyle = 'mapbox://styles/mapbox/satellite-streets-v11';
     }
     this.mapboxglMap = new mapboxgl.Map({
       container: this.get('element'),
@@ -104,6 +105,10 @@ export default class extends Component {
       if (mapService.get('followMode')) {
         this.updateSelection(true);
       }
+
+      // Add tilesets initially
+      this.addTilesets(mapService);   
+
     });
     // A Mapbox event having an 'originalEvent' can indicate that it was a user
     // initiated event instead of one triggered by a Mapbox function like
@@ -111,6 +116,7 @@ export default class extends Component {
     this.mapboxglMap.on('drag', (e) => this.updateSelection(e.originalEvent));
     this.mapboxglMap.on('zoom', (e) => this.updateSelection(e.originalEvent));
     this.mapboxglMap.on('zoomend', () => this.set('focusTargetBounds', null));
+    
   }
 
   willDestroyElement() {
@@ -319,35 +325,79 @@ export default class extends Component {
       this.markerVisibleChangeHandler(mapService);
       this.pTVisibleChangeHandler(mapService);      
       this.followModeChangeHandler(mapService);
+      this.addTilesets(mapService);
       this.mapboxglMap.off('styledata', redrawOnStyleReload);
     };
     this.mapboxglMap.on('styledata', redrawOnStyleReload);
     if (newBaseMap == 'light') {
-      this.mapboxglMap.setStyle('mapbox://styles/ambag831/cm1o78qk205f001r79p62842m');
+      this.mapboxglMap.setStyle('mapbox://styles/mapbox/streets-v11');
     } else if (newBaseMap == 'satellite') {
       this.mapboxglMap.setStyle(
-       'mapbox://styles/ambag831/cm1o7pa8905f101r7cdut4p7t'
+        'mapbox://styles/mapbox/satellite-streets-v11'
       );
-    }
+    };
+
+    this.mapboxglMap.on('style.load', () => {
+      this.addTilesets(mapService);
+    });
   }
 
   toggleParcelTile(mapService){
-    //const visibility=this.mapboxglMap.getLayoutProperty("parcelsambag", 'visibility');
-    const visibility=mapService.get('parcelTileVisible');
-    if (visibility){
-      this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'visible'); 
-      this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'visible');
-      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'visible');
-      this.mapboxglMap.setLayoutProperty("parcelstrpa", 'visibility', 'visible');
-      this.mapboxglMap.setLayoutProperty("parcelsbcag", 'visibility', 'visible');
-    }else{
-      this.mapboxglMap.setLayoutProperty("parcelsslocog", 'visibility', 'none'); 
-      this.mapboxglMap.setLayoutProperty("parcelsambag", 'visibility', 'none');
-      this.mapboxglMap.setLayoutProperty("parcelssrta", 'visibility', 'none');
-      this.mapboxglMap.setLayoutProperty("parcelstrpa", 'visibility', 'none');
-      this.mapboxglMap.setLayoutProperty("parcelsbcag", 'visibility', 'none');
+    const visibility = mapService.get('parcelTileVisible');
+    const layers = ["parcelsslocog", "parcelsambag", "parcelssrta", "parcelstrpa", "parcelsbcag"];
+
+    layers.forEach(layerId => {
+        if (this.mapboxglMap.getLayer(layerId)) {
+          this.mapboxglMap.setLayoutProperty(layerId, 'visibility', visibility ? 'visible':'none');
+          
+        }
+    });  
+  }
+
+  addTilesets(mapService) {
+    const newBaseMap = mapService.get('baseMap');
+    let linecolor='hsl(17, 84%, 42%)';
+    let linewidth=0.75
+    let lineopacity=0.5
+    if (newBaseMap == 'satellite') {
+      linecolor='hsl(0, 0%, 100%)';
+      linewidth=1;
+      lineopacity=1;
     }
-   
+    
+    parcelTiles.forEach(tileset => {
+      // Add the vector tile source
+      if (!this.mapboxglMap.getSource(tileset.id)) {
+        this.mapboxglMap.addSource(tileset.id, {
+          type: 'vector',
+          url: tileset.url
+        });
+      }
+  
+      // Add the layer with the desired style
+      if (!this.mapboxglMap.getLayer(tileset.layerId)) {
+        this.mapboxglMap.addLayer({
+          'id': tileset.layerId,
+          'type': 'line',
+          'source': tileset.id,
+          'source-layer': tileset.sourceLayer,
+          'layout': {
+            'line-join': 'round',
+            'line-cap': 'round',
+            'visibility': mapService.currentZoom > 12 ? 'visible' : 'none'
+          },
+          'paint': {
+            'line-color': linecolor,
+            'line-width': linewidth,
+            'line-opacity': lineopacity,
+            'line-dasharray': [5, 2]
+          }
+        });
+      }else {
+        // Update the visibility based on zoom level
+        this.mapboxglMap.setLayoutProperty(tileset.layerId, 'visibility', mapService.currentZoom > 12 ? 'visible' : 'none');
+      }
+    });
   }
 
   actOnZoomCommand(mapService) {
@@ -701,5 +751,6 @@ export default class extends Component {
     this.mapboxglMap.on('mousemove', 'filtered', updatePopup);
     this.mapboxglMap.on('mouseleave', 'all', closePopup);
     this.mapboxglMap.on('mouseleave', 'filtered', closePopup);
+    
   }
 }
